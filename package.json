@@ -4,7 +4,8 @@
   "description": "Сar sharing Need for drive",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "set NODE_ENV=production && webpack --progress",
+    "start": "set NODE_ENV=development && webpack s --config ./webpack.config.js"
   },
   "repository": {
     "type": "git",
