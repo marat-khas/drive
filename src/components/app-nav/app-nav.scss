@@ -1,9 +1,19 @@
 .app-nav {
   position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 64px;
-  background: #151B1F;
   z-index: 1000;
+  @media (min-width: 1024px) {
+    width: 64px;
+  }
+  @media (max-width: 1023px) {
+    width: 85px;
+  }
+  @media (min-width: 576px) {
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background: #151b1f;
+  }
+  @media (max-width: 575px) {
+    
+  }
 }
