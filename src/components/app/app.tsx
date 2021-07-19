@@ -2,9 +2,7 @@ import { FC, StrictMode, useEffect } from 'react';
 
 import { AppNav } from '@components/app-nav';
 import { AppRouter } from '@components/app-router';
-
 import { VHSet } from '@utilities/vh';
-
 
 import './app.scss';
 
@@ -21,5 +19,5 @@ export const App: FC = () => {
                 <AppRouter />
             </div>
         </StrictMode>
-    )
+    );
 };
