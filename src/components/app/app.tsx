@@ -1,6 +1,12 @@
 import { FC, StrictMode, useEffect } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
+import { ROUTES } from '@constants/routes';
 import { VHSet } from '@utilities/vh';
+
+import { Admin } from '@pages/admin';
+import { Main } from '@pages/main';
+import { Order } from '@pages/order';
 
 import './app.scss';
 
@@ -12,7 +18,15 @@ export const App: FC = () => {
 
     return (
         <StrictMode>
-            <div className='app'>Начало</div>
+            <div className='app'>
+                <BrowserRouter basename={PUBLIC_PATH}>
+                    <Switch>
+                        <Route path={ROUTES.MAIN} exact component={Main} />
+                        <Route path={ROUTES.ORDER} component={Order} />
+                        <Route path={ROUTES.ADMIN} component={Admin} />
+                    </Switch>
+                </BrowserRouter>
+            </div>
         </StrictMode>
-    );
+    )
 };
