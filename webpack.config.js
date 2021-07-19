@@ -23,7 +23,20 @@ module.exports = {
       {
         test: /\.s[ac]ss$/,
         use: [
-          'style-loader',
+          {
+            loader: "style-loader",
+            options: {
+              insert: function(element) {
+                const parent = document.querySelector("head");
+                const firstStyle = parent.querySelector("style");
+                if (firstStyle) {
+                  firstStyle.before(element);
+                } else {
+                  parent.append(element);
+                }
+              },
+            },
+          },
           'css-loader',
           {
             loader: 'postcss-loader',

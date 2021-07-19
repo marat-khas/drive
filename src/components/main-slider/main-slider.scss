@@ -1,0 +1,74 @@
+@import '@styles/_vars.scss';
+
+.main-slider {
+  position: relative;
+  width: 50%;
+  .swiper-container {
+    height: 100%;
+  }
+}
+
+.main-slider-nav {
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 64px;
+    background-color: $color-accent;
+    background-color: rgba(14, 194, 97, 0);
+    transition: background-color $time-trs;
+    z-index: 3;
+    cursor: pointer;
+    svg {
+      width: 8px;
+      height: 18px;
+      transition: transform $time-trs;
+    }
+    &:hover {
+      background-color: rgba(14, 194, 97, 0.2);
+    }
+    &--prev {
+      left: 0;
+      &:hover svg {
+        transform: translateX(-5px);
+      }
+    }
+    &--next {
+      right: 0;
+      &:hover svg {
+        transform: translateX(5px);
+      }
+    }
+  }
+}
+
+.main-slider-pagination {
+  position: absolute;
+  left: 50%;
+  bottom: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: -4px;
+  transform: translateX(-50%);
+  z-index: 3;
+  &__bullet {
+    display: block;
+    width: 8px;
+    height: 8px;
+    margin: 4px;
+    border-radius: 50%;
+    background-color: $color-gray-light;
+    cursor: pointer;
+    transition: background-color $time-trs;
+    &:not(&--active):hover {
+      background-color: darken($color-gray-dark, 5%);
+    }
+    &--active {
+      background-color: $color-accent;
+    }
+  }
+}

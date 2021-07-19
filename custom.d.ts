@@ -1,7 +1,9 @@
-/* eslint-disable no-unused-vars */
-
 declare module '*.svg' {
-    const content: any;
+  import type { ReactElement, SVGProps } from 'react';
+  const content: (props: SVGProps<SVGElement>) => ReactElement;
+  export default content;
 }
+
+declare module '*.jpg'
 
 declare const PUBLIC_PATH: string;
