@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import SwiperCore, { Navigation, Pagination } from 'swiper';
+import SwiperCore, { Autoplay, Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import IcoNext from '@assets/img/ico_next.svg';
@@ -16,13 +16,16 @@ import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
 import './main-slider.scss';
 
-SwiperCore.use([Navigation, Pagination]);
+SwiperCore.use([Autoplay, Navigation, Pagination]);
 
 export const MainSlider: FC = () => (
     <div className='main-slider'>
         <Swiper
             slidesPerView={1}
             loop
+            autoplay={{
+                delay: 4000
+            }}
             navigation={{
                 prevEl: '.main-slider-nav__btn--prev',
                 nextEl: '.main-slider-nav__btn--next',
