@@ -1,20 +1,6 @@
 @import "@styles/_vars.scss";
 
 .app-nav {
-  @media (min-width: 1024px) {
-    width: 64px;
-  }
-  @media (max-width: 1023px) {
-    width: 85px;
-  }
-  @media (min-width: 576px) {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    background: #151b1f;
-    z-index: 1000;
-  }
   &__btn {
     position: fixed;
     display: block;
@@ -24,21 +10,6 @@
     border-radius: 0;
     cursor: pointer;
     z-index: 1002;
-    @media (min-width: 1024px) {
-      left: 20px;
-      top: 38px;
-      width: 24px;
-    }
-    @media (min-width: 576px) and (max-width: 1023px) {
-      left: 26px;
-      top: 35px;
-      width: 32px;
-    }
-    @media (max-width: 575px) {
-      left: 22px;
-      top: 24px;
-      width: 24px;
-    }
     &:before,
     &:after,
     span {
@@ -48,12 +19,6 @@
       width: 100%;
       height: 3px;
       border-radius: 1.5px;
-      @media (min-width: 576px) {
-        background-color: #fff;
-      }
-      @media (max-width: 575px) {
-        background-color: $color-black;
-      }
     }
     &:before {
       content: "";
@@ -68,24 +33,6 @@
     span {
       top: 8px;
       transition: background-color 0.4s, width 0s 0.4s;
-    }
-    @media (min-width: 576px) {
-      &:hover {
-        &:before,
-        &:after,
-        span {
-          background-color: $color-accent;
-        }
-      }
-    }
-  }
-  @media (max-width: 575px) {
-    &.isOpen &__btn {
-      &:before,
-      &:after,
-      span {
-        background-color: #fff;
-      }
     }
   }
   &__lang {
@@ -110,9 +57,6 @@
         color: #fff;
       }
     }
-    @media (max-width: 575px) {
-      display: none;
-    }
   }
   &__menu {
     position: fixed;
@@ -127,37 +71,17 @@
     justify-content: center;
     z-index: 1001;
     transition: transform 0.6s;
-    @media (min-width: 576px) {
-      padding: 96px 128px;
-    }
-    @media (max-width: 575px) {
-      padding: 80px 28px;
-    }
   }
   &:not(.isOpen) &__menu {
     transform: translateX(-100%);
   }
   &__list {
-    &:not(:last-child) {
-      @media (min-width: 576px) {
-        margin-bottom: 38px;
-      }
-      @media (max-width: 575px) {
-        margin-bottom: 28px;
-      }
-    }
     ul {
       li {
         line-height: 1.15;
         font-weight: 500;
         color: #fff;
         text-transform: uppercase;
-        @media (min-width: 576px) {
-          font-size: 32px;
-        }
-        @media (max-width: 575px) {
-          font-size: 22px;
-        }
         &:not(:last-child) {
           margin-bottom: 0.5em;
         }
@@ -212,6 +136,105 @@
     }
     span {
       width: 0;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .app-nav {
+    width: 64px;
+    &__btn {
+      left: 20px;
+      top: 38px;
+      width: 24px;
+    }
+  }
+}
+
+@media (max-width: 1023px) {
+  .app-nav {
+    width: 85px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 1023px) {
+  .app-nav {
+    &__btn {
+      left: 26px;
+      top: 35px;
+      width: 32px;
+    }
+  }
+}
+
+@media (min-width: 576px) {
+  .app-nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background: #151b1f;
+    z-index: 1000;
+    &__btn {
+      &:before,
+      &:after,
+      span {
+        background-color: #fff;
+      }
+      &:hover {
+        &:before,
+        &:after,
+        span {
+          background-color: $color-accent;
+        }
+      }
+    }
+    &__menu {
+      padding: 96px 128px;
+    }
+    &__list {
+      &:not(:last-child) {
+        margin-bottom: 38px;
+      }
+      ul li {
+        font-size: 32px;
+      }
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  .app-nav {
+    &__btn {
+      left: 22px;
+      top: 24px;
+      width: 24px;
+      &:before,
+      &:after,
+      span {
+        background-color: $color-black;
+      }
+    }
+    &.isOpen &__btn {
+      &:before,
+      &:after,
+      span {
+        background-color: #fff;
+      }
+    }
+    &__lang {
+      display: none;
+    }
+    &__menu {
+      padding: 80px 28px;
+    }
+    &__list {
+      &:not(:last-child) {
+        margin-bottom: 28px;
+      }
+      ul li {
+        font-size: 22px;
+      }
     }
   }
 }

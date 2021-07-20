@@ -2,15 +2,6 @@
 
 .main-slider {
   position: relative;
-  @media (min-width: 1440px) {
-    width: 50%;
-  }
-  @media (min-width: 1024px) and (max-width: 1439px) {
-    width: 42%;
-  }
-  @media (max-width: 1023px) {
-    display: none;
-  }
   .swiper-container {
     height: 100%;
   }
@@ -28,12 +19,6 @@
     transition: background-color $time-trs;
     z-index: 3;
     cursor: pointer;
-    @media (min-width: 1440px) {
-      width: 64px;
-    }
-    @media (max-width: 1439px) {
-      width: 32px;
-    }
     svg {
       width: 8px;
       height: 18px;
@@ -82,5 +67,32 @@
     &--active {
       background-color: $color-accent;
     }
+  }
+}
+
+@media (min-width: 1440px) {
+  .main-slider {
+    width: 50%;
+  }
+  .main-slider-nav__btn {
+    width: 64px;
+  }
+}
+
+@media (max-width: 1439px) {
+  .main-slider-nav__btn {
+    width: 32px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .main-slider {
+    width: 42%;
+  }
+}
+
+@media (max-width: 1023px) {
+  .main-slider {
+    display: none;
   }
 }

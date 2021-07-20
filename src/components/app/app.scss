@@ -1,9 +1,16 @@
 .app {
   width: 100%;
-  @media (min-width: 1024px) {
+}
+
+@media (min-width: 1024px) {
+  .app {
+    width: 100%;
     padding-left: 64px;
   }
-  @media (min-width: 576px) and (max-width: 1023px) {
+}
+
+@media (min-width: 576px) and (max-width: 1023px) {
+  .app {
     padding-left: 85px;
   }
 }
