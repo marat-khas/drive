@@ -1,4 +1,5 @@
 import { FC, useState } from 'react';
+import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
 import FacebookIco from '@assets/img/ico_facebook.svg';
@@ -25,16 +26,16 @@ export const AppNav: FC = () => {
                 <nav className='app-nav__list'>
                     <ul>
                         <li>
-                            <a href={ROUTES.ORDER}>ПАРКОВКА</a>
+                            <Link to={ROUTES.ORDER} onClick={() => setOpen(false)}>ПАРКОВКА</Link>
                         </li>
                         <li>
-                            <a href={ROUTES.ORDER}>СТРАХОВКА</a>
+                            <Link to={ROUTES.ORDER} onClick={() => setOpen(false)}>СТРАХОВКА</Link>
                         </li>
                         <li>
-                            <a href={ROUTES.ORDER}>БЕНЗИН</a>
+                            <Link to={ROUTES.ORDER} onClick={() => setOpen(false)}>БЕНЗИН</Link>
                         </li>
                         <li>
-                            <a href={ROUTES.ORDER}>ОБСЛУЖИВАНИЕ</a>
+                            <Link to={ROUTES.ORDER} onClick={() => setOpen(false)}>ОБСЛУЖИВАНИЕ</Link>
                         </li>
                     </ul>
                 </nav>

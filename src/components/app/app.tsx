@@ -1,4 +1,5 @@
 import { FC, StrictMode, useEffect } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
 import { AppNav } from '@components/app-nav';
 import { AppRouter } from '@components/app-router';
@@ -14,10 +15,12 @@ export const App: FC = () => {
 
     return (
         <StrictMode>
-            <div className='app'>
-                <AppNav />
-                <AppRouter />
-            </div>
+            <BrowserRouter basename={PUBLIC_PATH}>
+                <div className='app'>
+                    <AppNav />
+                    <AppRouter />
+                </div>
+            </BrowserRouter>
         </StrictMode>
     );
 };
