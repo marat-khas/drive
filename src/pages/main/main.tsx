@@ -1,8 +1,10 @@
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 import LocationIco from '@assets/img/ico_location.svg';
 import { Button } from '@components/button';
 import { MainSlider } from '@components/main-slider';
+import { ROUTES } from '@constants/routes';
 
 import './main.scss';
 
@@ -31,7 +33,9 @@ export const Main: FC = () => (
                     </div>
                 </div>
                 <div className='main-info__btn'>
-                    <Button>Забронировать</Button>
+                    <Link to={ROUTES.ORDER}>
+                        <Button>Забронировать</Button>
+                    </Link>
                 </div>
             </div>
             <footer className='main-info__foot'>
