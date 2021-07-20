@@ -18,66 +18,77 @@ import './main-slider.scss';
 
 SwiperCore.use([Autoplay, Navigation, Pagination]);
 
-export const MainSlider: FC = () => (
-    <div className='main-slider'>
-        <Swiper
-            slidesPerView={1}
-            loop
-            autoplay={{
-                delay: 4000
-            }}
-            navigation={{
-                prevEl: '.main-slider-nav__btn--prev',
-                nextEl: '.main-slider-nav__btn--next',
-            }}
-            pagination={{
-                el: '.main-slider-pagination',
-                bulletClass: 'main-slider-pagination__bullet',
-                bulletActiveClass: 'main-slider-pagination__bullet--active',
-                clickable: true,
-            }}
-        >
-            <SwiperSlide>
-                <MainSlide
-                    img={slideImg1}
-                    title='Бесплатная парковка'
-                    desc='Оставляйте машину на платных городских парковках и разрешенных местах, не нарушая ПДД, а также в аэропортах.'
-                    link={ROUTES.ORDER}
-                />
-            </SwiperSlide>
-            <SwiperSlide>
-                <MainSlide
-                    img={slideImg2}
-                    title='Страховка'
-                    desc='Полная страховка страховка автомобиля'
-                    link={ROUTES.ORDER}
-                />
-            </SwiperSlide>
-            <SwiperSlide>
-                <MainSlide
-                    img={slideImg3}
-                    title='Бензин'
-                    desc='Полный бак на любой заправке города за наш счёт'
-                    link={ROUTES.ORDER}
-                />
-            </SwiperSlide>
-            <SwiperSlide>
-                <MainSlide
-                    img={slideImg4}
-                    title='Обслуживание'
-                    desc='Автомобиль проходит еженедельное ТО'
-                    link={ROUTES.ORDER}
-                />
-            </SwiperSlide>
-        </Swiper>
-        <div className='main-slider-nav'>
-            <div className='main-slider-nav__btn main-slider-nav__btn--prev'>
-                <IcoPrev />
+export const MainSlider: FC = () => {
+    const slides = [
+        {
+            img: slideImg1,
+            title: 'Бесплатная парковка',
+            desc: 'Оставляйте машину на платных городских парковках и разрешенных местах, не нарушая ПДД, а также в аэропортах.',
+            link: ROUTES.ORDER,
+            btnType: 1,
+        },
+        {
+            img: slideImg2,
+            title: 'Страховка',
+            desc: 'Полная страховка страховка автомобиля',
+            link: ROUTES.ORDER,
+            btnType: 2,
+        },
+        {
+            img: slideImg3,
+            title: 'Бесплатная парковка',
+            desc: 'Оставляйте машину на платных городских парковках и разрешенных местах, не нарушая ПДД, а также в аэропортах.',
+            link: ROUTES.ORDER,
+            btnType: 3,
+        },
+        {
+            img: slideImg4,
+            title: 'Обслуживание',
+            desc: 'Автомобиль проходит еженедельное ТО',
+            link: ROUTES.ORDER,
+            btnType: 4,
+        },
+    ];
+    return (
+        <div className='main-slider'>
+            <Swiper
+                slidesPerView={1}
+                loop
+                autoplay={{
+                    delay: 4000,
+                }}
+                navigation={{
+                    prevEl: '.main-slider-nav__btn--prev',
+                    nextEl: '.main-slider-nav__btn--next',
+                }}
+                pagination={{
+                    el: '.main-slider-pagination',
+                    bulletClass: 'main-slider-pagination__bullet',
+                    bulletActiveClass: 'main-slider-pagination__bullet--active',
+                    clickable: true,
+                }}
+            >
+                {slides.map((slide) => (
+                    <SwiperSlide>
+                        <MainSlide
+                            img={slide.img}
+                            title={slide.title}
+                            desc={slide.desc}
+                            link={slide.link}
+                            btnType={slide.btnType}
+                        />
+                    </SwiperSlide>
+                ))}
+            </Swiper>
+            <div className='main-slider-nav'>
+                <div className='main-slider-nav__btn main-slider-nav__btn--prev'>
+                    <IcoPrev />
+                </div>
+                <div className='main-slider-nav__btn main-slider-nav__btn--next'>
+                    <IcoNext />
+                </div>
             </div>
-            <div className='main-slider-nav__btn main-slider-nav__btn--next'>
-                <IcoNext />
-            </div>
+            <div className='main-slider-pagination' />
         </div>
-        <div className='main-slider-pagination' />
-    </div>
-);
+    );
+};

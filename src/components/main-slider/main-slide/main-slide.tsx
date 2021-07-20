@@ -10,9 +10,16 @@ export interface MainSlideProps {
     title: string;
     desc: string;
     link: string;
+    btnType?: number;
 }
 
-export const MainSlide: FC<MainSlideProps> = ({ img, title, desc, link }) => (
+export const MainSlide: FC<MainSlideProps> = ({
+    img,
+    title,
+    desc,
+    link,
+    btnType,
+}) => (
     <div className='main-slide' style={{ backgroundImage: `url(${img})` }}>
         <div className='main-slide__container'>
             <div className='main-slide__info'>
@@ -21,7 +28,7 @@ export const MainSlide: FC<MainSlideProps> = ({ img, title, desc, link }) => (
             </div>
             <div className='main-slide__btn'>
                 <Link to={link}>
-                    <Button dark>Подробнее</Button>
+                    <Button bg={btnType}>Подробнее</Button>
                 </Link>
             </div>
         </div>

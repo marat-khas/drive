@@ -5,7 +5,7 @@ import './button.scss';
 
 export interface ButtonProps {
     disabled?: boolean;
-    dark?: boolean;
+    bg?: number;
     fullsize?: boolean;
     submit?: boolean;
 }
@@ -13,17 +13,13 @@ export interface ButtonProps {
 export const Button: FC<ButtonProps> = ({
     children,
     disabled = false,
-    dark = false,
+    bg = 0,
     fullsize = false,
     submit = false,
 }) => {
-    const classes = classNames(
-        'btn',
-        {
-            'btn--dark': dark,
-            'btn--fullsize': fullsize
-        }
-    );
+    const classes = classNames('btn', `btn--bg${bg}`, {
+        'btn--fullsize': fullsize,
+    });
     return (
         <button
             className={classes}

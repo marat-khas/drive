@@ -16,7 +16,7 @@ export const App: FC = () => {
         window.addEventListener('resize', resizeHandler);
         return () => {
             window.removeEventListener('resize', resizeHandler);
-        }
+        };
     }, []);
 
     return (

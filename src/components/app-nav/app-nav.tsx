@@ -15,21 +15,21 @@ export const AppNav: FC = () => {
     const navList = [
         {
             to: ROUTES.ORDER,
-            label: 'ПАРКОВКА'
+            label: 'ПАРКОВКА',
         },
         {
             to: ROUTES.ORDER,
-            label: 'СТРАХОВКА'
+            label: 'СТРАХОВКА',
         },
         {
             to: ROUTES.ORDER,
-            label: 'БЕНЗИН'
+            label: 'БЕНЗИН',
         },
         {
             to: ROUTES.ORDER,
-            label: 'ОБСЛУЖИВАНИЕ'
-        }
-    ]
+            label: 'ОБСЛУЖИВАНИЕ',
+        },
+    ];
     return (
         <aside className={classes}>
             <button
@@ -40,13 +40,20 @@ export const AppNav: FC = () => {
                 <span />
             </button>
             <div className='app-nav__lang'>
-                <button>Eng</button>
+                <button type='button'>Eng</button>
             </div>
             <div className='app-nav__menu'>
                 <nav className='app-nav__list'>
                     <ul>
-                        {navList.map(item => (
-                            <li><Link to={item.to} onClick={() => setOpen(false)}>{item.label}</Link></li>
+                        {navList.map((item) => (
+                            <li>
+                                <Link
+                                    to={item.to}
+                                    onClick={() => setOpen(false)}
+                                >
+                                    {item.label}
+                                </Link>
+                            </li>
                         ))}
                     </ul>
                 </nav>

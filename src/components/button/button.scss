@@ -1,5 +1,12 @@
 @import '@styles/_vars.scss';
 
+$btn-bg0: linear-gradient(90deg, #0EC261, #039F67);
+$btn-bg1: linear-gradient(90deg, #13493F, #0C7B1B);
+$btn-bg2: linear-gradient(90deg, #132949, #0C7B67);
+$btn-bg3: linear-gradient(90deg, #493013, #7B0C3B);
+$btn-bg4: linear-gradient(90deg, #281349, #720C7B);
+
+
 .btn {
   position: relative;
   display: inline-block;
@@ -22,7 +29,6 @@
     right: 0;
     top: 0;
     bottom: 0;
-    background: linear-gradient(90deg, #0EC261, #039F67);
     transition: filter $time-trs;
   }
   span {
@@ -31,8 +37,20 @@
     vertical-align: top;
     z-index: 2;
   }
-  &--dark:before {
-    background: linear-gradient(90deg, #13493F, #0C7B1B);
+  &--bg0:before {
+    background: $btn-bg0;
+  }
+  &--bg1:before {
+    background: $btn-bg1;
+  }
+  &--bg2:before {
+    background: $btn-bg2;
+  }
+  &--bg3:before {
+    background: $btn-bg3;
+  }
+  &--bg4:before {
+    background: $btn-bg4;
   }
   &--fullsize {
     width: 100%;
