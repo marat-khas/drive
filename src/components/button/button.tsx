@@ -19,8 +19,10 @@ export const Button: FC<ButtonProps> = ({
 }) => {
     const classes = classNames(
         'btn',
-        { 'btn--dark': dark },
-        { 'btn--fullsize': fullsize }
+        {
+            'btn--dark': dark,
+            'btn--fullsize': fullsize
+        }
     );
     return (
         <button

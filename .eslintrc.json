@@ -53,7 +53,7 @@
             "^@?\\w"
           ],
           [
-            "^(@assets|@components|@constants|@pages|@services|@styles|@utilities)(/.*|$)"
+            "^(@assets|@components|@constants|@pages|@services|@styles|@utils)(/.*|$)"
           ],
           [
             "^.+\\.ico$",

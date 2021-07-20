@@ -12,8 +12,26 @@ import './app-nav.scss';
 export const AppNav: FC = () => {
     const [open, setOpen] = useState(false);
     const classes = classNames('app-nav', { isOpen: open });
+    const navList = [
+        {
+            to: ROUTES.ORDER,
+            label: 'ПАРКОВКА'
+        },
+        {
+            to: ROUTES.ORDER,
+            label: 'СТРАХОВКА'
+        },
+        {
+            to: ROUTES.ORDER,
+            label: 'БЕНЗИН'
+        },
+        {
+            to: ROUTES.ORDER,
+            label: 'ОБСЛУЖИВАНИЕ'
+        }
+    ]
     return (
-        <div className={classes}>
+        <aside className={classes}>
             <button
                 className='app-nav__btn'
                 onClick={() => setOpen(!open)}
@@ -21,22 +39,15 @@ export const AppNav: FC = () => {
             >
                 <span />
             </button>
-            <div className='app-nav__lang'>Eng</div>
+            <div className='app-nav__lang'>
+                <button>Eng</button>
+            </div>
             <div className='app-nav__menu'>
                 <nav className='app-nav__list'>
                     <ul>
-                        <li>
-                            <Link to={ROUTES.ORDER} onClick={() => setOpen(false)}>ПАРКОВКА</Link>
-                        </li>
-                        <li>
-                            <Link to={ROUTES.ORDER} onClick={() => setOpen(false)}>СТРАХОВКА</Link>
-                        </li>
-                        <li>
-                            <Link to={ROUTES.ORDER} onClick={() => setOpen(false)}>БЕНЗИН</Link>
-                        </li>
-                        <li>
-                            <Link to={ROUTES.ORDER} onClick={() => setOpen(false)}>ОБСЛУЖИВАНИЕ</Link>
-                        </li>
+                        {navList.map(item => (
+                            <li><Link to={item.to} onClick={() => setOpen(false)}>{item.label}</Link></li>
+                        ))}
                     </ul>
                 </nav>
                 <div className='app-nav__soc'>
@@ -59,6 +70,6 @@ export const AppNav: FC = () => {
                     </ul>
                 </div>
             </div>
-        </div>
+        </aside>
     );
 };

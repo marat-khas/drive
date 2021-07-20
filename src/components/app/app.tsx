@@ -3,14 +3,20 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { AppNav } from '@components/app-nav';
 import { AppRouter } from '@components/app-router';
-import { VHSet } from '@utilities/vh';
+import { VHSet } from '@utils/vh';
 
 import './app.scss';
 
 export const App: FC = () => {
     useEffect(() => {
         VHSet();
-        window.addEventListener('resize', () => VHSet());
+        const resizeHandler = () => {
+            VHSet();
+        };
+        window.addEventListener('resize', resizeHandler);
+        return () => {
+            window.removeEventListener('resize', resizeHandler);
+        }
     }, []);
 
     return (

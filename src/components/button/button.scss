@@ -22,7 +22,7 @@
     right: 0;
     top: 0;
     bottom: 0;
-    background: linear-gradient(90deg, #0EC261 2.61%, #039F67 112.6%);
+    background: linear-gradient(90deg, #0EC261, #039F67);
     transition: filter $time-trs;
   }
   span {
@@ -32,7 +32,7 @@
     z-index: 2;
   }
   &--dark:before {
-    background: linear-gradient(90deg, #13493F 0%, #0C7B1B 100%);
+    background: linear-gradient(90deg, #13493F, #0C7B1B);
   }
   &--fullsize {
     width: 100%;
@@ -47,7 +47,7 @@
   &:disabled {
     cursor: default;
     &:before {
-      background: #EEE!important;
+      background: #EEE;
     }
   }
 }

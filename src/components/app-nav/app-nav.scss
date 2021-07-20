@@ -93,11 +93,23 @@
     left: 0;
     bottom: 32px;
     width: 100%;
-    font-size: 13px;
-    line-height: 1.15;
-    font-weight: 400;
-    color: $color-accent;
     text-align: center;
+    button {
+      display: inline-block;
+      vertical-align: top;
+      border: 0 none;
+      border-radius: 0;
+      background-color: transparent;
+      font-size: 13px;
+      line-height: 1.15;
+      font-weight: 400;
+      color: $color-accent;
+      cursor: pointer;
+      transition: color $time-trs;
+      &:hover {
+        color: #fff;
+      }
+    }
     @media (max-width: 575px) {
       display: none;
     }
