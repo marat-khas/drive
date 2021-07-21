@@ -1,12 +1,11 @@
-import { TabsActionTypes, TabActive, TabComplete } from './types';
-
+import { TabActive, TabComplete, TabsActionTypes } from './types';
 
 export const TabActiveAction = (index: number): TabActive => ({
-  type: TabsActionTypes.TAB_ACTIVE,
-  payload: index
-})
+    type: TabsActionTypes.TAB_ACTIVE,
+    payload: index,
+});
 
 export const TabCompleteAction = (index: number): TabComplete => ({
-  type: TabsActionTypes.TAB_COMPLETE,
-  payload: index
-})
+    type: TabsActionTypes.TAB_COMPLETE,
+    payload: index,
+});

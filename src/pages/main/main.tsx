@@ -1,9 +1,8 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-
-import { Header } from '@components/header';
 import { Button } from '@components/button';
+import { Header } from '@components/header';
 import { MainSlider } from '@components/main-slider';
 import { ROUTES } from '@constants/routes';
 

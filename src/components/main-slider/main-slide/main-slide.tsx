@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 import { Button } from '@components/button';
 
-import { MainSlideProps } from './types';
-
 import './main-slide.scss';
+
+import { MainSlideProps } from './types';
 
 export const MainSlide: FC<MainSlideProps> = ({
     img,

@@ -1,10 +1,10 @@
 import { FC, StrictMode, useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
+import { store } from '@state/store';
 
 import { AppNav } from '@components/app-nav';
 import { AppRouter } from '@components/app-router';
-import { store } from '@state/store';
 import { VHSet } from '@utils/vh';
 
 import './app.scss';

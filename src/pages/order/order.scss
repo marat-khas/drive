@@ -37,6 +37,29 @@
   }
 }
 
+.form {
+  &__body {
+    display: table;
+  }
+  &__item {
+    display: table-row;
+  }
+  &__label {
+    display: table-cell;
+    font-size: 14px;
+    line-height: 1.2;
+    font-weight: 300;
+    color: $color-black;
+    text-align: right;
+    padding: 5px 12px 5px 0;
+  }
+  &__input {
+    display: table-cell;
+    width: 300px;
+    padding: 5px 0;
+  }
+}
+
 @media (min-width: 768px) {
   .order {
     &__wrapper {
@@ -78,4 +101,3 @@
     }
   }
 }
-

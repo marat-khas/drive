@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import classNames from 'classnames';
 
-import { ButtonProps } from './types';
-
 import './button.scss';
+
+import { ButtonProps } from './types';
 
 export const Button: FC<ButtonProps> = ({
     children,
@@ -11,7 +11,7 @@ export const Button: FC<ButtonProps> = ({
     bg = 0,
     fullsize = false,
     submit = false,
-    onClick
+    onClick,
 }) => {
     const classes = classNames('btn', `btn--bg${bg}`, {
         'btn--fullsize': fullsize,

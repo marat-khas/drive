@@ -1,5 +1,5 @@
 export interface TabProps {
-  index: number;
-  available: boolean;
-  active: boolean;
+    index: number;
+    available: boolean;
+    active: boolean;
 }

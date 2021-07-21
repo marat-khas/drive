@@ -1,5 +1,5 @@
 import { OrderState } from './types';
 
-export const OrderStateDefault:OrderState = {
-  products: []
-}
+export const OrderStateDefault: OrderState = {
+    products: [],
+};
