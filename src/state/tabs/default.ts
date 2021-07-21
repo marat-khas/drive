@@ -7,12 +7,12 @@ export const tabsStateDefault: TabsState = {
             label: 'Местоположение',
             btnText: 'Выбрать модель',
             available: true,
-            complete: true,
+            complete: false,
         },
         {
             label: 'Модель (активна для примера)',
             btnText: 'Дополнительно',
-            available: true,
+            available: false,
             complete: false,
         },
         {

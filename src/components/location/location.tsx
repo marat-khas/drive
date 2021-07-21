@@ -1,13 +1,19 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
+import { ChangeCityAction, ChangePointAction } from '@state/location/actions';
+import { getCity, getPoint } from '@state/selectors';
+import { TabAvailableAction, TabCompleteAction } from '@state/tabs/actions';
 
 import './location.scss';
 
 import { places } from './mocks';
 
 export const Location: FC = () => {
-    const [city, setCity] = useState<string | undefined>(undefined);
-    const [point, setPoint] = useState<string | undefined>(undefined);
+    const dispatch = useDispatch();
+    const city = useSelector(getCity);
+    const point = useSelector(getPoint);
+
     const cityChange = (
         selectedOption: {
             value: string | undefined;
@@ -15,12 +21,14 @@ export const Location: FC = () => {
         } | null
     ) => {
         if (selectedOption === null) {
-            setCity(undefined);
-            setPoint(undefined);
-            // action disable
-        } else {
-            setCity(selectedOption?.value);
+            dispatch(ChangeCityAction(undefined));
+            dispatch(TabCompleteAction(0, false));
+            dispatch(TabAvailableAction(1, false));
+        } else if (selectedOption.value !== undefined) {
+            const cityId = parseInt(selectedOption?.value, 10);
+            dispatch(ChangeCityAction({ ...places[cityId], id: cityId }));
         }
+        dispatch(ChangePointAction(undefined));
     };
 
     const pointChange = (
@@ -30,10 +38,21 @@ export const Location: FC = () => {
         } | null
     ) => {
         if (selectedOption === null) {
-            setPoint(undefined);
-            // action disable
-        } else {
-            setPoint(selectedOption?.value);
+            dispatch(ChangePointAction(undefined));
+            dispatch(TabCompleteAction(0, false));
+            dispatch(TabAvailableAction(1, false));
+        } else if (selectedOption.value !== undefined) {
+            const pointId = parseInt(selectedOption?.value, 10);
+            if (city !== undefined) {
+                dispatch(
+                    ChangePointAction({
+                        ...places[city.id].points[pointId],
+                        id: pointId,
+                    })
+                );
+                dispatch(TabCompleteAction(0, true));
+                dispatch(TabAvailableAction(1, true));
+            }
         }
     };
     return (
@@ -47,9 +66,9 @@ export const Location: FC = () => {
                                 placeholder='Выберите город'
                                 isClearable
                                 onChange={cityChange}
-                                options={places.map((place) => ({
-                                    value: place.city,
-                                    label: place.city,
+                                options={places.map((place, index) => ({
+                                    value: index.toString(),
+                                    label: place.name,
                                 }))}
                             />
                         </div>
@@ -59,10 +78,10 @@ export const Location: FC = () => {
                         <div className='form__input'>
                             <Select
                                 value={
-                                    city && point
+                                    city !== undefined && point !== undefined
                                         ? {
-                                              value: point,
-                                              label: point,
+                                              value: point.id.toString(),
+                                              label: point.addr,
                                           }
                                         : null
                                 }
@@ -72,14 +91,12 @@ export const Location: FC = () => {
                                 options={
                                     city === undefined
                                         ? []
-                                        : places
-                                              .filter(
-                                                  (place) => place.city === city
-                                              )[0]
-                                              .points.map((office) => ({
-                                                  value: office.addr,
+                                        : places[city.id].points.map(
+                                              (office, index) => ({
+                                                  value: index.toString(),
                                                   label: office.addr,
-                                              }))
+                                              })
+                                          )
                                 }
                             />
                         </div>

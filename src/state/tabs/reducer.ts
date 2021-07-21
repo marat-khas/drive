@@ -12,15 +12,24 @@ export const tabsReducer = (
                 active: action.payload,
             };
         }
+        case TabsActionTypes.TAB_AVAILABLE: {
+            return {
+                ...state,
+                tabs: state.tabs.map((tab, index) =>
+                    index === action.payload.index
+                        ? { ...tab, available: action.payload.status }
+                        : { ...tab }
+                ),
+            };
+        }
         case TabsActionTypes.TAB_COMPLETE: {
             return {
                 ...state,
-                tabs: state.tabs.map((tab, index) => {
-                    if (index === action.payload) {
-                        tab.complete = true;
-                    }
-                    return tab;
-                }),
+                tabs: state.tabs.map((tab, index) =>
+                    index === action.payload.index
+                        ? { ...tab, complete: action.payload.status }
+                        : { ...tab }
+                ),
             };
         }
         default:

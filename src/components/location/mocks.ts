@@ -1,6 +1,6 @@
 export const places = [
     {
-        city: 'Ульяновск',
+        name: 'Ульяновск',
         coord: {
             lat: 54.314192,
             lng: 48.403132,
@@ -30,7 +30,7 @@ export const places = [
         ],
     },
     {
-        city: 'Самара',
+        name: 'Самара',
         coord: {
             lat: 53.195878,
             lng: 50.100202,
@@ -60,7 +60,7 @@ export const places = [
         ],
     },
     {
-        city: 'Казань',
+        name: 'Казань',
         coord: {
             lat: 55.796127,
             lng: 49.106414,
