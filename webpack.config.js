@@ -123,6 +123,7 @@ module.exports = {
       '@pages': path.join(SRC, 'pages'),
       '@services': path.join(SRC, 'services'),
       '@styles': path.join(SRC, 'styles'),
+      '@state': path.join(SRC, 'state'),
       '@utils': path.join(SRC, 'utils'),
     },
   },
