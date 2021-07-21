@@ -5,18 +5,22 @@ export const tabsStateDefault: TabsState = {
   tabs: [
     {
       label: 'Местоположение',
+      btnText: 'Выбрать модель',
       available: true,
-      complete: false
+      complete: true
     }, {
       label: 'Модель (активна для примера)',
+      btnText: 'Дополнительно',
       available: true,
       complete: false
     }, {
       label: 'Дополнительно',
+      btnText: 'Итого',
       available: false,
       complete: false
     }, {
       label: 'Итого',
+      btnText: 'Заказать',
       available: false,
       complete: false
     }

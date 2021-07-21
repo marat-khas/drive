@@ -3,4 +3,5 @@ export interface ButtonProps {
   bg?: number;
   fullsize?: boolean;
   submit?: boolean;
+  onClick?: () => void;
 }
