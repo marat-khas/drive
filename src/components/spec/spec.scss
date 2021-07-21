@@ -1,13 +1,11 @@
-@import '@styles/_vars.scss';
+@import "@styles/_vars.scss";
 
 .spec {
   &__head {
-    font-size: 18px;
     line-height: 1.2;
     font-weight: 500;
     color: $color-black;
     text-align: right;
-    margin-bottom: 26px;
   }
   &__body {
     margin-bottom: 32px;
@@ -16,20 +14,14 @@
     display: flex;
     align-items: flex-end;
     justify-content: flex-start;
-    font-size: 14px;
     line-height: 1.2;
     font-weight: 300;
-    &:not(:last-child) {
-      margin-bottom: 16px;
-    }
   }
   &__name {
     color: $color-black;
   }
   &__dots {
     flex: 1;
-    min-width: 30px;
-    margin: 0 12px;
     border-bottom: 1px dotted $color-gray-dark;
   }
   &__value {
@@ -37,16 +29,57 @@
     color: $color-gray-dark;
   }
   &__cost {
-    font-size: 16px;
     line-height: 1.2;
     font-weight: 400;
     color: $color-black;
-    margin-bottom: 32px;
     span {
       font-weight: 500;
     }
   }
-  &__next {
+}
 
+@media (min-width: 576px) {
+  .spec {
+    &__head {
+      font-size: 18px;
+      margin-bottom: 26px;
+    }
+    &__item {
+      font-size: 14px;
+      &:not(:last-child) {
+        margin-bottom: 16px;
+      }
+    }
+    &__dots {
+      min-width: 30px;
+      margin: 0 12px;
+    }
+    &__cost {
+      font-size: 16px;
+      margin-bottom: 32px;
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  .spec {
+    &__head {
+      font-size: 16px;
+      margin-bottom: 22px;
+    }
+    &__item {
+      font-size: 12px;
+      &:not(:last-child) {
+        margin-bottom: 12px;
+      }
+    }
+    &__dots {
+      min-width: 24px;
+      margin: 0 10px;
+    }
+    &__cost {
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
   }
 }

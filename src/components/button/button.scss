@@ -11,7 +11,6 @@ $btn-bg4: linear-gradient(90deg, #281349, #720C7B);
   position: relative;
   display: inline-block;
   vertical-align: top;
-  font-size: 18px;
   line-height: 1.2;
   font-weight: 500;
   color: #fff;
@@ -67,5 +66,17 @@ $btn-bg4: linear-gradient(90deg, #281349, #720C7B);
     &:before {
       background: #EEE;
     }
+  }
+}
+
+@media (min-width: 576px) {
+  .btn {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 575px) {
+  .btn {
+    font-size: 16px;
   }
 }
