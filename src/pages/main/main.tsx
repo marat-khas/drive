@@ -1,7 +1,8 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import LocationIco from '@assets/img/ico_location.svg';
+
+import { Header } from '@components/header';
 import { Button } from '@components/button';
 import { MainSlider } from '@components/main-slider';
 import { ROUTES } from '@constants/routes';
@@ -11,15 +12,9 @@ import './main.scss';
 export const Main: FC = () => (
     <div className='main'>
         <div className='main-info'>
-            <header className='main-info__head'>
-                <div className='main-info__logo'>Need for drive</div>
-                <div className='main-info__location'>
-                    <a href='/'>
-                        <LocationIco />
-                        <span>Ульяновск</span>
-                    </a>
-                </div>
-            </header>
+            <div className='main-info__head'>
+                <Header />
+            </div>
             <div className='main-info__body'>
                 <div className='main-info__data'>
                     <div className='main-info__title'>

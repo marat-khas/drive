@@ -46,7 +46,7 @@ export const AppNav: FC = () => {
                 <nav className='app-nav__list'>
                     <ul>
                         {navList.map((item) => (
-                            <li>
+                            <li key={item.label}>
                                 <Link
                                     to={item.to}
                                     onClick={() => setOpen(false)}

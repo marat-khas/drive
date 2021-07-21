@@ -1,4 +1,5 @@
 export type Tab = {
+  label: string,
   available: boolean;
   complete: boolean;
 }

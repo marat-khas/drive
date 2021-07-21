@@ -1,0 +1,52 @@
+@import '@styles/_vars.scss';
+
+.spec {
+  &__head {
+    font-size: 18px;
+    line-height: 1.2;
+    font-weight: 500;
+    color: $color-black;
+    text-align: right;
+    margin-bottom: 26px;
+  }
+  &__body {
+    margin-bottom: 32px;
+  }
+  &__item {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    font-size: 14px;
+    line-height: 1.2;
+    font-weight: 300;
+    &:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  }
+  &__name {
+    color: $color-black;
+  }
+  &__dots {
+    flex: 1;
+    min-width: 30px;
+    margin: 0 12px;
+    border-bottom: 1px dotted $color-gray-dark;
+  }
+  &__value {
+    text-align: right;
+    color: $color-gray-dark;
+  }
+  &__cost {
+    font-size: 16px;
+    line-height: 1.2;
+    font-weight: 400;
+    color: $color-black;
+    margin-bottom: 32px;
+    span {
+      font-weight: 500;
+    }
+  }
+  &__next {
+
+  }
+}

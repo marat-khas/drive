@@ -1,12 +1,8 @@
 import { OrderAction, OrderActionTypes, OrderState } from './types';
-
-const defaultState:OrderState = {
-  products: []
-}
-
+import { OrderStateDefault } from './default';
 
 export const orderReducer = (
-  state = defaultState,
+  state = OrderStateDefault,
   action: OrderAction
 ): OrderState => {
   switch (action.type) {

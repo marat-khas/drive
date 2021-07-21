@@ -1,27 +1,9 @@
 import { TabsAction, TabsActionTypes, TabsState } from './types';
-
-const defaultState: TabsState = {
-  active: 0,
-  tabs: [
-    {
-      available: true,
-      complete: false
-    }, {
-      available: false,
-      complete: false
-    }, {
-      available: false,
-      complete: false
-    }, {
-      available: false,
-      complete: false
-    }
-  ]
-}
+import { tabsStateDefault } from './default';
 
 
 export const tabsReducer = (
-  state = defaultState,
+  state = tabsStateDefault,
   action: TabsAction
 ): TabsState => {
   switch (action.type) {

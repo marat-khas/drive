@@ -1,14 +1,9 @@
 import { FC } from 'react';
 import classNames from 'classnames';
 
-import './button.scss';
+import { ButtonProps } from './types';
 
-export interface ButtonProps {
-    disabled?: boolean;
-    bg?: number;
-    fullsize?: boolean;
-    submit?: boolean;
-}
+import './button.scss';
 
 export const Button: FC<ButtonProps> = ({
     children,

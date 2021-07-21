@@ -1,0 +1,48 @@
+@import "@styles/_vars.scss";
+
+.tab {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  color: $color-gray-dark;
+  &:not(:last-child) {
+    padding-right: 38px;
+    &:after {
+      content: "";
+      width: 6px;
+      height: 8px;
+      background: url("@assets/img/ico_triangle.png") no-repeat center center;
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      margin-top: -4px;
+    }
+  }
+  button {
+    display: inline-block;
+    vertical-align: top;
+    border: 0 none;
+    border-radius: 0;
+    background-color: transparent;
+    font-size: 14px;
+    line-height: 1.2;
+    font-weight: 700;
+    color: $color-gray-dark;
+    cursor: default;
+    transition: color $time-trs;
+  }
+  &--available {
+    button {
+      cursor: pointer;
+      color: $color-black;
+      &:hover {
+        color: $color-accent;
+      }
+    }
+  }
+  &--active {
+    button {
+      color: $color-accent;
+    }
+  }
+}

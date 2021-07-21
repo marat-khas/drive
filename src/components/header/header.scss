@@ -1,0 +1,64 @@
+@import "@styles/_vars";
+
+.header {
+  width: 100%;
+  &__logo {
+    font-size: 30px;
+    line-height: 1.17;
+    font-weight: 700;
+    color: $color-accent;
+  }
+  &__location {
+    a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-start;
+      vertical-align: top;
+      text-decoration: none;
+      cursor: pointer;
+      svg {
+        display: block;
+        width: 15px;
+        height: 18px;
+        margin-right: 7px;
+        path {
+          stroke: $color-gray-dark;
+          transition: stroke $time-trs;
+        }
+      }
+      span {
+        font-size: 14px;
+        line-height: 1.14;
+        font-weight: 400;
+        color: $color-gray-dark;
+        transition: color $time-trs;
+      }
+      &:hover {
+        svg path {
+          stroke: $color-black;
+        }
+        span {
+          color: $color-black;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 576px) {
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 575px) {
+  .header {
+    padding: 16px 16px 16px 51px;
+    text-align: right;
+    &__logo {
+      margin-bottom: 8px;
+    }
+  }
+}
