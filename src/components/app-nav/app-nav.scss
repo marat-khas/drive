@@ -1,0 +1,240 @@
+@import "@styles/_vars.scss";
+
+.app-nav {
+  &__btn {
+    position: fixed;
+    display: block;
+    height: 19px;
+    background: transparent;
+    border: 0 none;
+    border-radius: 0;
+    cursor: pointer;
+    z-index: 1002;
+    &:before,
+    &:after,
+    span {
+      display: block;
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      border-radius: 1.5px;
+    }
+    &:before {
+      content: "";
+      top: 0;
+      transition: background-color 0.4s, top 0.4s 0.4s, transform 0.4s;
+    }
+    &:after {
+      content: "";
+      bottom: 0;
+      transition: background-color 0.4s, bottom 0.4s 0.4s, transform 0.4s;
+    }
+    span {
+      top: 8px;
+      transition: background-color 0.4s, width 0s 0.4s;
+    }
+  }
+  &__lang {
+    position: absolute;
+    left: 0;
+    bottom: 32px;
+    width: 100%;
+    text-align: center;
+    button {
+      display: inline-block;
+      vertical-align: top;
+      border: 0 none;
+      border-radius: 0;
+      background-color: transparent;
+      font-size: 13px;
+      line-height: 1.15;
+      font-weight: 400;
+      color: $color-accent;
+      cursor: pointer;
+      transition: color $time-trs;
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+  &__menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(21, 27, 31, 0.95);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    z-index: 1001;
+    transition: transform 0.6s;
+  }
+  &:not(.isOpen) &__menu {
+    transform: translateX(-100%);
+  }
+  &__list {
+    ul {
+      li {
+        line-height: 1.15;
+        font-weight: 500;
+        color: #fff;
+        text-transform: uppercase;
+        &:not(:last-child) {
+          margin-bottom: 0.5em;
+        }
+        a {
+          text-decoration: none;
+          color: #fff;
+          cursor: pointer;
+          transition: color $time-trs;
+        }
+      }
+      &.isActive a,
+      a:hover {
+        color: $color-accent;
+      }
+    }
+  }
+  &__soc {
+    ul {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin: 0 -12px;
+      li {
+        padding: 0 12px;
+        a {
+          svg {
+            display: block;
+            width: 32px;
+            height: 32px;
+            path {
+              fill: #fff;
+              transition: fill $time-trs;
+            }
+          }
+          &:hover svg path {
+            fill: $color-accent;
+          }
+        }
+      }
+    }
+  }
+  &.isOpen &__btn {
+    &:before {
+      top: 8px;
+      transform: rotate(45deg);
+      transition: background-color 0.4s, top 0.4s, transform 0.4s 0.4s;
+    }
+    &:after {
+      bottom: 8px;
+      transform: rotate(-45deg);
+      transition: background-color 0.4s, bottom 0.4s, transform 0.4s 0.4s;
+    }
+    span {
+      width: 0;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .app-nav {
+    width: 64px;
+    &__btn {
+      left: 20px;
+      top: 38px;
+      width: 24px;
+    }
+  }
+}
+
+@media (max-width: 1023px) {
+  .app-nav {
+    width: 85px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 1023px) {
+  .app-nav {
+    &__btn {
+      left: 26px;
+      top: 35px;
+      width: 32px;
+    }
+  }
+}
+
+@media (min-width: 576px) {
+  .app-nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background: #151b1f;
+    z-index: 1000;
+    &__btn {
+      &:before,
+      &:after,
+      span {
+        background-color: #fff;
+      }
+      &:hover {
+        &:before,
+        &:after,
+        span {
+          background-color: $color-accent;
+        }
+      }
+    }
+    &__menu {
+      padding: 96px 128px;
+    }
+    &__list {
+      &:not(:last-child) {
+        margin-bottom: 38px;
+      }
+      ul li {
+        font-size: 32px;
+      }
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  .app-nav {
+    &__btn {
+      left: 22px;
+      top: 24px;
+      width: 24px;
+      &:before,
+      &:after,
+      span {
+        background-color: $color-black;
+      }
+    }
+    &.isOpen &__btn {
+      &:before,
+      &:after,
+      span {
+        background-color: #fff;
+      }
+    }
+    &__lang {
+      display: none;
+    }
+    &__menu {
+      padding: 80px 28px;
+    }
+    &__list {
+      &:not(:last-child) {
+        margin-bottom: 28px;
+      }
+      ul li {
+        font-size: 22px;
+      }
+    }
+  }
+}

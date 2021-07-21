@@ -1,0 +1,71 @@
+@import '@styles/_vars.scss';
+
+$btn-bg0: linear-gradient(90deg, #0EC261, #039F67);
+$btn-bg1: linear-gradient(90deg, #13493F, #0C7B1B);
+$btn-bg2: linear-gradient(90deg, #132949, #0C7B67);
+$btn-bg3: linear-gradient(90deg, #493013, #7B0C3B);
+$btn-bg4: linear-gradient(90deg, #281349, #720C7B);
+
+
+.btn {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: 500;
+  color: #fff;
+  text-decoration: none;
+  background: transparent;
+  border: 0 none;
+  border-radius: 8px;
+  padding: 0.7em 2em;
+  overflow: hidden;
+  cursor: pointer;
+  &:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transition: filter $time-trs;
+  }
+  span {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    z-index: 2;
+  }
+  &--bg0:before {
+    background: $btn-bg0;
+  }
+  &--bg1:before {
+    background: $btn-bg1;
+  }
+  &--bg2:before {
+    background: $btn-bg2;
+  }
+  &--bg3:before {
+    background: $btn-bg3;
+  }
+  &--bg4:before {
+    background: $btn-bg4;
+  }
+  &--fullsize {
+    width: 100%;
+    text-align: center;
+  }
+  &:not(:disabled):hover:before {
+    filter: brightness(0.9);
+  }
+  &:not(:disabled):active:before {
+    filter: brightness(0.8);
+  }
+  &:disabled {
+    cursor: default;
+    &:before {
+      background: #EEE;
+    }
+  }
+}
