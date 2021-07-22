@@ -10,7 +10,7 @@ export const tabsStateDefault: TabsState = {
             complete: false,
         },
         {
-            label: 'Модель (активна для примера)',
+            label: 'Модель',
             btnText: 'Дополнительно',
             available: false,
             complete: false,
