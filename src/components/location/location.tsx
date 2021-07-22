@@ -4,6 +4,7 @@ import Select from 'react-select';
 
 import { places } from '@mocks/location';
 import { ChangeCityAction, ChangePointAction } from '@state/location/actions';
+import { CartClearAction, ProductAddAction } from '@state/order/actions';
 import { getCity, getPoint } from '@state/selectors';
 import { TabAvailableAction, TabCompleteAction } from '@state/tabs/actions';
 
@@ -29,6 +30,7 @@ export const Location: FC = () => {
             dispatch(ChangeCityAction({ ...places[cityId] }));
         }
         dispatch(ChangePointAction(undefined));
+        dispatch(CartClearAction());
     };
 
     const pointChange = (
@@ -37,6 +39,7 @@ export const Location: FC = () => {
             label: string | undefined;
         } | null
     ) => {
+        dispatch(CartClearAction());
         if (selectedOption === null) {
             dispatch(ChangePointAction(undefined));
             dispatch(TabCompleteAction(0, false));
@@ -47,6 +50,10 @@ export const Location: FC = () => {
                 dispatch(
                     ChangePointAction({ ...places[city.id].points[pointId] })
                 );
+                dispatch(ProductAddAction({
+                    name: 'Пункт выдачи',
+                    info: places[city.id].points[pointId].addr
+                }));
                 dispatch(TabCompleteAction(0, true));
                 dispatch(TabAvailableAction(1, true));
             }
@@ -77,9 +84,9 @@ export const Location: FC = () => {
                                 value={
                                     city !== undefined && point !== undefined
                                         ? {
-                                              value: point.id.toString(),
-                                              label: point.addr,
-                                          }
+                                            value: point.id.toString(),
+                                            label: point.addr,
+                                        }
                                         : null
                                 }
                                 placeholder='Начните вводить пункт ...'
@@ -89,11 +96,11 @@ export const Location: FC = () => {
                                     city === undefined
                                         ? []
                                         : places[city.id].points.map(
-                                              (office) => ({
-                                                  value: office.id.toString(),
-                                                  label: office.addr,
-                                              })
-                                          )
+                                            (office) => ({
+                                                value: office.id.toString(),
+                                                label: office.addr,
+                                            })
+                                        )
                                 }
                             />
                         </div>
