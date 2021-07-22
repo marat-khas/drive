@@ -1,9 +1,9 @@
 import { FC } from 'react';
 
+import { Breadcrumbs } from '@components/breadcrumbs';
 import { Header } from '@components/header';
 import { OrderSlider } from '@components/order-slider';
 import { Spec } from '@components/spec';
-import { Tabs } from '@components/tabs';
 
 import './order.scss';
 
@@ -14,9 +14,9 @@ export const Order: FC = () => (
                 <Header />
             </div>
         </div>
-        <div className='order__tabs'>
+        <div className='order__breadcrumbs'>
             <div className='container'>
-                <Tabs />
+                <Breadcrumbs />
             </div>
         </div>
         <div className='order__body'>

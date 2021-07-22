@@ -52,7 +52,6 @@ export const MainSlider: FC = () => {
     return (
         <div className='main-slider'>
             <Swiper
-                slidesPerView={1}
                 loop
                 autoplay={{
                     delay: 4000,

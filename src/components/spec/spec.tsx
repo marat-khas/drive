@@ -13,7 +13,7 @@ export const Spec: FC = () => {
     const tabs = useSelector(getTabs);
     const order = useSelector(getOrder);
     const activeTabIndex = useSelector(getActiveTabIndex);
-    const nextHandle = () => {
+    const handleNext = () => {
         dispatch(TabActiveAction(activeTabIndex + 1));
     };
     return (
@@ -35,7 +35,7 @@ export const Spec: FC = () => {
                 <Button
                     disabled={!tabs[activeTabIndex].complete}
                     fullsize
-                    onClick={nextHandle}
+                    onClick={handleNext}
                 >
                     {tabs[activeTabIndex].btnText}
                 </Button>

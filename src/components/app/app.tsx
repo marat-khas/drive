@@ -12,12 +12,12 @@ import './app.scss';
 export const App: FC = () => {
     useEffect(() => {
         VHSet();
-        const resizeHandler = () => {
+        const handleResize = () => {
             VHSet();
         };
-        window.addEventListener('resize', resizeHandler);
+        window.addEventListener('resize', handleResize);
         return () => {
-            window.removeEventListener('resize', resizeHandler);
+            window.removeEventListener('resize', handleResize);
         };
     }, []);
 

@@ -6,16 +6,24 @@
     font-size: 30px;
     line-height: 1.17;
     font-weight: 700;
-    color: $color-accent;
+    a {
+      color: $color-accent;
+      text-decoration: none;
+      transition: color 0.4s;
+      cursor: pointer;
+      &:hover {
+        color: darken($color-accent, 7%);
+      }
+    }
   }
   &__location {
-    a {
+    > a,
+    > span {
       display: inline-flex;
       align-items: center;
       justify-content: flex-start;
       vertical-align: top;
       text-decoration: none;
-      cursor: pointer;
       svg {
         display: block;
         width: 15px;
@@ -33,6 +41,9 @@
         color: $color-gray-dark;
         transition: color $time-trs;
       }
+    }
+    a {
+      cursor: pointer;
       &:hover {
         svg path {
           stroke: $color-black;

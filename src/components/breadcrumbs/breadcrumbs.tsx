@@ -1,23 +1,23 @@
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 
-import { Tab } from '@components/tabs/tab';
+import { BreadcrumbsItem } from '@components/breadcrumbs/breadcrumbs-item';
 import { getActiveTabIndex, getTabs } from '@state/selectors';
 
-export const Tabs: FC = () => {
-    const tabs = useSelector(getTabs);
+export const Breadcrumbs: FC = () => {
+    const breadcrumbs = useSelector(getTabs);
     const activeTabIndex = useSelector(getActiveTabIndex);
     return (
-        <div className='tabs'>
-            {tabs.map((tab, index) => (
-                <Tab
+        <div className='breadcrumbs'>
+            {breadcrumbs.map((tab, index) => (
+                <BreadcrumbsItem
                     key={tab.label}
                     index={index}
                     available={tab.available}
                     active={activeTabIndex === index}
                 >
                     {tab.label}
-                </Tab>
+                </BreadcrumbsItem>
             ))}
         </div>
     );

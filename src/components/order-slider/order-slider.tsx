@@ -21,7 +21,6 @@ export const OrderSlider: FC = () => {
 
     return (
         <Swiper
-            slidesPerView={1}
             allowTouchMove={false}
             simulateTouch={false}
             onSwiper={(s) => {

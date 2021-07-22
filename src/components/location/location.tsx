@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Select from 'react-select';
 
+import { LocationSelect } from '@components/location/location-select';
 import { places } from '@mocks/location';
 import { ChangeCityAction, ChangePointAction } from '@state/location/actions';
 import { CartClearAction, ProductAddAction } from '@state/order/actions';
@@ -22,14 +22,14 @@ export const Location: FC = () => {
         } | null
     ) => {
         if (selectedOption === null) {
-            dispatch(ChangeCityAction(undefined));
+            dispatch(ChangeCityAction(null));
             dispatch(TabCompleteAction(0, false));
             dispatch(TabAvailableAction(1, false));
         } else if (selectedOption.value !== undefined) {
             const cityId = parseInt(selectedOption?.value, 10);
             dispatch(ChangeCityAction({ ...places[cityId] }));
         }
-        dispatch(ChangePointAction(undefined));
+        dispatch(ChangePointAction(null));
         dispatch(CartClearAction());
     };
 
@@ -41,12 +41,12 @@ export const Location: FC = () => {
     ) => {
         dispatch(CartClearAction());
         if (selectedOption === null) {
-            dispatch(ChangePointAction(undefined));
+            dispatch(ChangePointAction(null));
             dispatch(TabCompleteAction(0, false));
             dispatch(TabAvailableAction(1, false));
         } else if (selectedOption.value !== undefined) {
             const pointId = parseInt(selectedOption?.value, 10);
-            if (city !== undefined) {
+            if (city) {
                 dispatch(
                     ChangePointAction({ ...places[city.id].points[pointId] })
                 );
@@ -65,48 +65,36 @@ export const Location: FC = () => {
         <div className='location'>
             <form className='form'>
                 <div className='form__body'>
-                    <div className='form__item'>
-                        <div className='form__label'>Город</div>
-                        <div className='form__input'>
-                            <Select
-                                placeholder='Выберите город'
-                                isClearable
-                                onChange={cityChange}
-                                options={places.map((place) => ({
-                                    value: place.id.toString(),
-                                    label: place.name,
-                                }))}
-                            />
-                        </div>
-                    </div>
-                    <div className='form__item'>
-                        <div className='form__label'>Пункт выдачи</div>
-                        <div className='form__input'>
-                            <Select
-                                value={
-                                    city !== undefined && point !== undefined
-                                        ? {
-                                              value: point.id.toString(),
-                                              label: point.addr,
-                                          }
-                                        : null
-                                }
-                                placeholder='Начните вводить пункт ...'
-                                isClearable
-                                onChange={pointChange}
-                                options={
-                                    city === undefined
-                                        ? []
-                                        : places[city.id].points.map(
-                                              (office) => ({
-                                                  value: office.id.toString(),
-                                                  label: office.addr,
-                                              })
-                                          )
-                                }
-                            />
-                        </div>
-                    </div>
+                    <LocationSelect
+                        label='Город'
+                        placeholder='Выберите город'
+                        options={places.map((place) => ({
+                            value: place.id.toString(),
+                            label: place.name,
+                        }))}
+                        handleChange={cityChange}
+                    />
+                    <LocationSelect
+                        label='Пункт выдачи'
+                        value={
+                            city && point
+                                ? {
+                                      value: point.id.toString(),
+                                      label: point.addr,
+                                  }
+                                : null
+                        }
+                        placeholder='Начните вводить пункт ...'
+                        options={
+                            city
+                                ? places[city.id].points.map((office) => ({
+                                      value: office.id.toString(),
+                                      label: office.addr,
+                                  }))
+                                : []
+                        }
+                        handleChange={pointChange}
+                    />
                 </div>
             </form>
         </div>

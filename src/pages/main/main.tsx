@@ -9,7 +9,7 @@ import { ROUTES } from '@constants/routes';
 import './main.scss';
 
 export const Main: FC = () => (
-    <div className='main'>
+    <main className='main'>
         <div className='main-info'>
             <div className='main-info__head'>
                 <Header />
@@ -42,5 +42,5 @@ export const Main: FC = () => (
             </footer>
         </div>
         <MainSlider />
-    </div>
+    </main>
 );

@@ -1,6 +1,6 @@
 @import "@styles/_vars.scss";
 
-.tab {
+.breadcrumbs-item {
   position: relative;
   display: inline-block;
   vertical-align: top;
@@ -49,7 +49,7 @@
 }
 
 @media (min-width: 576px) {
-  .tab {
+  .breadcrumbs-item {
     &:not(:last-child) {
       padding-right: 38px;
       &:after {
@@ -60,7 +60,7 @@
 }
 
 @media (max-width: 575px) {
-  .tab {
+  .breadcrumbs-item {
     &:not(:last-child) {
       padding-right: 30px;
       &:after {

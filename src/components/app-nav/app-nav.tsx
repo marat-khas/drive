@@ -30,6 +30,25 @@ export const AppNav: FC = () => {
             label: 'ОБСЛУЖИВАНИЕ',
         },
     ];
+
+    const socLinks = [
+        {
+            name: 'telegram',
+            href: '/',
+            ico: <TelegramIco />,
+        },
+        {
+            name: 'facebook',
+            href: '/',
+            ico: <FacebookIco />,
+        },
+        {
+            name: 'instagram',
+            href: '/',
+            ico: <InstagramIco />,
+        },
+    ];
+
     return (
         <aside className={classes}>
             <button
@@ -59,21 +78,11 @@ export const AppNav: FC = () => {
                 </nav>
                 <div className='app-nav__soc'>
                     <ul>
-                        <li>
-                            <a href='/'>
-                                <TelegramIco />
-                            </a>
-                        </li>
-                        <li>
-                            <a href='/'>
-                                <FacebookIco />
-                            </a>
-                        </li>
-                        <li>
-                            <a href='/'>
-                                <InstagramIco />
-                            </a>
-                        </li>
+                        {socLinks.map((link) => (
+                            <li key={link.name}>
+                                <a href={link.href}>{link.ico}</a>
+                            </li>
+                        ))}
                     </ul>
                 </div>
             </div>

@@ -32,12 +32,7 @@ export const Map: FC = () => {
                     defaultCenter={defaultMapProps.center}
                     defaultZoom={defaultMapProps.zoom}
                     center={
-                        // eslint-disable-next-line no-nested-ternary
-                        point
-                            ? point.coord
-                            : city
-                            ? city.coord
-                            : defaultMapProps.center
+                        point?.coord || city?.coord || defaultMapProps.center
                     }
                     zoom={point ? 14 : 11}
                 >

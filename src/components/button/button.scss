@@ -64,7 +64,7 @@ $btn-bg4: linear-gradient(90deg, #281349, #720C7B);
   &:disabled {
     cursor: default;
     &:before {
-      background: #EEE;
+      background: $color-gray-light;
     }
   }
 }

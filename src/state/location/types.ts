@@ -17,8 +17,8 @@ export interface City {
 }
 
 export interface LocationState {
-    city: City | undefined;
-    point: Point | undefined;
+    city: City | null;
+    point: Point | null;
 }
 
 export enum LocationActionTypes {
@@ -28,12 +28,12 @@ export enum LocationActionTypes {
 
 export interface ChangeCity {
     type: LocationActionTypes.CHANGE_CITY;
-    payload: City | undefined;
+    payload: City | null;
 }
 
 export interface ChangePoint {
     type: LocationActionTypes.CHANGE_POINT;
-    payload: Point | undefined;
+    payload: Point | null;
 }
 
 export type LocationAction = ChangeCity | ChangePoint;
