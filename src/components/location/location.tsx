@@ -67,6 +67,14 @@ export const Location: FC = () => {
                 <div className='form__body'>
                     <LocationSelect
                         label='Город'
+                        value={
+                            city
+                                ? {
+                                      value: city.id.toString(),
+                                      label: city.name,
+                                  }
+                                : null
+                        }
                         placeholder='Выберите город'
                         options={places.map((place) => ({
                             value: place.id.toString(),
@@ -85,14 +93,12 @@ export const Location: FC = () => {
                                 : null
                         }
                         placeholder='Начните вводить пункт ...'
-                        options={
-                            city
-                                ? places[city.id].points.map((office) => ({
-                                      value: office.id.toString(),
-                                      label: office.addr,
-                                  }))
-                                : []
-                        }
+                        options={places[city ? city.id : 0].points.map(
+                            (office) => ({
+                                value: office.id.toString(),
+                                label: office.addr,
+                            })
+                        )}
                         handleChange={pointChange}
                     />
                 </div>

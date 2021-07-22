@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import GoogleMapReact from 'google-map-react';
 
+import { MapMarker } from '@components/map/map-marker/map-marker';
 import { places } from '@mocks/location';
 import { getCity, getPoint } from '@state/selectors';
 
@@ -11,10 +12,6 @@ const defaultMapProps = {
     center: places[0].coord,
     zoom: 11,
 };
-
-const Marker: FC<{ lat: number; lng: number }> = () => (
-    <div className='map__marker' />
-);
 
 export const Map: FC = () => {
     const city = useSelector(getCity);
@@ -36,11 +33,14 @@ export const Map: FC = () => {
                     }
                     zoom={point ? 14 : 11}
                 >
-                    {(city || places[0]).points.map((office) => (
-                        <Marker
-                            key={office.addr}
-                            lat={office.coord.lat}
-                            lng={office.coord.lng}
+                    {(city || places[0]).points.map(({ id, addr, coord }) => (
+                        <MapMarker
+                            key={addr}
+                            cityId={city ? city.id : 0}
+                            pointId={id}
+                            addr={addr}
+                            lat={coord.lat}
+                            lng={coord.lng}
                         />
                     ))}
                 </GoogleMapReact>
