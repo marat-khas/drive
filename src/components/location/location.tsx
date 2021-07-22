@@ -1,13 +1,13 @@
 import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
+
+import { places } from '@mocks/location';
 import { ChangeCityAction, ChangePointAction } from '@state/location/actions';
 import { getCity, getPoint } from '@state/selectors';
 import { TabAvailableAction, TabCompleteAction } from '@state/tabs/actions';
 
 import './location.scss';
-
-import { places } from './mocks';
 
 export const Location: FC = () => {
     const dispatch = useDispatch();
@@ -26,7 +26,7 @@ export const Location: FC = () => {
             dispatch(TabAvailableAction(1, false));
         } else if (selectedOption.value !== undefined) {
             const cityId = parseInt(selectedOption?.value, 10);
-            dispatch(ChangeCityAction({ ...places[cityId], id: cityId }));
+            dispatch(ChangeCityAction({ ...places[cityId] }));
         }
         dispatch(ChangePointAction(undefined));
     };
@@ -45,10 +45,7 @@ export const Location: FC = () => {
             const pointId = parseInt(selectedOption?.value, 10);
             if (city !== undefined) {
                 dispatch(
-                    ChangePointAction({
-                        ...places[city.id].points[pointId],
-                        id: pointId,
-                    })
+                    ChangePointAction({ ...places[city.id].points[pointId] })
                 );
                 dispatch(TabCompleteAction(0, true));
                 dispatch(TabAvailableAction(1, true));
@@ -66,8 +63,8 @@ export const Location: FC = () => {
                                 placeholder='Выберите город'
                                 isClearable
                                 onChange={cityChange}
-                                options={places.map((place, index) => ({
-                                    value: index.toString(),
+                                options={places.map((place) => ({
+                                    value: place.id.toString(),
                                     label: place.name,
                                 }))}
                             />
@@ -92,8 +89,8 @@ export const Location: FC = () => {
                                     city === undefined
                                         ? []
                                         : places[city.id].points.map(
-                                              (office, index) => ({
-                                                  value: index.toString(),
+                                              (office) => ({
+                                                  value: office.id.toString(),
                                                   label: office.addr,
                                               })
                                           )

@@ -69,7 +69,7 @@ export const MainSlider: FC = () => {
                 }}
             >
                 {slides.map((slide) => (
-                    <SwiperSlide>
+                    <SwiperSlide key={slide.title}>
                         <MainSlide
                             img={slide.img}
                             title={slide.title}

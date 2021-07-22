@@ -38,25 +38,62 @@
 }
 
 .form {
-  &__body {
-    display: table;
-  }
-  &__item {
-    display: table-row;
-  }
   &__label {
     display: table-cell;
     font-size: 14px;
     line-height: 1.2;
     font-weight: 300;
     color: $color-black;
-    text-align: right;
     padding: 5px 12px 5px 0;
+    white-space: nowrap;
   }
   &__input {
-    display: table-cell;
-    width: 300px;
     padding: 5px 0;
+  }
+}
+
+@media (min-width: 992px) {
+  .order {
+    &__steps {
+      padding: 32px 32px 32px 0;
+    }
+    &__result {
+      padding: 32px 0 32px 32px;
+    }
+  }
+  .form {
+    &__body {
+      display: table;
+    }
+    &__item {
+      display: table-row;
+    }
+    &__label {
+      text-align: right;
+    }
+    &__input {
+      display: table-cell;
+      width: 300px;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .form {
+    &__input {
+      width: 100%;
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .order {
+    &__steps {
+      padding: 30px 15px 30px 0;
+    }
+    &__result {
+      padding: 30px 0 30px 15px;
+    }
   }
 }
 
@@ -70,13 +107,29 @@
     &__steps {
       flex: 1;
       min-width: 0;
-      padding: 32px 32px 32px 0;
       border-right: 1px solid $color-gray-light;
     }
     &__result {
       width: 320px;
       flex-shrink: 0;
-      padding: 32px 0 32px 32px;
+    }
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .form {
+    &__body {
+      display: table;
+    }
+    &__item {
+      display: table-row;
+    }
+    &__label {
+      text-align: right;
+    }
+    &__input {
+      display: table-cell;
+      width: 300px;
     }
   }
 }
@@ -89,6 +142,7 @@
     }
     &__result {
       width: 100%;
+      margin-bottom: 30px;
     }
   }
 }

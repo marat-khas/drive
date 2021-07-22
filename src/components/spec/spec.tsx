@@ -21,7 +21,7 @@ export const Spec: FC = () => {
             <div className='spec__body'>
                 <SpecItem
                     name='Пункт выдачи'
-                    value='Ульяновск, /nНариманова&nbsp;42'
+                    value='Ульяновск, Нариманова&nbsp;42'
                 />
             </div>
             <div className='spec__cost'>

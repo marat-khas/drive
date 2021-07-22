@@ -19,6 +19,7 @@
   }
   &__name {
     color: $color-black;
+    white-space: nowrap;
   }
   &__dots {
     flex: 1;

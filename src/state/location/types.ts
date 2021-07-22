@@ -13,6 +13,7 @@ export interface City {
     id: number;
     name: string;
     coord: Coord;
+    points: Point[];
 }
 
 export interface LocationState {
