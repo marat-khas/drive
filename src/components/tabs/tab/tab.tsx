@@ -1,7 +1,8 @@
 import { FC } from 'react';
 import { useDispatch } from 'react-redux';
-import { TabActiveAction } from '@state/tabs/actions';
 import classNames from 'classnames';
+
+import { TabActiveAction } from '@state/tabs/actions';
 
 import './tab.scss';
 

@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
-import { getActiveTabIndex, getTabs } from '@state/selectors';
 
 import { Tab } from '@components/tabs/tab';
+import { getActiveTabIndex, getTabs } from '@state/selectors';
 
 export const Tabs: FC = () => {
     const tabs = useSelector(getTabs);

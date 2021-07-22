@@ -1,11 +1,11 @@
 import { FC, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { getActiveTabIndex } from '@state/selectors';
 import SwiperCore from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { Location } from '@components/location';
 import { Map } from '@components/map';
+import { getActiveTabIndex } from '@state/selectors';
 
 import 'swiper/swiper.scss';
 

@@ -50,10 +50,12 @@ export const Location: FC = () => {
                 dispatch(
                     ChangePointAction({ ...places[city.id].points[pointId] })
                 );
-                dispatch(ProductAddAction({
-                    name: 'Пункт выдачи',
-                    info: places[city.id].points[pointId].addr
-                }));
+                dispatch(
+                    ProductAddAction({
+                        name: 'Пункт выдачи',
+                        info: places[city.id].points[pointId].addr,
+                    })
+                );
                 dispatch(TabCompleteAction(0, true));
                 dispatch(TabAvailableAction(1, true));
             }
@@ -84,9 +86,9 @@ export const Location: FC = () => {
                                 value={
                                     city !== undefined && point !== undefined
                                         ? {
-                                            value: point.id.toString(),
-                                            label: point.addr,
-                                        }
+                                              value: point.id.toString(),
+                                              label: point.addr,
+                                          }
                                         : null
                                 }
                                 placeholder='Начните вводить пункт ...'
@@ -96,11 +98,11 @@ export const Location: FC = () => {
                                     city === undefined
                                         ? []
                                         : places[city.id].points.map(
-                                            (office) => ({
-                                                value: office.id.toString(),
-                                                label: office.addr,
-                                            })
-                                        )
+                                              (office) => ({
+                                                  value: office.id.toString(),
+                                                  label: office.addr,
+                                              })
+                                          )
                                 }
                             />
                         </div>
