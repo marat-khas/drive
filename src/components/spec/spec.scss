@@ -84,3 +84,21 @@
     }
   }
 }
+
+@media (min-width: 992px) {
+  .spec {
+    top: 32px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .spec {
+    top: 30px;
+  }
+}
+
+@media (min-width: 768px) {
+  .spec {
+    position: sticky;
+  }
+}
