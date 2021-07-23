@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { Location } from '@components/location';
 import { Map } from '@components/map';
+import { Models } from '@components/models';
 import { getActiveTabIndex } from '@state/selectors';
 
 import 'swiper/swiper.scss';
@@ -31,7 +32,9 @@ export const OrderSlider: FC = () => {
                 <Location />
                 <Map />
             </SwiperSlide>
-            <SwiperSlide>Step 2</SwiperSlide>
+            <SwiperSlide>
+                <Models />
+            </SwiperSlide>
             <SwiperSlide>Step 3</SwiperSlide>
             <SwiperSlide>Step 4</SwiperSlide>
         </Swiper>

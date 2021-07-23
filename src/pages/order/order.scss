@@ -37,21 +37,6 @@
   }
 }
 
-.form {
-  &__label {
-    display: table-cell;
-    font-size: 14px;
-    line-height: 1.2;
-    font-weight: 300;
-    color: $color-black;
-    padding: 5px 12px 5px 0;
-    white-space: nowrap;
-  }
-  &__input {
-    padding: 5px 0;
-  }
-}
-
 @media (min-width: 992px) {
   .order {
     &__steps {

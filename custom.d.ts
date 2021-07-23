@@ -6,5 +6,6 @@ declare module '*.svg' {
 }
 
 declare module '*.jpg';
+declare module '*.png';
 
 declare const PUBLIC_PATH: string;

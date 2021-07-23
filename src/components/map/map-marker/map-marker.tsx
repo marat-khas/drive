@@ -5,6 +5,7 @@ import { places } from '@mocks/location';
 import { ChangeCityAction, ChangePointAction } from '@state/location/actions';
 import { CartClearAction, ProductAddAction } from '@state/order/actions';
 import { getCity } from '@state/selectors';
+import { TabAvailableAction, TabCompleteAction } from '@state/tabs/actions';
 
 import './map-marker.scss';
 
@@ -25,7 +26,6 @@ export const MapMarker: FC<MapMarkerProps> = ({
         if (!city) {
             dispatch(ChangeCityAction(places[cityId]));
         }
-
         dispatch(
             ChangePointAction({
                 id: pointId,
@@ -40,6 +40,8 @@ export const MapMarker: FC<MapMarkerProps> = ({
                 info: places[cityId].points[pointId].addr,
             })
         );
+        dispatch(TabCompleteAction(0, true));
+        dispatch(TabAvailableAction(1, true));
     };
 
     return <div className='map-marker' onClick={clickHandle} />;
