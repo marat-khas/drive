@@ -1,4 +1,5 @@
 @import "@styles/_vars";
+
 .main {
   width: 100%;
   min-height: 100vh;
@@ -17,47 +18,6 @@
   justify-content: space-between;
   &__head {
     width: 100%;
-  }
-  &__logo {
-    font-size: 30px;
-    line-height: 1.17;
-    font-weight: 700;
-    color: $color-accent;
-  }
-  &__location {
-    a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: flex-start;
-      vertical-align: top;
-      text-decoration: none;
-      cursor: pointer;
-      svg {
-        display: block;
-        width: 15px;
-        height: 18px;
-        margin-right: 7px;
-        path {
-          stroke: $color-gray-dark;
-          transition: stroke $time-trs;
-        }
-      }
-      span {
-        font-size: 14px;
-        line-height: 1.14;
-        font-weight: 400;
-        color: $color-gray-dark;
-        transition: color $time-trs;
-      }
-      &:hover {
-        svg path {
-          stroke: $color-black;
-        }
-        span {
-          color: $color-black;
-        }
-      }
-    }
   }
   &__body {
     width: 100%;
@@ -142,11 +102,6 @@
 
 @media (min-width: 576px) {
   .main-info {
-    &__head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
     &__body {
       padding: 50px 0;
     }
@@ -182,13 +137,6 @@
 
 @media (max-width: 575px) {
   .main-info {
-    &__head {
-      padding: 16px 16px 16px 51px;
-      text-align: right;
-    }
-    &__logo {
-      margin-bottom: 8px;
-    }
     &__body {
       padding: 30px 0;
     }

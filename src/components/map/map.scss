@@ -1,0 +1,17 @@
+@import "@styles/_vars.scss";
+
+.map {
+  &__title {
+    font-size: 14px;
+    line-height: 1.2;
+    font-weight: 300;
+    color: $color-black;
+    margin-bottom: 16px;
+  }
+  &__container {
+    width: 100%;
+    max-width: 740px;
+    height: 350px;
+    background-color: $color-gray-light;
+  }
+}

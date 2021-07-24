@@ -1,0 +1,46 @@
+.models {
+  width: 100%;
+  max-width: 740px;
+}
+@media (min-width: 992px) {
+  .models {
+    &__card {
+      width: 50%;
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .models {
+    &__card {
+      width: 100%;
+    }
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .models {
+    &__card {
+      width: 50%;
+    }
+  }
+}
+
+@media (min-width: 576px) {
+  .models {
+    &__cards {
+      display: flex;
+      align-items: stretch;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  .models {
+    &__card {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,51 @@
+@import '@styles/_vars.scss';
+
+.models-card {
+  height: 100%;
+  border: 1px solid $color-gray-light;
+  padding: 16px;
+  cursor: pointer;
+  transition: border-color $time-trs;
+  &.isSelected {
+    border-color: $color-accent;
+  }
+  &:hover:not(.isSelected) {
+    border-color: $color-gray-dark;
+  }
+  &__title {
+    font-size: 18px;
+    line-height: 1.2;
+    font-weight: 400;
+    color: $color-black;
+    text-transform: uppercase;
+  }
+  &__cost {
+    font-size: 14px;
+    line-height: 1.2;
+    font-weight: 400;
+    border-color: $color-gray-dark;
+  }
+  &__img {
+    img {
+      display: block;
+      max-width: 100%;
+      margin-left: auto;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .models-card {
+    &__head {
+      margin-bottom: 36px;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .models-card {
+    &__head {
+      margin-bottom: 25px;
+    }
+  }
+}

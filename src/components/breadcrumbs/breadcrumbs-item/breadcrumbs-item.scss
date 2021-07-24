@@ -1,0 +1,71 @@
+@import "@styles/_vars.scss";
+
+.breadcrumbs-item {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  color: $color-gray-dark;
+  padding: 4px 0;
+  &:not(:last-child) {
+    &:after {
+      content: "";
+      width: 6px;
+      height: 8px;
+      background: url("@assets/img/ico_triangle.png") no-repeat center center;
+      position: absolute;
+      top: 50%;
+      margin-top: -4px;
+    }
+  }
+  button {
+    display: inline-block;
+    vertical-align: top;
+    border: 0 none;
+    border-radius: 0;
+    background-color: transparent;
+    font-size: 14px;
+    line-height: 1.2;
+    font-weight: 700;
+    color: $color-gray-dark;
+    text-align: left;
+    padding: 0;
+    cursor: default;
+    transition: color $time-trs;
+  }
+  &--available {
+    button {
+      cursor: pointer;
+      color: $color-black;
+      &:hover {
+        color: $color-accent;
+      }
+    }
+  }
+  &--active {
+    button {
+      color: $color-accent;
+    }
+  }
+}
+
+@media (min-width: 576px) {
+  .breadcrumbs-item {
+    &:not(:last-child) {
+      padding-right: 38px;
+      &:after {
+        right: 16px;
+      }
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  .breadcrumbs-item {
+    &:not(:last-child) {
+      padding-right: 30px;
+      &:after {
+        right: 12px;
+      }
+    }
+  }
+}

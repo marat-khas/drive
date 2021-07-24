@@ -4,6 +4,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const { DefinePlugin } = require('webpack');
 
+const Dotenv = require('dotenv-webpack');
+
 const DIST = path.resolve(__dirname, 'dist');
 const SRC = path.resolve(__dirname, 'src');
 const MODE = process.env.NODE_ENV.trim();
@@ -26,7 +28,7 @@ module.exports = {
           {
             loader: "style-loader",
             options: {
-              insert: function(element) {
+              insert: function (element) {
                 const parent = document.querySelector("head");
                 const firstStyle = parent.querySelector("style");
                 if (firstStyle) {
@@ -112,6 +114,9 @@ module.exports = {
     }),
     new DefinePlugin({
       PUBLIC_PATH: JSON.stringify(PUBLIC_PATH)
+    }),
+    new Dotenv({
+      path: __dirname + '/.env'
     })
   ],
   resolve: {
@@ -120,9 +125,11 @@ module.exports = {
       '@assets': path.join(SRC, 'assets'),
       '@components': path.join(SRC, 'components'),
       '@constants': path.join(SRC, 'constants'),
+      '@mocks': path.join(SRC, 'mocks'),
       '@pages': path.join(SRC, 'pages'),
       '@services': path.join(SRC, 'services'),
       '@styles': path.join(SRC, 'styles'),
+      '@state': path.join(SRC, 'state'),
       '@utils': path.join(SRC, 'utils'),
     },
   },

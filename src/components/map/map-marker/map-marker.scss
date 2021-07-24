@@ -1,0 +1,13 @@
+@import "@styles/_vars.scss";
+
+.map-marker {
+  width: 18px;
+  height: 18px;
+  border: 5px solid $color-accent;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: border-color $time-trs;
+  &:hover {
+    border-color: darken($color-accent, 7%);
+  }
+}

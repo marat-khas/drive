@@ -5,13 +5,7 @@ import { Button } from '@components/button';
 
 import './main-slide.scss';
 
-export interface MainSlideProps {
-    img: string;
-    title: string;
-    desc: string;
-    link: string;
-    btnType?: number;
-}
+import { MainSlideProps } from './types';
 
 export const MainSlide: FC<MainSlideProps> = ({
     img,
