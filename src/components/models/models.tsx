@@ -51,7 +51,7 @@ export const Models: FC = () => {
             </div>
             <div className='models__cards'>
                 {models.map(({ title, cost, img }) => (
-                    <div className='models__card'>
+                    <div className='models__card' key={title}>
                         <ModelsCard title={title} cost={cost} img={img} />
                     </div>
                 ))}

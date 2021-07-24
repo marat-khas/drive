@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import FacebookIco from '@assets/img/ico_facebook.svg';
 import InstagramIco from '@assets/img/ico_instagram.svg';
 import TelegramIco from '@assets/img/ico_telegram.svg';
+import { SOC_LINKS } from '@constants/links';
 import { ROUTES } from '@constants/routes';
 
 import './app-nav.scss';
@@ -34,17 +35,17 @@ export const AppNav: FC = () => {
     const socLinks = [
         {
             name: 'telegram',
-            href: '/',
+            href: SOC_LINKS.TELEGRAM,
             ico: <TelegramIco />,
         },
         {
             name: 'facebook',
-            href: '/',
+            href: SOC_LINKS.FACEBOOK,
             ico: <FacebookIco />,
         },
         {
             name: 'instagram',
-            href: '/',
+            href: SOC_LINKS.INSTAGRAM,
             ico: <InstagramIco />,
         },
     ];

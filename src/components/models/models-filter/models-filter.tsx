@@ -11,7 +11,7 @@ export const ModelsFilter: FC = () => {
         <div className='models-filter'>
             <div className='models-filter__wrapper'>
                 {filters.map((item, index) => (
-                    <div className='models-filter__item'>
+                    <div className='models-filter__item' key={item}>
                         <ModelsFilterItem
                             name='models-filter-item'
                             id={`models-filter-item${index}`}
