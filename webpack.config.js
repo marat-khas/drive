@@ -88,6 +88,12 @@ module.exports = {
       {
         test: /\.svg$/,
         use: ['@svgr/webpack'],
+        issuer: /\.([jt]s)x?$/,
+      },
+      {
+         test: /\.svg$/,
+          issuer: /\.css$/,
+          use: ['svg-url-loader']
       }
     ],
   },

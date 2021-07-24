@@ -1,5 +1,7 @@
 import { RootState } from './types';
 
+export const getLoadingStatus = (state: RootState) => state.global.loading;
+
 export const getOrder = (state: RootState) => state.order.products;
 
 export const getTabs = (state: RootState) => state.tabs.tabs;
