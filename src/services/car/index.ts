@@ -1,25 +1,11 @@
 import axios from 'axios';
 
 import { CAR_URL } from '@constants/urls'
-
-export interface CarResponse {
-  priceMax: number;
-  priceMin: number;
-  name: string;
-  thumbnail: {
-    path: string;
-  };
-  categoryId: {
-    name: string;
-    description: string;
-    id: string;
-  };
-  colors: string[]
-}
+import { Car } from '@state/cars/types';
 
 const CAR_LIMIT = 20;
 
-export const getCar = (): Promise<CarResponse> =>
+export const getCar = (): Promise<Car[]> =>
   axios.get(CAR_URL, {
     headers: {
       'X-Api-Factory-Application-Id': process.env.APPLICATION_ID
@@ -27,4 +13,8 @@ export const getCar = (): Promise<CarResponse> =>
     params: {
       limit: CAR_LIMIT
     },
+  })
+  .then((response) => {
+    console.log(response);
+    return  response.data.data;
   });
