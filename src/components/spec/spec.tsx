@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Button } from '@components/button';
+import { Button } from '@components/common/button';
 import { SpecItem } from '@components/spec/spec-item';
 import { getActiveTabIndex, getOrder, getTabs } from '@state/selectors';
 import { TabActiveAction } from '@state/tabs/actions';

@@ -9,13 +9,17 @@ export const globalReducer = (
         case GlobalActionTypes.LOADING_START: {
             return {
                 ...state,
-                loading: true,
+                loading: [...state.loading, action.payload],
             };
         }
         case GlobalActionTypes.LOADING_END: {
             return {
                 ...state,
-                loading: false,
+                loading: [
+                    ...state.loading.filter(
+                        (process) => process !== action.payload
+                    ),
+                ],
             };
         }
         default:

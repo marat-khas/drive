@@ -1,13 +1,11 @@
-import {
-  GlobalActionTypes,
-  LoadingStart,
-  LoadingEnd
-} from './types';
+import { GlobalActionTypes, LoadingEnd, LoadingStart } from './types';
 
-export const LoadingStartAction = (): LoadingStart => ({
-  type: GlobalActionTypes.LOADING_START
+export const LoadingStartAction = (process: string): LoadingStart => ({
+    type: GlobalActionTypes.LOADING_START,
+    payload: process,
 });
 
-export const LoadingEndAction = (): LoadingEnd => ({
-  type: GlobalActionTypes.LOADING_END
+export const LoadingEndAction = (process: string): LoadingEnd => ({
+    type: GlobalActionTypes.LOADING_END,
+    payload: process,
 });

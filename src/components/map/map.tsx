@@ -3,47 +3,54 @@ import { useSelector } from 'react-redux';
 import GoogleMapReact from 'google-map-react';
 
 import { MapMarker } from '@components/map/map-marker/map-marker';
-import { places } from '@mocks/location';
-import { getCity, getPoint } from '@state/selectors';
+import { getCities, getCity, getPoint, getPoints } from '@state/selectors';
 
 import './map.scss';
 
-const defaultMapProps = {
-    center: places[0].coord,
-    zoom: 11,
-};
-
 export const Map: FC = () => {
-    const city = useSelector(getCity);
-    const point = useSelector(getPoint);
+    const ZOOM_CITY = 11;
+    const ZOOM_POINT = 14;
+
+    const selectedCity = useSelector(getCity);
+    const selectedPoint = useSelector(getPoint);
+
+    const cities = useSelector(getCities);
+    const points = useSelector(getPoints);
+
     return (
         <div className='map'>
             <div className='map__title'>Выбрать на карте:</div>
             <div className='map__container'>
-                <GoogleMapReact
-                    bootstrapURLKeys={{
-                        key: process.env.GOOGLE_MAPS_API_KEY as string,
-                        language: 'ru',
-                        region: 'ru',
-                    }}
-                    defaultCenter={defaultMapProps.center}
-                    defaultZoom={defaultMapProps.zoom}
-                    center={
-                        point?.coord || city?.coord || defaultMapProps.center
-                    }
-                    zoom={point ? 14 : 11}
-                >
-                    {(city || places[0]).points.map(({ id, addr, coord }) => (
-                        <MapMarker
-                            key={addr}
-                            cityId={city ? city.id : 0}
-                            pointId={id}
-                            addr={addr}
-                            lat={coord.lat}
-                            lng={coord.lng}
-                        />
-                    ))}
-                </GoogleMapReact>
+                {cities && points ? (
+                    <GoogleMapReact
+                        bootstrapURLKeys={{
+                            key: process.env.GOOGLE_MAPS_API_KEY as string,
+                            language: 'ru',
+                            region: 'ru',
+                        }}
+                        defaultCenter={cities[0].coords}
+                        defaultZoom={ZOOM_CITY}
+                        center={
+                            selectedPoint
+                                ? selectedPoint.coords
+                                : (selectedCity || cities[0]).coords
+                        }
+                        zoom={selectedPoint ? ZOOM_POINT : ZOOM_CITY}
+                    >
+                        {points.map(({ name, address, id, cityId, coords }) => (
+                            <MapMarker
+                                key={name}
+                                cityId={cityId.id}
+                                pointId={id}
+                                addr={address}
+                                lat={coords.lat}
+                                lng={coords.lng}
+                            />
+                        ))}
+                    </GoogleMapReact>
+                ) : (
+                    <p>Загрузка данных ...</p>
+                )}
             </div>
         </div>
     );

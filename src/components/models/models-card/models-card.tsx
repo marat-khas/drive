@@ -10,8 +10,8 @@ export interface CarProps {
 }
 
 export const ModelsCard: FC<CarProps> = ({ car }) => {
-    const path = car.thumbnail.path;
-    const imgSrc = (path.search(/^data/) == -1) ? `${SERVER_URL}/${path}` : path;
+    const { path } = car.thumbnail;
+    const imgSrc = path.search(/^data/) === -1 ? `${SERVER_URL}/${path}` : path;
     return (
         <div className='models-card'>
             <div className='models-card__head'>
@@ -22,5 +22,5 @@ export const ModelsCard: FC<CarProps> = ({ car }) => {
                 <img src={imgSrc} alt={car.name} />
             </div>
         </div>
-    )
-}
+    );
+};

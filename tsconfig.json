@@ -23,7 +23,6 @@
             "@assets/*": ["src/assets/*"],
             "@components/*": ["src/components/*"],
             "@constants/*": ["src/constants/*"],
-            "@mocks/*": ["src/mocks/*"],
             "@pages/*": ["src/pages/*"],
             "@services/*": ["src/services/*"],
             "@state/*": ["src/state/*"],

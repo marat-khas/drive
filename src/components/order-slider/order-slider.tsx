@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Location } from '@components/location';
 import { Map } from '@components/map';
 import { Models } from '@components/models';
+import { OptionsForm } from '@components/options-form';
 import { getActiveTabIndex } from '@state/selectors';
 
 import 'swiper/swiper.scss';
@@ -24,7 +25,7 @@ export const OrderSlider: FC = () => {
         <Swiper
             allowTouchMove={false}
             simulateTouch={false}
-            autoHeight={true}
+            autoHeight
             onSwiper={(s) => {
                 setSwiper(s);
             }}
@@ -36,7 +37,9 @@ export const OrderSlider: FC = () => {
             <SwiperSlide>
                 <Models />
             </SwiperSlide>
-            <SwiperSlide>Step 3</SwiperSlide>
+            <SwiperSlide>
+                <OptionsForm />
+            </SwiperSlide>
             <SwiperSlide>Step 4</SwiperSlide>
         </Swiper>
     );

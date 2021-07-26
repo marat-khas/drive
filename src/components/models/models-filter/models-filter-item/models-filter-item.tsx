@@ -1,5 +1,7 @@
 import { FC } from 'react';
 
+import { Radio } from '@components/common/radio';
+
 import { ModelsFilterItemProps } from './types';
 
 export const ModelsFilterItem: FC<ModelsFilterItemProps> = ({
@@ -7,8 +9,9 @@ export const ModelsFilterItem: FC<ModelsFilterItemProps> = ({
     name,
     id,
 }) => (
-    <div className='models-filter-item checkbox'>
-        <input type='radio' name={name} id={id} />
-        <label htmlFor={id}>{children}</label>
+    <div className='models-filter-item'>
+        <Radio name={name} id={id}>
+            {children}
+        </Radio>
     </div>
 );

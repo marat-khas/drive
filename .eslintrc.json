@@ -56,7 +56,7 @@
             "^@?\\w"
           ],
           [
-            "^(@assets|@components|@constants|@mocks|@pages|@services|@state|@styles|@utils)(/.*|$)"
+            "^(@assets|@components|@constants|@pages|@services|@state|@styles|@utils)(/.*|$)"
           ],
           [
             "^.+\\.ico$",

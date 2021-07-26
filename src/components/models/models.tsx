@@ -16,7 +16,7 @@ export const Models: FC = () => {
         if (!cars) {
             dispatch(GetCarsAction());
         }
-    }, [cars]);
+    }, [cars, dispatch]);
 
     return (
         <div className='models'>
@@ -24,14 +24,15 @@ export const Models: FC = () => {
                 <ModelsFilter />
             </div>
             <div className='models__cards'>
-                {cars
-                    ? cars.map((car) => (
+                {cars ? (
+                    cars.map((car) => (
                         <div className='models__card' key={car.name}>
                             <ModelsCard car={car} />
                         </div>
                     ))
-                    : <>Загрузка моделей ...</>
-                }
+                ) : (
+                    <>Загрузка моделей ...</>
+                )}
             </div>
         </div>
     );

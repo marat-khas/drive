@@ -18,6 +18,18 @@ export const orderReducer = (
                 products: [],
             };
         }
+        case OrderActionTypes.CITY_SELECT: {
+            return {
+                ...state,
+                city: action.payload,
+            };
+        }
+        case OrderActionTypes.POINT_SELECT: {
+            return {
+                ...state,
+                point: action.payload,
+            };
+        }
         default:
             return state;
     }

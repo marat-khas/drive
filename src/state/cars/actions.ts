@@ -1,28 +1,24 @@
 import { Dispatch } from 'redux';
 
-import { getCar } from '@services/car';
-import { LoadingStartAction, LoadingEndAction } from '@state/global/actions';
+import { getCars } from '@services/car';
+import { LoadingEndAction, LoadingStartAction } from '@state/global/actions';
 
-import {
-  Car,
-  CarsActionTypes,
-  GetCars
-} from './types';
+import { Car, CarsActionTypes, GetCars } from './types';
 
 export const GetCarsSuccessAction = (cars: Car[]): GetCars => ({
-  type: CarsActionTypes.GET_CARS_SUCCESS,
-  payload: cars
+    type: CarsActionTypes.GET_CARS_SUCCESS,
+    payload: cars,
 });
 
 export const GetCarsAction = () => (dispatch: Dispatch<any>) => {
-  dispatch(LoadingStartAction());
-  getCar()
-  .then((data) => {
-    dispatch(GetCarsSuccessAction(data));
-    dispatch(LoadingEndAction());
-  })
-  .catch((error) => {
-    dispatch(LoadingEndAction());
-    console.log(error);
-  });
-}
+    dispatch(LoadingStartAction('getCars'));
+    getCars()
+        .then((data) => {
+            dispatch(GetCarsSuccessAction(data));
+            dispatch(LoadingEndAction('getCars'));
+        })
+        .catch((error) => {
+            dispatch(LoadingEndAction('getCars'));
+            console.log(error);
+        });
+};
