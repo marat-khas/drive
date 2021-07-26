@@ -14,6 +14,8 @@ export const getActiveTabIndex = (state: RootState) => state.tabs.active;
 
 export const getOrder = (state: RootState) => state.order;
 
+export const getCar = (state: RootState) => state.order.car;
+
 export const getCity = (state: RootState) => state.order.city;
 
 export const getPoint = (state: RootState) => state.order.point;

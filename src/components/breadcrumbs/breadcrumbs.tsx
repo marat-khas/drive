@@ -5,20 +5,27 @@ import { BreadcrumbsItem } from '@components/breadcrumbs/breadcrumbs-item';
 import { getActiveTabIndex, getTabs } from '@state/selectors';
 
 export const Breadcrumbs: FC = () => {
-    const breadcrumbs = useSelector(getTabs);
+    const tabs = useSelector(getTabs);
     const activeTabIndex = useSelector(getActiveTabIndex);
     return (
         <div className='breadcrumbs'>
-            {breadcrumbs.map((tab, index) => (
-                <BreadcrumbsItem
-                    key={tab.label}
-                    index={index}
-                    available={tab.available}
-                    active={activeTabIndex === index}
-                >
-                    {tab.label}
-                </BreadcrumbsItem>
-            ))}
+            {tabs.map((tab, index) => {
+                const prev = tabs[index - 1];
+                const available = index
+                    ? prev.available && prev.complete
+                    : true;
+                const active = activeTabIndex === index;
+                return (
+                    <BreadcrumbsItem
+                        key={tab.label}
+                        index={index}
+                        available={available}
+                        active={active}
+                    >
+                        {tab.label}
+                    </BreadcrumbsItem>
+                );
+            })}
         </div>
     );
 };
