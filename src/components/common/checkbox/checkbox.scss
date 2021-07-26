@@ -33,9 +33,9 @@
             width: 13px;
             height: 10px;
             left: 2px;
-            top: 0;
+            top: 2px;
+            background: url('@assets/img/ico_check.svg') no-repeat center center / contain;
             transform: scale(0);
-            transition: transform $time-trs;
         }
     }
     input:not(:checked) + label {

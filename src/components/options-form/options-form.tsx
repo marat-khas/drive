@@ -1,6 +1,7 @@
 import { FC } from 'react';
 
 import { Checkbox } from '@components/common/checkbox';
+import { Input } from '@components/common/input';
 import { Radio } from '@components/common/radio';
 
 import './options-form.scss';
@@ -63,18 +64,32 @@ export const OptionsForm: FC = () => {
                 </div>
             </div>
             <div className='options-form__item'>
-                <div className='options-form__title'>Тариф</div>
+                <div className='options-form__title'>Дата аренды</div>
                 <div className='options-form__part'>
-                    {tariff.map(({ id, name }) => (
-                        <div className='options-form__input' key={id}>
-                            <Radio
-                                name='options-form-tariff'
-                                id={`options-form-tariff${id}`}
-                            >
-                                {name}
-                            </Radio>
+                    <div className='options-form__input'>
+                        <div className='form__body'>
+                            <div className='form__item'>
+                                <div className='form__label'>
+                                    <label htmlFor='options-form-date-from'>
+                                        С
+                                    </label>
+                                </div>
+                                <div className='form__input'>
+                                    <Input id='options-form-date-from' />
+                                </div>
+                            </div>
+                            <div className='form__item'>
+                                <div className='form__label'>
+                                    <label htmlFor='options-form-date-to'>
+                                        По
+                                    </label>
+                                </div>
+                                <div className='form__input'>
+                                    <Input id='options-form-date-to' />
+                                </div>
+                            </div>
                         </div>
-                    ))}
+                    </div>
                 </div>
             </div>
             <div className='options-form__item'>
@@ -98,8 +113,8 @@ export const OptionsForm: FC = () => {
                     {additional.map(({ id, name }) => (
                         <div className='options-form__input' key={id}>
                             <Checkbox
-                                name='options-form-tariff'
-                                id={`options-form-tariff${id}`}
+                                name='options-form-dop'
+                                id={`options-form-dop${id}`}
                             >
                                 {name}
                             </Checkbox>

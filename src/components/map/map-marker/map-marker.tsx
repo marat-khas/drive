@@ -9,7 +9,7 @@ import './map-marker.scss';
 
 import { MapMarkerProps } from './types';
 
-export const MapMarker: FC<MapMarkerProps> = ({ cityId, pointId }) => {
+export const MapMarker: FC<MapMarkerProps> = ({ id }) => {
     const dispatch = useDispatch();
 
     const selectedCity = useSelector(getCity);
@@ -18,11 +18,13 @@ export const MapMarker: FC<MapMarkerProps> = ({ cityId, pointId }) => {
     const points = useSelector(getPoints);
 
     const clickHandle = () => {
-        if (!selectedCity) {
-            const newCity = cities?.filter((city) => city.id === cityId)[0];
+        const newPoint = points?.filter((point) => point.id === id)[0];
+        if (!selectedCity.value) {
+            const newCity = cities?.filter(
+                (city) => city.id === newPoint?.cityId.id
+            )[0];
             dispatch(CitySelectAction(newCity!));
         }
-        const newPoint = points?.filter((point) => point.id === pointId)[0];
         dispatch(PointSelectAction(newPoint!));
         dispatch(TabCompleteAction(0, true));
         dispatch(TabAvailableAction(1, true));
