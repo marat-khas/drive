@@ -1,14 +1,15 @@
 export interface Car {
-    priceMax: number;
-    priceMin: number;
+    id: string;
     name: string;
-    thumbnail: {
-        path: string;
-    };
     categoryId: {
         name: string;
         description: string;
         id: string;
+    };
+    priceMax: number;
+    priceMin: number;
+    thumbnail: {
+        path: string;
     };
     colors: string[];
 }

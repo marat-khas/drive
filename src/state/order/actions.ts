@@ -1,8 +1,15 @@
 import { Car } from '@state/cars/types';
+import { Category } from '@state/categories/types';
 import { City } from '@state/cities/types';
 import { Point } from '@state/points/types';
 
-import { CarSelect, CitySelect, OrderActionTypes, PointSelect } from './types';
+import {
+    CarSelect,
+    CategorySelect,
+    CitySelect,
+    OrderActionTypes,
+    PointSelect,
+} from './types';
 
 export const CitySelectAction = (city: City | null): CitySelect => ({
     type: OrderActionTypes.CITY_SELECT,
@@ -12,6 +19,13 @@ export const CitySelectAction = (city: City | null): CitySelect => ({
 export const PointSelectAction = (point: Point | null): PointSelect => ({
     type: OrderActionTypes.POINT_SELECT,
     payload: point,
+});
+
+export const CategorySelectAction = (
+    category: Category | null
+): CategorySelect => ({
+    type: OrderActionTypes.CATEGORY_SELECT,
+    payload: category,
 });
 
 export const CarSelectAction = (car: Car | null): CarSelect => ({

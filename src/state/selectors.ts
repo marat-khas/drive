@@ -6,6 +6,8 @@ export const getCities = (state: RootState) => state.cities.cities;
 
 export const getPoints = (state: RootState) => state.points.points;
 
+export const getCategories = (state: RootState) => state.categories.categories;
+
 export const getCars = (state: RootState) => state.cars.cars;
 
 export const getTabs = (state: RootState) => state.tabs.tabs;
@@ -13,6 +15,8 @@ export const getTabs = (state: RootState) => state.tabs.tabs;
 export const getActiveTabIndex = (state: RootState) => state.tabs.active;
 
 export const getOrder = (state: RootState) => state.order;
+
+export const getCategory = (state: RootState) => state.order.category;
 
 export const getCar = (state: RootState) => state.order.car;
 

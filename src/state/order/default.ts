@@ -9,6 +9,10 @@ export const OrderStateDefault: OrderState = {
         value: null,
         cart: 'Пункт выдачи',
     },
+    category: {
+        value: null,
+        cart: null,
+    },
     car: {
         value: null,
         cart: 'Модель',

@@ -1,4 +1,5 @@
 import { Car } from '@state/cars/types';
+import { Category } from '@state/categories/types';
 import { City } from '@state/cities/types';
 import { Point } from '@state/points/types';
 
@@ -11,6 +12,10 @@ export interface OrderState {
         value: Point | null;
         cart: string | null;
     };
+    category: {
+        value: Category | null;
+        cart: string | null;
+    };
     car: {
         value: Car | null;
         cart: string | null;
@@ -21,6 +26,7 @@ export enum OrderActionTypes {
     CITY_SELECT = 'CITY_SELECT',
     POINT_SELECT = 'POINT_SELECT',
     CAR_SELECT = 'CAR_SELECT',
+    CATEGORY_SELECT = 'CATEGORY_SELECT',
 }
 
 export interface CitySelect {
@@ -33,9 +39,13 @@ export interface PointSelect {
     payload: Point | null;
 }
 
+export interface CategorySelect {
+    type: OrderActionTypes.CATEGORY_SELECT;
+    payload: Category | null;
+}
 export interface CarSelect {
     type: OrderActionTypes.CAR_SELECT;
     payload: Car | null;
 }
 
-export type OrderAction = CitySelect | PointSelect | CarSelect;
+export type OrderAction = CitySelect | PointSelect | CategorySelect | CarSelect;

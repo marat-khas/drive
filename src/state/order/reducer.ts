@@ -18,6 +18,12 @@ export const orderReducer = (
                 point: { ...state.point, value: action.payload },
             };
         }
+        case OrderActionTypes.CATEGORY_SELECT: {
+            return {
+                ...state,
+                category: { ...state.category, value: action.payload },
+            };
+        }
         case OrderActionTypes.CAR_SELECT: {
             return {
                 ...state,

@@ -9,8 +9,9 @@ export const Radio: FC<RadioProps> = ({
     children,
     name,
     id,
+    checked = false,
     className,
-    changeHandle,
+    onChange,
 }) => {
     let classNamesArray = ['radio'];
     if (className) {
@@ -24,7 +25,13 @@ export const Radio: FC<RadioProps> = ({
 
     return (
         <div className={classes}>
-            <input type='radio' name={name} id={id} onChange={changeHandle} />
+            <input
+                type='radio'
+                checked={checked}
+                name={name}
+                id={id}
+                onChange={onChange}
+            />
             <label htmlFor={id}> {children} </label>
         </div>
     );

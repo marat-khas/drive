@@ -25,7 +25,6 @@ export const OrderSlider: FC = () => {
         <Swiper
             allowTouchMove={false}
             simulateTouch={false}
-            autoHeight
             onSwiper={(s) => {
                 setSwiper(s);
             }}

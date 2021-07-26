@@ -1,4 +1,5 @@
 import { CarsState } from '@state/cars/types';
+import { CategoriesState } from '@state/categories/types';
 import { CitiesState } from '@state/cities/types';
 import { GlobalState } from '@state/global/types';
 import { OrderState } from '@state/order/types';
@@ -10,6 +11,7 @@ export type AppDispatch = typeof store.dispatch;
 
 export interface RootState {
     cars: CarsState;
+    categories: CategoriesState;
     cities: CitiesState;
     global: GlobalState;
     order: OrderState;
