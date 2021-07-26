@@ -31,9 +31,9 @@ export const Map: FC = () => {
                         defaultCenter={cities[0].coords}
                         defaultZoom={ZOOM_CITY}
                         center={
-                            selectedPoint
-                                ? selectedPoint.coords
-                                : (selectedCity || cities[0]).coords
+                            selectedPoint.value
+                                ? selectedPoint.value.coords
+                                : (selectedCity.value || cities[0]).coords
                         }
                         zoom={selectedPoint ? ZOOM_POINT : ZOOM_CITY}
                     >

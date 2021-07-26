@@ -20,13 +20,15 @@ export const Spec: FC = () => {
         <div className='spec'>
             <div className='spec__head'>Ваш заказ:</div>
             <div className='spec__body'>
-                {order.map((item) => (
-                    <SpecItem
-                        key={item.name}
-                        name={item.name}
-                        value={item.info}
-                    />
-                ))}
+                {Object.values(order)
+                    .filter((item) => item.value && item.cart)
+                    .map((item) => (
+                        <SpecItem
+                            key={item.value.name}
+                            label={item.cart}
+                            value={item.value.name}
+                        />
+                    ))}
             </div>
             <div className='spec__cost'>
                 <span>Цена:</span> от 8 000 до 12 000 ₽

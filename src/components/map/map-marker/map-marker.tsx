@@ -1,12 +1,7 @@
 import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-    CartClearAction,
-    CitySelectAction,
-    PointSelectAction,
-    ProductAddAction,
-} from '@state/order/actions';
+import { CitySelectAction, PointSelectAction } from '@state/order/actions';
 import { getCities, getCity, getPoints } from '@state/selectors';
 import { TabAvailableAction, TabCompleteAction } from '@state/tabs/actions';
 
@@ -29,13 +24,6 @@ export const MapMarker: FC<MapMarkerProps> = ({ cityId, pointId }) => {
         }
         const newPoint = points?.filter((point) => point.id === pointId)[0];
         dispatch(PointSelectAction(newPoint!));
-        dispatch(CartClearAction());
-        dispatch(
-            ProductAddAction({
-                name: 'Пункт выдачи',
-                info: newPoint?.address!,
-            })
-        );
         dispatch(TabCompleteAction(0, true));
         dispatch(TabAvailableAction(1, true));
     };

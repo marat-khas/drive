@@ -3,12 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { LocationSelect } from '@components/location/location-select';
 import { GetCitiesAction } from '@state/cities/actions';
-import {
-    CartClearAction,
-    CitySelectAction,
-    PointSelectAction,
-    ProductAddAction,
-} from '@state/order/actions';
+import { CitySelectAction, PointSelectAction } from '@state/order/actions';
 import { GetPointsAction } from '@state/points/actions';
 import { getCities, getCity, getPoint, getPoints } from '@state/selectors';
 import { TabAvailableAction, TabCompleteAction } from '@state/tabs/actions';
@@ -52,7 +47,6 @@ export const Location: FC = () => {
             dispatch(CitySelectAction(newCity!));
         }
         dispatch(PointSelectAction(null));
-        dispatch(CartClearAction());
     };
 
     const pointChange = (
@@ -61,7 +55,6 @@ export const Location: FC = () => {
             label: string | undefined;
         } | null
     ) => {
-        dispatch(CartClearAction());
         if (selectedOption === null) {
             dispatch(PointSelectAction(null));
             dispatch(TabCompleteAction(0, false));
@@ -71,12 +64,6 @@ export const Location: FC = () => {
                 (point) => point.id === selectedOption?.value
             )[0];
             dispatch(PointSelectAction(newPoint!));
-            dispatch(
-                ProductAddAction({
-                    name: 'Пункт выдачи',
-                    info: newPoint!.address,
-                })
-            );
             dispatch(TabCompleteAction(0, true));
             dispatch(TabAvailableAction(1, true));
         }
@@ -90,10 +77,10 @@ export const Location: FC = () => {
                         <LocationSelect
                             label='Город'
                             value={
-                                selectedCity
+                                selectedCity.value
                                     ? {
-                                          value: selectedCity.id,
-                                          label: selectedCity.name,
+                                          value: selectedCity.value.id,
+                                          label: selectedCity.value.name,
                                       }
                                     : null
                             }
@@ -111,10 +98,10 @@ export const Location: FC = () => {
                         <LocationSelect
                             label='Пункт выдачи'
                             value={
-                                selectedPoint
+                                selectedPoint.value
                                     ? {
-                                          value: selectedPoint.id,
-                                          label: selectedPoint.address,
+                                          value: selectedPoint.value.id,
+                                          label: selectedPoint.value.address,
                                       }
                                     : null
                             }
@@ -122,7 +109,8 @@ export const Location: FC = () => {
                             options={points
                                 .filter(
                                     (point) =>
-                                        point.cityId.id === selectedCity?.id
+                                        point.cityId.id ===
+                                        selectedCity.value?.id
                                 )
                                 .map(({ id, address }) => ({
                                     value: id,

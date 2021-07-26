@@ -6,28 +6,22 @@ export const orderReducer = (
     action: OrderAction
 ): OrderState => {
     switch (action.type) {
-        case OrderActionTypes.PRODUCT_ADD: {
-            return {
-                ...state,
-                products: [...state.products, action.payload],
-            };
-        }
-        case OrderActionTypes.CART_CLEAR: {
-            return {
-                ...state,
-                products: [],
-            };
-        }
         case OrderActionTypes.CITY_SELECT: {
             return {
                 ...state,
-                city: action.payload,
+                city: { ...state.city, value: action.payload },
             };
         }
         case OrderActionTypes.POINT_SELECT: {
             return {
                 ...state,
-                point: action.payload,
+                point: { ...state.point, value: action.payload },
+            };
+        }
+        case OrderActionTypes.CAR_SELECT: {
+            return {
+                ...state,
+                car: { ...state.car, value: action.payload },
             };
         }
         default:

@@ -1,7 +1,16 @@
 import { OrderState } from './types';
 
 export const OrderStateDefault: OrderState = {
-    products: [],
-    city: null,
-    point: null,
+    city: {
+        value: null,
+        cart: null,
+    },
+    point: {
+        value: null,
+        cart: 'Пункт выдачи',
+    },
+    car: {
+        value: null,
+        cart: 'Модель',
+    },
 };

@@ -8,11 +8,11 @@ export const getPoints = (state: RootState) => state.points.points;
 
 export const getCars = (state: RootState) => state.cars.cars;
 
-export const getOrder = (state: RootState) => state.order.products;
-
 export const getTabs = (state: RootState) => state.tabs.tabs;
 
 export const getActiveTabIndex = (state: RootState) => state.tabs.active;
+
+export const getOrder = (state: RootState) => state.order;
 
 export const getCity = (state: RootState) => state.order.city;
 
