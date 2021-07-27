@@ -35,7 +35,7 @@ export const Map: FC = () => {
                                 ? selectedPoint.value.coords
                                 : (selectedCity.value || cities[0]).coords
                         }
-                        zoom={selectedPoint ? ZOOM_POINT : ZOOM_CITY}
+                        zoom={selectedPoint.value ? ZOOM_POINT : ZOOM_CITY}
                     >
                         {points.map(({ name, address, id, coords }) => (
                             <MapMarker
