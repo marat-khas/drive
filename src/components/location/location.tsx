@@ -40,12 +40,22 @@ export const Location: FC = () => {
         : null;
 
     const pointOptions = points
-        ? points
-              .filter((point) => point.cityId.id === selectedCity.value?.id)
-              .map(({ id, address }) => ({
-                  value: id,
-                  label: address,
-              }))
+        ? points.reduce(
+              (
+                  acc: { value: string; label: string }[],
+                  { id, address, cityId }
+              ) => {
+                  if (cityId.id !== selectedCity.value?.id) {
+                      return acc;
+                  }
+                  acc.push({
+                      value: id,
+                      label: address,
+                  });
+                  return acc;
+              },
+              []
+          )
         : [];
 
     useEffect(() => {
