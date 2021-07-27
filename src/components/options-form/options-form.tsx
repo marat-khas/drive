@@ -1,10 +1,11 @@
 import { FC } from 'react';
 
 import { Checkbox } from '@components/common/checkbox';
-import { Input } from '@components/common/input';
 import { Radio } from '@components/common/radio';
 
 import './options-form.scss';
+
+import { OptionsFormDate } from './options-form-date';
 
 export const OptionsForm: FC = () => {
     const colors = [
@@ -66,30 +67,7 @@ export const OptionsForm: FC = () => {
             <div className='options-form__item'>
                 <div className='options-form__title'>Дата аренды</div>
                 <div className='options-form__part'>
-                    <div className='options-form__input'>
-                        <div className='form__body'>
-                            <div className='form__item'>
-                                <div className='form__label'>
-                                    <label htmlFor='options-form-date-from'>
-                                        С
-                                    </label>
-                                </div>
-                                <div className='form__input'>
-                                    <Input id='options-form-date-from' />
-                                </div>
-                            </div>
-                            <div className='form__item'>
-                                <div className='form__label'>
-                                    <label htmlFor='options-form-date-to'>
-                                        По
-                                    </label>
-                                </div>
-                                <div className='form__input'>
-                                    <Input id='options-form-date-to' />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <OptionsFormDate />
                 </div>
             </div>
             <div className='options-form__item'>

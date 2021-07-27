@@ -1,0 +1,55 @@
+@import '@styles/_vars.scss';
+
+.options-form-date {
+    &__wrapper {
+        display: table;
+
+    }
+    &__item {
+        display: table-row;
+
+    }
+    &__label {
+        display: table-cell;
+        font-size: 14px;
+        line-height: 1.2;
+        font-weight: 300;
+        color: $color-black;
+        text-align: right;
+        padding: 8px 8px 8px 0;
+    }
+    &__input {
+        display: table-cell;
+        padding: 8px 0;
+        input {
+            display: block;
+            width: 100%;
+            border-width: 0 0 1px 0;
+            border-radius: 0;
+            border-color: $color-gray-dark;
+            border-style: solid;
+            font-size: 14px;
+            line-height: 1.2;
+            font-weight: 300;
+            color: $color-gray-dark;
+            padding: 3px 24px 3px 8px;
+        }
+    }
+    .react-datepicker__close-icon::after {
+        content: "";
+        position: absolute;
+        right: 8px;
+        top: 50%;
+        width: 8px;
+        height: 8px;
+        margin: -4px 0 0;
+        padding: 0;
+        background: url('@assets/img/ico_close.svg') no-repeat center center / contain;
+        cursor: pointer;
+        opacity: 0.6;
+        transition: opacity $time-trs;
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
