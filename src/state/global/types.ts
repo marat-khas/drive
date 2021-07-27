@@ -1,10 +1,18 @@
+export interface Modal {
+    head: string;
+    body: string;
+}
+
 export interface GlobalState {
     loading: string[];
+    modal: Modal | null;
 }
 
 export enum GlobalActionTypes {
     LOADING_START = 'LOADING_START',
     LOADING_END = 'LOADING_END',
+    MODAL_SHOW = 'MODAL_SHOW',
+    MODAL_HIDE = 'MODAL_HIDE',
 }
 
 export interface LoadingStart {
@@ -17,4 +25,13 @@ export interface LoadingEnd {
     payload: string;
 }
 
-export type GlobalAction = LoadingStart | LoadingEnd;
+export interface ModalShow {
+    type: GlobalActionTypes.MODAL_SHOW;
+    payload: Modal;
+}
+
+export interface ModalHide {
+    type: GlobalActionTypes.MODAL_HIDE;
+}
+
+export type GlobalAction = LoadingStart | LoadingEnd | ModalShow | ModalHide;

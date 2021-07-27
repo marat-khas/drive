@@ -2,6 +2,8 @@ import { RootState } from './types';
 
 export const getLoadingStatus = (state: RootState) => state.global.loading;
 
+export const getModal = (state: RootState) => state.global.modal;
+
 export const getCities = (state: RootState) => state.cities.cities;
 
 export const getPoints = (state: RootState) => state.points.points;

@@ -2,7 +2,11 @@ import { Dispatch } from 'redux';
 
 import { getCoords } from '@services/coords';
 import { getPoints } from '@services/point';
-import { LoadingEndAction, LoadingStartAction } from '@state/global/actions';
+import {
+    LoadingEndAction,
+    LoadingStartAction,
+    ModalShowAction,
+} from '@state/global/actions';
 
 import { GetPoints, Point, PointsActionTypes } from './types';
 
@@ -20,7 +24,6 @@ export const GetPointsCoordsAction =
             )
         )
             .then((coords) => {
-                dispatch(LoadingEndAction('getPointsCoords'));
                 dispatch(
                     GetPointsSuccessAction(
                         points.map((point, index) => ({
@@ -31,8 +34,15 @@ export const GetPointsCoordsAction =
                 );
             })
             .catch((error) => {
+                dispatch(
+                    ModalShowAction({
+                        head: 'Ошибка!',
+                        body: error,
+                    })
+                );
+            })
+            .finally(() => {
                 dispatch(LoadingEndAction('getPointsCoords'));
-                console.log(error);
             });
     };
 
@@ -42,10 +52,16 @@ export const GetPointsAction = () => (dispatch: Dispatch<any>) => {
         .then((data) => data.filter((point) => point.cityId))
         .then((data) => {
             dispatch(GetPointsCoordsAction(data));
-            dispatch(LoadingEndAction('getPoints'));
         })
         .catch((error) => {
+            dispatch(
+                ModalShowAction({
+                    head: 'Ошибка!',
+                    body: error,
+                })
+            );
+        })
+        .finally(() => {
             dispatch(LoadingEndAction('getPoints'));
-            console.log(error);
         });
 };

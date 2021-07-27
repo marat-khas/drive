@@ -1,7 +1,11 @@
 import { Dispatch } from 'redux';
 
 import { getCategories } from '@services/category';
-import { LoadingEndAction, LoadingStartAction } from '@state/global/actions';
+import {
+    LoadingEndAction,
+    LoadingStartAction,
+    ModalShowAction,
+} from '@state/global/actions';
 
 import { CategoriesActionTypes, Category, GetCategories } from './types';
 
@@ -17,10 +21,16 @@ export const GetCategoriesAction = () => (dispatch: Dispatch<any>) => {
     getCategories()
         .then((categories) => {
             dispatch(GetCategoriesSuccessAction(categories));
-            dispatch(LoadingEndAction('getCategories'));
         })
         .catch((error) => {
+            dispatch(
+                ModalShowAction({
+                    head: 'Ошибка!',
+                    body: error,
+                })
+            );
+        })
+        .finally(() => {
             dispatch(LoadingEndAction('getCategories'));
-            console.log(error);
         });
 };

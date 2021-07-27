@@ -22,6 +22,18 @@ export const globalReducer = (
                 ],
             };
         }
+        case GlobalActionTypes.MODAL_SHOW: {
+            return {
+                ...state,
+                modal: action.payload,
+            };
+        }
+        case GlobalActionTypes.MODAL_HIDE: {
+            return {
+                ...state,
+                modal: null,
+            };
+        }
         default:
             return state;
     }

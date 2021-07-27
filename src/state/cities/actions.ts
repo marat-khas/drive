@@ -2,7 +2,11 @@ import { Dispatch } from 'redux';
 
 import { getCities } from '@services/city';
 import { getCoords } from '@services/coords';
-import { LoadingEndAction, LoadingStartAction } from '@state/global/actions';
+import {
+    LoadingEndAction,
+    LoadingStartAction,
+    ModalShowAction,
+} from '@state/global/actions';
 
 import { CitiesActionTypes, City, GetCities } from './types';
 
@@ -16,7 +20,6 @@ export const GetCitiesCoordsAction =
         dispatch(LoadingStartAction('getCitiesCoords'));
         Promise.all(cities.map((city) => getCoords(city.name)))
             .then((coords) => {
-                dispatch(LoadingEndAction('getCitiesCoords'));
                 dispatch(
                     GetCitiesSuccessAction(
                         cities.map((city, index) => ({
@@ -27,8 +30,15 @@ export const GetCitiesCoordsAction =
                 );
             })
             .catch((error) => {
+                dispatch(
+                    ModalShowAction({
+                        head: 'Ошибка!',
+                        body: error,
+                    })
+                );
+            })
+            .finally(() => {
                 dispatch(LoadingEndAction('getCitiesCoords'));
-                console.log(error);
             });
     };
 
@@ -37,10 +47,16 @@ export const GetCitiesAction = () => (dispatch: Dispatch<any>) => {
     getCities()
         .then((data) => {
             dispatch(GetCitiesCoordsAction(data));
-            dispatch(LoadingEndAction('getCities'));
         })
         .catch((error) => {
+            dispatch(
+                ModalShowAction({
+                    head: 'Ошибка!',
+                    body: error,
+                })
+            );
+        })
+        .finally(() => {
             dispatch(LoadingEndAction('getCities'));
-            console.log(error);
         });
 };

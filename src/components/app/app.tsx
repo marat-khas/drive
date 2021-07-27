@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { AppNav } from '@components/app-nav';
 import { AppRouter } from '@components/app-router';
 import { AppWrapper } from '@components/app-wrapper';
+import { Modal } from '@components/modal';
 import { store } from '@state/store';
 import { VHSet } from '@utils/vh';
 
@@ -30,6 +31,7 @@ export const App: FC = () => {
                         <AppWrapper>
                             <AppNav />
                             <AppRouter />
+                            <Modal />
                         </AppWrapper>
                     </div>
                 </BrowserRouter>

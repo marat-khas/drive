@@ -1,7 +1,11 @@
 import { Dispatch } from 'redux';
 
 import { getCars } from '@services/car';
-import { LoadingEndAction, LoadingStartAction } from '@state/global/actions';
+import {
+    LoadingEndAction,
+    LoadingStartAction,
+    ModalShowAction,
+} from '@state/global/actions';
 
 import { Car, CarsActionTypes, GetCars } from './types';
 
@@ -15,10 +19,16 @@ export const GetCarsAction = () => (dispatch: Dispatch<any>) => {
     getCars()
         .then((data) => {
             dispatch(GetCarsSuccessAction(data));
-            dispatch(LoadingEndAction('getCars'));
         })
         .catch((error) => {
+            dispatch(
+                ModalShowAction({
+                    head: 'Ошибка!',
+                    body: error,
+                })
+            );
+        })
+        .finally(() => {
             dispatch(LoadingEndAction('getCars'));
-            console.log(error);
         });
 };
