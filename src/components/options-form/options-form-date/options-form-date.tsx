@@ -17,7 +17,6 @@ export const OptionsFormDate: FC = () => {
                         <DatePicker
                             selected={from}
                             onChange={(date) => setFrom(date as Date)}
-                            locale='ru'
                             dateFormat='dd.MM.yyyy hh:mm'
                             showTimeSelect
                             startDate={from}
@@ -32,7 +31,6 @@ export const OptionsFormDate: FC = () => {
                         <DatePicker
                             selected={to}
                             onChange={(date) => setTo(date as Date)}
-                            locale='ru'
                             dateFormat='dd.MM.yyyy hh:mm'
                             showTimeSelect
                             startDate={from}

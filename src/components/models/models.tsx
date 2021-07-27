@@ -21,34 +21,32 @@ export const Models: FC = () => {
         }
     }, [cars, dispatch]);
 
+    const modelsCards = cars ? (
+        cars
+            .filter((car) => {
+                if (category.value) {
+                    if (car.categoryId) {
+                        return category.value.id === car.categoryId.id;
+                    }
+                    return false;
+                }
+                return true;
+            })
+            .map((car) => (
+                <div className='models__card' key={car.id}>
+                    <ModelsCard car={car} />
+                </div>
+            ))
+    ) : (
+        <>Загрузка моделей ...</>
+    );
+
     return (
         <div className='models'>
             <div className='models__filter'>
                 <ModelsFilter />
             </div>
-            <div className='models__cards'>
-                {cars ? (
-                    cars
-                        .filter((car) => {
-                            if (category.value) {
-                                if (car.categoryId) {
-                                    return (
-                                        category.value.id === car.categoryId.id
-                                    );
-                                }
-                                return false;
-                            }
-                            return true;
-                        })
-                        .map((car) => (
-                            <div className='models__card' key={car.id}>
-                                <ModelsCard car={car} />
-                            </div>
-                        ))
-                ) : (
-                    <>Загрузка моделей ...</>
-                )}
-            </div>
+            <div className='models__cards'>{modelsCards}</div>
         </div>
     );
 };

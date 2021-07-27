@@ -7,10 +7,10 @@ import { getCities, getCity, getPoint, getPoints } from '@state/selectors';
 
 import './map.scss';
 
-export const Map: FC = () => {
-    const ZOOM_CITY = 11;
-    const ZOOM_POINT = 14;
+const ZOOM_CITY = 11;
+const ZOOM_POINT = 14;
 
+export const Map: FC = () => {
     const selectedCity = useSelector(getCity);
     const selectedPoint = useSelector(getPoint);
 
@@ -37,9 +37,9 @@ export const Map: FC = () => {
                         }
                         zoom={selectedPoint.value ? ZOOM_POINT : ZOOM_CITY}
                     >
-                        {points.map(({ name, address, id, coords }) => (
+                        {points.map(({ address, id, coords }) => (
                             <MapMarker
-                                key={name}
+                                key={id}
                                 id={id}
                                 addr={address}
                                 lat={coords.lat}

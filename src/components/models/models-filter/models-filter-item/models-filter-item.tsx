@@ -26,7 +26,7 @@ export const ModelsFilterItem: FC<ModelsFilterItemProps> = ({
         if (event.target.checked && categories) {
             dispatch(
                 CategorySelectAction(
-                    categories.filter((cat) => cat.id === id)[0] || null
+                    categories.find((cat) => cat.id === id) || null
                 )
             );
         }

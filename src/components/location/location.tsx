@@ -45,13 +45,12 @@ export const Location: FC = () => {
                   acc: { value: string; label: string }[],
                   { id, address, cityId }
               ) => {
-                  if (cityId.id !== selectedCity.value?.id) {
-                      return acc;
+                  if (cityId.id === selectedCity.value?.id) {
+                      acc.push({
+                          value: id,
+                          label: address,
+                      });
                   }
-                  acc.push({
-                      value: id,
-                      label: address,
-                  });
                   return acc;
               },
               []
@@ -81,9 +80,9 @@ export const Location: FC = () => {
             dispatch(TabCompleteAction(0, false));
             dispatch(TabAvailableAction(1, false));
         } else if (selectedOption.value !== undefined) {
-            const newCity = cities?.filter(
+            const newCity = cities?.find(
                 (city) => city.id === selectedOption?.value
-            )[0];
+            );
             dispatch(CitySelectAction(newCity!));
         }
         dispatch(PointSelectAction(null));
@@ -100,9 +99,9 @@ export const Location: FC = () => {
             dispatch(TabCompleteAction(0, false));
             dispatch(TabAvailableAction(1, false));
         } else if (selectedOption.value !== undefined) {
-            const newPoint = points?.filter(
+            const newPoint = points?.find(
                 (point) => point.id === selectedOption?.value
-            )[0];
+            );
             dispatch(PointSelectAction(newPoint!));
             dispatch(TabCompleteAction(0, true));
             dispatch(TabAvailableAction(1, true));
