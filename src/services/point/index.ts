@@ -1,15 +1,12 @@
-import axios from 'axios';
-
 import { POINT_URL } from '@constants/urls';
+import { baseApi } from '@services/base';
 import { Point } from '@state/points/types';
 
 import { GetPointsResponse } from './types';
 
 export const getPoints = (): Promise<Omit<Point, 'coords'>[]> =>
-    axios
-        .get(POINT_URL, {
-            headers: {
-                'X-Api-Factory-Application-Id': process.env.APPLICATION_ID,
-            },
+    baseApi
+        .request({
+            url: POINT_URL,
         })
         .then((response: GetPointsResponse) => response.data.data);

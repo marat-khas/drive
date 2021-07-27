@@ -1,15 +1,12 @@
-import axios from 'axios';
-
 import { CATEGORY_URL } from '@constants/urls';
+import { baseApi } from '@services/base';
 import { Category } from '@state/categories/types';
 
 import { GetCategoriesResponse } from './types';
 
 export const getCategories = (): Promise<Category[]> =>
-    axios
-        .get(CATEGORY_URL, {
-            headers: {
-                'X-Api-Factory-Application-Id': process.env.APPLICATION_ID,
-            },
+    baseApi
+        .request({
+            url: CATEGORY_URL,
         })
         .then((response: GetCategoriesResponse) => response.data.data);
