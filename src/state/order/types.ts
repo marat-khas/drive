@@ -3,22 +3,25 @@ import { Category } from '@state/categories/types';
 import { City } from '@state/cities/types';
 import { Point } from '@state/points/types';
 
+export interface Cart {
+    name: string;
+    value: string | null;
+}
+
 export interface OrderState {
     city: {
         value: City | null;
-        cart: string | null;
     };
     point: {
         value: Point | null;
-        cart: string | null;
+        cart: Cart;
     };
     category: {
         value: Category | null;
-        cart: string | null;
     };
     car: {
         value: Car | null;
-        cart: string | null;
+        cart: Cart;
     };
 }
 

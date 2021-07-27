@@ -15,7 +15,16 @@ export const orderReducer = (
         case OrderActionTypes.POINT_SELECT: {
             return {
                 ...state,
-                point: { ...state.point, value: action.payload },
+                point: {
+                    ...state.point,
+                    value: action.payload,
+                    cart: {
+                        ...state.point.cart,
+                        value: action.payload
+                            ? `${action.payload.cityId.name}, ${action.payload.address}`
+                            : null,
+                    },
+                },
             };
         }
         case OrderActionTypes.CATEGORY_SELECT: {
@@ -27,7 +36,14 @@ export const orderReducer = (
         case OrderActionTypes.CAR_SELECT: {
             return {
                 ...state,
-                car: { ...state.car, value: action.payload },
+                car: {
+                    ...state.car,
+                    value: action.payload,
+                    cart: {
+                        ...state.car.cart,
+                        value: action.payload ? action.payload.name : null,
+                    },
+                },
             };
         }
         default:

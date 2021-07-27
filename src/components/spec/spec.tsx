@@ -23,12 +23,14 @@ export const Spec: FC = () => {
             <div className='spec__head'>Ваш заказ:</div>
             <div className='spec__body'>
                 {Object.values(order)
-                    .filter((item) => item.value && item.cart)
+                    .filter(
+                        (item) => item.value && item.cart && item.cart.value
+                    )
                     .map((item) => (
                         <SpecItem
                             key={item.value.name}
-                            label={item.cart}
-                            value={item.value.name}
+                            label={item.cart.name}
+                            value={item.cart.value}
                         />
                     ))}
             </div>
