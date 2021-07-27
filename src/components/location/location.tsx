@@ -18,6 +18,36 @@ export const Location: FC = () => {
     const cities = useSelector(getCities);
     const points = useSelector(getPoints);
 
+    const cityValue = selectedCity.value
+        ? {
+              value: selectedCity.value.id,
+              label: selectedCity.value.name,
+          }
+        : null;
+
+    const cityOptions = cities
+        ? cities.map(({ id, name }) => ({
+              value: id,
+              label: name,
+          }))
+        : [];
+
+    const pointValue = selectedPoint.value
+        ? {
+              value: selectedPoint.value.id,
+              label: selectedPoint.value.address,
+          }
+        : null;
+
+    const pointOptions = points
+        ? points
+              .filter((point) => point.cityId.id === selectedCity.value?.id)
+              .map(({ id, address }) => ({
+                  value: id,
+                  label: address,
+              }))
+        : [];
+
     useEffect(() => {
         if (!cities) {
             dispatch(GetCitiesAction());
@@ -76,19 +106,9 @@ export const Location: FC = () => {
                     {cities ? (
                         <LocationSelect
                             label='Город'
-                            value={
-                                selectedCity.value
-                                    ? {
-                                          value: selectedCity.value.id,
-                                          label: selectedCity.value.name,
-                                      }
-                                    : null
-                            }
+                            value={cityValue}
                             placeholder='Выберите город'
-                            options={cities.map(({ id, name }) => ({
-                                value: id,
-                                label: name,
-                            }))}
+                            options={cityOptions}
                             handleChange={cityChange}
                         />
                     ) : (
@@ -97,25 +117,9 @@ export const Location: FC = () => {
                     {points ? (
                         <LocationSelect
                             label='Пункт выдачи'
-                            value={
-                                selectedPoint.value
-                                    ? {
-                                          value: selectedPoint.value.id,
-                                          label: selectedPoint.value.address,
-                                      }
-                                    : null
-                            }
+                            value={pointValue}
                             placeholder='Начните вводить пункт ...'
-                            options={points
-                                .filter(
-                                    (point) =>
-                                        point.cityId.id ===
-                                        selectedCity.value?.id
-                                )
-                                .map(({ id, address }) => ({
-                                    value: id,
-                                    label: address,
-                                }))}
+                            options={pointOptions}
                             handleChange={pointChange}
                         />
                     ) : (
