@@ -88,6 +88,12 @@ module.exports = {
       {
         test: /\.svg$/,
         use: ['@svgr/webpack'],
+        issuer: /\.([jt]s)x?$/,
+      },
+      {
+         test: /\.svg$/,
+          issuer: /\.css$/,
+          use: ['svg-url-loader']
       }
     ],
   },
@@ -125,7 +131,6 @@ module.exports = {
       '@assets': path.join(SRC, 'assets'),
       '@components': path.join(SRC, 'components'),
       '@constants': path.join(SRC, 'constants'),
-      '@mocks': path.join(SRC, 'mocks'),
       '@pages': path.join(SRC, 'pages'),
       '@services': path.join(SRC, 'services'),
       '@styles': path.join(SRC, 'styles'),

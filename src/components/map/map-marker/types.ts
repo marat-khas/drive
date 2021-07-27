@@ -1,6 +1,5 @@
 export interface MapMarkerProps {
-    cityId: number;
-    pointId: number;
+    id: string;
     addr: string;
     lat: number;
     lng: number;

@@ -1,61 +1,52 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import modelImg1 from '@assets/img/model1.png';
-import modelImg2 from '@assets/img/model2.png';
-import modelImg3 from '@assets/img/model3.png';
-import modelImg4 from '@assets/img/model4.png';
 import { ModelsCard } from '@components/models/models-card';
 import { ModelsFilter } from '@components/models/models-filter';
+import { GetCarsAction } from '@state/cars/actions';
+import { getCars, getCategory } from '@state/selectors';
 
 import './models.scss';
 
 export const Models: FC = () => {
-    const models = [
-        {
-            title: 'ELANTRA',
-            cost: {
-                from: '12 000',
-                to: '25 000',
-            },
-            img: modelImg1,
-        },
-        {
-            title: 'i30 N',
-            cost: {
-                from: '10 000',
-                to: '32 000',
-            },
-            img: modelImg2,
-        },
-        {
-            title: 'CRETA',
-            cost: {
-                from: '12 000',
-                to: '25 000',
-            },
-            img: modelImg3,
-        },
-        {
-            title: 'SONATA',
-            cost: {
-                from: '10 000',
-                to: '32 000',
-            },
-            img: modelImg4,
-        },
-    ];
+    const dispatch = useDispatch();
+
+    const category = useSelector(getCategory);
+
+    const cars = useSelector(getCars);
+
+    useEffect(() => {
+        if (!cars) {
+            dispatch(GetCarsAction());
+        }
+    }, [cars, dispatch]);
+
+    const modelsCards = cars ? (
+        cars
+            .filter((car) => {
+                if (category.value) {
+                    if (car.categoryId) {
+                        return category.value.id === car.categoryId.id;
+                    }
+                    return false;
+                }
+                return true;
+            })
+            .map((car) => (
+                <div className='models__card' key={car.id}>
+                    <ModelsCard car={car} />
+                </div>
+            ))
+    ) : (
+        <>Загрузка моделей ...</>
+    );
+
     return (
         <div className='models'>
             <div className='models__filter'>
                 <ModelsFilter />
             </div>
-            <div className='models__cards'>
-                {models.map(({ title, cost, img }) => (
-                    <div className='models__card' key={title}>
-                        <ModelsCard title={title} cost={cost} img={img} />
-                    </div>
-                ))}
-            </div>
+            <div className='models__cards'>{modelsCards}</div>
         </div>
     );
 };

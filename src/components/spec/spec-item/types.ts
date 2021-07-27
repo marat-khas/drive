@@ -1,4 +1,4 @@
 export interface SpecItemProps {
-    name: string;
+    label: string;
     value: string;
 }

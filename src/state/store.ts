@@ -1,15 +1,27 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 
-import { locationReducer } from '@state/location/reducer';
+import { carsReducer } from '@state/cars/reducer';
+import { categoriesReducer } from '@state/categories/reducer';
+import { citiesReducer } from '@state/cities/reducer';
+import { globalReducer } from '@state/global/reducer';
 import { orderReducer } from '@state/order/reducer';
+import { pointsReducer } from '@state/points/reducer';
 import { tabsReducer } from '@state/tabs/reducer';
 import { RootState } from '@state/types';
 
 const rootReducer = combineReducers<RootState>({
-    location: locationReducer,
+    cars: carsReducer,
+    categories: categoriesReducer,
+    cities: citiesReducer,
+    global: globalReducer,
     order: orderReducer,
+    points: pointsReducer,
     tabs: tabsReducer,
 });
 
-export const store = createStore(rootReducer, applyMiddleware(thunk));
+export const store = createStore(
+    rootReducer,
+    composeWithDevTools(applyMiddleware(thunk))
+);

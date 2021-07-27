@@ -1,10 +1,34 @@
-import { CartClear, OrderActionTypes, Product, ProductAdd } from './types';
+import { Car } from '@state/cars/types';
+import { Category } from '@state/categories/types';
+import { City } from '@state/cities/types';
+import { Point } from '@state/points/types';
 
-export const ProductAddAction = (product: Product): ProductAdd => ({
-    type: OrderActionTypes.PRODUCT_ADD,
-    payload: product,
+import {
+    CarSelect,
+    CategorySelect,
+    CitySelect,
+    OrderActionTypes,
+    PointSelect,
+} from './types';
+
+export const CitySelectAction = (city: City | null): CitySelect => ({
+    type: OrderActionTypes.CITY_SELECT,
+    payload: city,
 });
 
-export const CartClearAction = (): CartClear => ({
-    type: OrderActionTypes.CART_CLEAR,
+export const PointSelectAction = (point: Point | null): PointSelect => ({
+    type: OrderActionTypes.POINT_SELECT,
+    payload: point,
+});
+
+export const CategorySelectAction = (
+    category: Category | null
+): CategorySelect => ({
+    type: OrderActionTypes.CATEGORY_SELECT,
+    payload: category,
+});
+
+export const CarSelectAction = (car: Car | null): CarSelect => ({
+    type: OrderActionTypes.CAR_SELECT,
+    payload: car,
 });

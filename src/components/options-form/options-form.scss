@@ -1,0 +1,28 @@
+@import "@styles/_vars.scss";
+
+.options-form {
+    &__item {
+        &:not(:last-child) {
+            margin-bottom: 32px;
+        }
+    }
+    &__title {
+        font-size: 14px;
+        line-height: 1.2;
+        font-weight: 300;
+        color: $color-black;
+        margin-bottom: 16px;
+    }
+    &__part {
+        margin: -4px -8px;
+        &--row {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+    }
+    &__input {
+        padding: 4px 8px;
+    }
+}

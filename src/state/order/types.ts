@@ -1,24 +1,54 @@
-export type Product = {
+import { Car } from '@state/cars/types';
+import { Category } from '@state/categories/types';
+import { City } from '@state/cities/types';
+import { Point } from '@state/points/types';
+
+export interface Cart {
     name: string;
-    info: string;
-};
+    value: string | null;
+}
 
 export interface OrderState {
-    products: Product[] | [];
+    city: {
+        value: City | null;
+    };
+    point: {
+        value: Point | null;
+        cart: Cart;
+    };
+    category: {
+        value: Category | null;
+    };
+    car: {
+        value: Car | null;
+        cart: Cart;
+    };
 }
 
 export enum OrderActionTypes {
-    PRODUCT_ADD = 'PRODUCT_ADD',
-    CART_CLEAR = 'CART_CLEAR',
+    CITY_SELECT = 'CITY_SELECT',
+    POINT_SELECT = 'POINT_SELECT',
+    CAR_SELECT = 'CAR_SELECT',
+    CATEGORY_SELECT = 'CATEGORY_SELECT',
 }
 
-export interface ProductAdd {
-    type: OrderActionTypes.PRODUCT_ADD;
-    payload: Product;
+export interface CitySelect {
+    type: OrderActionTypes.CITY_SELECT;
+    payload: City | null;
 }
 
-export interface CartClear {
-    type: OrderActionTypes.CART_CLEAR;
+export interface PointSelect {
+    type: OrderActionTypes.POINT_SELECT;
+    payload: Point | null;
 }
 
-export type OrderAction = ProductAdd | CartClear;
+export interface CategorySelect {
+    type: OrderActionTypes.CATEGORY_SELECT;
+    payload: Category | null;
+}
+export interface CarSelect {
+    type: OrderActionTypes.CAR_SELECT;
+    payload: Car | null;
+}
+
+export type OrderAction = CitySelect | PointSelect | CategorySelect | CarSelect;

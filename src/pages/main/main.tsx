@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Button } from '@components/button';
+import { Button } from '@components/common/button';
 import { Header } from '@components/header';
 import { MainSlider } from '@components/main-slider';
 import { ROUTES } from '@constants/routes';

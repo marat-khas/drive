@@ -1,45 +1,31 @@
 import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { places } from '@mocks/location';
-import { ChangeCityAction, ChangePointAction } from '@state/location/actions';
-import { CartClearAction, ProductAddAction } from '@state/order/actions';
-import { getCity } from '@state/selectors';
+import { CitySelectAction, PointSelectAction } from '@state/order/actions';
+import { getCities, getCity, getPoints } from '@state/selectors';
 import { TabAvailableAction, TabCompleteAction } from '@state/tabs/actions';
 
 import './map-marker.scss';
 
 import { MapMarkerProps } from './types';
 
-export const MapMarker: FC<MapMarkerProps> = ({
-    cityId,
-    pointId,
-    addr,
-    lat,
-    lng,
-}) => {
+export const MapMarker: FC<MapMarkerProps> = ({ id }) => {
     const dispatch = useDispatch();
 
-    const city = useSelector(getCity);
+    const selectedCity = useSelector(getCity);
+
+    const cities = useSelector(getCities);
+    const points = useSelector(getPoints);
 
     const clickHandle = () => {
-        if (!city) {
-            dispatch(ChangeCityAction(places[cityId]));
+        const newPoint = points?.find((point) => point.id === id);
+        if (!selectedCity.value) {
+            const newCity = cities?.find(
+                (city) => city.id === newPoint?.cityId.id
+            );
+            dispatch(CitySelectAction(newCity!));
         }
-        dispatch(
-            ChangePointAction({
-                id: pointId,
-                addr,
-                coord: { lat, lng },
-            })
-        );
-        dispatch(CartClearAction());
-        dispatch(
-            ProductAddAction({
-                name: 'Пункт выдачи',
-                info: places[cityId].points[pointId].addr,
-            })
-        );
+        dispatch(PointSelectAction(newPoint!));
         dispatch(TabCompleteAction(0, true));
         dispatch(TabAvailableAction(1, true));
     };
