@@ -22,6 +22,8 @@ export const getCategory = (state: RootState) => state.order.category;
 
 export const getCar = (state: RootState) => state.order.car;
 
+export const getColor = (state: RootState) => state.order.color;
+
 export const getCity = (state: RootState) => state.order.city;
 
 export const getPoint = (state: RootState) => state.order.point;

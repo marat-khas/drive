@@ -2,26 +2,12 @@ import { FC } from 'react';
 
 import { Checkbox } from '@components/common/checkbox';
 import { Radio } from '@components/common/radio';
+import { OptionsFormColor } from '@components/options-form/options-form-color';
+import { OptionsFormDate } from '@components/options-form/options-form-date';
 
 import './options-form.scss';
 
-import { OptionsFormDate } from './options-form-date';
-
 export const OptionsForm: FC = () => {
-    const colors = [
-        {
-            id: 0,
-            name: 'Любой',
-        },
-        {
-            id: 1,
-            name: 'Красный',
-        },
-        {
-            id: 2,
-            name: 'Голубой',
-        },
-    ];
     const tariff = [
         {
             id: 0,
@@ -52,16 +38,7 @@ export const OptionsForm: FC = () => {
             <div className='options-form__item'>
                 <div className='options-form__title'>Цвет</div>
                 <div className='options-form__part options-form__part--row'>
-                    {colors.map(({ id, name }) => (
-                        <div className='options-form__input' key={id}>
-                            <Radio
-                                name='options-form-color'
-                                id={`options-form-color${id}`}
-                            >
-                                {name}
-                            </Radio>
-                        </div>
-                    ))}
+                    <OptionsFormColor />
                 </div>
             </div>
             <div className='options-form__item'>

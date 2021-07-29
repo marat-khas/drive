@@ -7,6 +7,7 @@ import {
     CarSelect,
     CategorySelect,
     CitySelect,
+    ColorSelect,
     OrderActionTypes,
     PointSelect,
 } from './types';
@@ -31,4 +32,9 @@ export const CategorySelectAction = (
 export const CarSelectAction = (car: Car | null): CarSelect => ({
     type: OrderActionTypes.CAR_SELECT,
     payload: car,
+});
+
+export const ColorSelectAction = (color: string | null): ColorSelect => ({
+    type: OrderActionTypes.COLOR_SELECT,
+    payload: color,
 });

@@ -23,6 +23,10 @@ export interface OrderState {
         value: Car | null;
         cart: Cart;
     };
+    color: {
+        value: string | null;
+        cart: Cart;
+    };
 }
 
 export enum OrderActionTypes {
@@ -30,6 +34,7 @@ export enum OrderActionTypes {
     POINT_SELECT = 'POINT_SELECT',
     CAR_SELECT = 'CAR_SELECT',
     CATEGORY_SELECT = 'CATEGORY_SELECT',
+    COLOR_SELECT = 'COLOR_SELECT',
 }
 
 export interface CitySelect {
@@ -46,9 +51,20 @@ export interface CategorySelect {
     type: OrderActionTypes.CATEGORY_SELECT;
     payload: Category | null;
 }
+
 export interface CarSelect {
     type: OrderActionTypes.CAR_SELECT;
     payload: Car | null;
 }
 
-export type OrderAction = CitySelect | PointSelect | CategorySelect | CarSelect;
+export interface ColorSelect {
+    type: OrderActionTypes.COLOR_SELECT;
+    payload: string | null;
+}
+
+export type OrderAction =
+    | CitySelect
+    | PointSelect
+    | CategorySelect
+    | CarSelect
+    | ColorSelect;

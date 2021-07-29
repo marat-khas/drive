@@ -21,4 +21,11 @@ export const OrderStateDefault: OrderState = {
             value: null,
         },
     },
+    color: {
+        value: null,
+        cart: {
+            name: 'Цвет',
+            value: null,
+        },
+    },
 };

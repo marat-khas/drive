@@ -44,6 +44,27 @@ export const orderReducer = (
                         value: action.payload ? action.payload.name : null,
                     },
                 },
+                color: {
+                    ...state.color,
+                    value: null,
+                    cart: {
+                        ...state.color.cart,
+                        value: null,
+                    },
+                },
+            };
+        }
+        case OrderActionTypes.COLOR_SELECT: {
+            return {
+                ...state,
+                color: {
+                    ...state.color,
+                    value: action.payload,
+                    cart: {
+                        ...state.color.cart,
+                        value: action.payload,
+                    },
+                },
             };
         }
         default:
