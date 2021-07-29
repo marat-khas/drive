@@ -2,6 +2,7 @@ import { Car } from '@state/cars/types';
 import { Category } from '@state/categories/types';
 import { City } from '@state/cities/types';
 import { Point } from '@state/points/types';
+import { Rate } from '@state/rates/types';
 
 export interface Cart {
     name: string;
@@ -32,6 +33,10 @@ export interface OrderState {
         to: Date | null;
         cart: Cart;
     };
+    rate: {
+        value: Rate | null;
+        cart: Cart;
+    };
 }
 
 export enum OrderActionTypes {
@@ -42,6 +47,7 @@ export enum OrderActionTypes {
     COLOR_SELECT = 'COLOR_SELECT',
     DATE_FROM_SELECT = 'DATE_FROM_SELECT',
     DATE_TO_SELECT = 'DATE_TO_SELECT',
+    RATE_SELECT = 'RATE_SELECT',
 }
 
 export interface CitySelect {
@@ -79,6 +85,11 @@ export interface DateToSelect {
     payload: Date | null;
 }
 
+export interface RateSelect {
+    type: OrderActionTypes.RATE_SELECT;
+    payload: Rate | null;
+}
+
 export type OrderAction =
     | CitySelect
     | PointSelect
@@ -86,4 +97,5 @@ export type OrderAction =
     | CarSelect
     | ColorSelect
     | DateFromSelect
-    | DateToSelect;
+    | DateToSelect
+    | RateSelect;

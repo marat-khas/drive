@@ -107,6 +107,19 @@ export const orderReducer = (
                 },
             };
         }
+        case OrderActionTypes.RATE_SELECT: {
+            return {
+                ...state,
+                rate: {
+                    ...state.rate,
+                    value: action.payload,
+                    cart: {
+                        ...state.rate.cart,
+                        value: action.payload!.rateTypeId.name,
+                    },
+                },
+            };
+        }
         default:
             return state;
     }

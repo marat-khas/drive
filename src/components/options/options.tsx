@@ -2,25 +2,16 @@ import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Checkbox } from '@components/common/checkbox';
-import { Radio } from '@components/common/radio';
 import { OptionsColor } from '@components/options/options-color';
 import { OptionsDate } from '@components/options/options-date';
-import { getColor, getDate } from '@state/selectors';
+import { getColor, getDate, getRate } from '@state/selectors';
 import { TabAvailableAction, TabCompleteAction } from '@state/tabs/actions';
 
 import './options.scss';
 
+import { OptionsRate } from './options-rate/options-rate';
+
 export const Options: FC = () => {
-    const tariff = [
-        {
-            id: 0,
-            name: 'Поминутно, 7₽/мин',
-        },
-        {
-            id: 1,
-            name: 'На сутки, 1999 ₽/сутки',
-        },
-    ];
     const additional = [
         {
             id: 0,
@@ -40,14 +31,24 @@ export const Options: FC = () => {
 
     const selectedColor = useSelector(getColor);
     const selectedDates = useSelector(getDate);
+    const selectedRate = useSelector(getRate);
 
     useEffect(() => {
         const complete = Boolean(
-            selectedColor.value && selectedDates.from && selectedDates.to
+            selectedColor.value &&
+                selectedDates.from &&
+                selectedDates.to &&
+                selectedRate.value
         );
         dispatch(TabCompleteAction(2, complete));
         dispatch(TabAvailableAction(3, complete));
-    }, [selectedColor.value, selectedDates.from, selectedDates.to, dispatch]);
+    }, [
+        selectedColor.value,
+        selectedDates.from,
+        selectedDates.to,
+        selectedRate.value,
+        dispatch,
+    ]);
 
     return (
         <form className='options'>
@@ -66,16 +67,7 @@ export const Options: FC = () => {
             <div className='options__item'>
                 <div className='options__title'>Тариф</div>
                 <div className='options__part'>
-                    {tariff.map(({ id, name }) => (
-                        <div className='options__input' key={id}>
-                            <Radio
-                                name='options-tariff'
-                                id={`options-tariff${id}`}
-                            >
-                                {name}
-                            </Radio>
-                        </div>
-                    ))}
+                    <OptionsRate />
                 </div>
             </div>
             <div className='options__item'>

@@ -36,4 +36,11 @@ export const OrderStateDefault: OrderState = {
             value: null,
         },
     },
+    rate: {
+        value: null,
+        cart: {
+            name: 'Тариф',
+            value: null,
+        },
+    },
 };

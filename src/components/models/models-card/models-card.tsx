@@ -3,15 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
 
 import { SERVER_URL } from '@constants/urls';
-import { Car } from '@state/cars/types';
 import { CarSelectAction } from '@state/order/actions';
 import { getCar } from '@state/selectors';
 
 import './models-card.scss';
 
-export interface CarProps {
-    car: Car;
-}
+import { CarProps } from './types';
 
 export const ModelsCard: FC<CarProps> = ({ car }) => {
     const { path } = car.thumbnail;

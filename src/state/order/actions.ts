@@ -2,6 +2,7 @@ import { Car } from '@state/cars/types';
 import { Category } from '@state/categories/types';
 import { City } from '@state/cities/types';
 import { Point } from '@state/points/types';
+import { Rate } from '@state/rates/types';
 
 import {
     CarSelect,
@@ -12,6 +13,7 @@ import {
     DateToSelect,
     OrderActionTypes,
     PointSelect,
+    RateSelect,
 } from './types';
 
 export const CitySelectAction = (city: City | null): CitySelect => ({
@@ -49,4 +51,9 @@ export const DateFromSelectAction = (from: Date | null): DateFromSelect => ({
 export const DateToSelectAction = (to: Date | null): DateToSelect => ({
     type: OrderActionTypes.DATE_TO_SELECT,
     payload: to,
+});
+
+export const RateSelectAction = (rate: Rate | null): RateSelect => ({
+    type: OrderActionTypes.RATE_SELECT,
+    payload: rate,
 });
