@@ -43,4 +43,9 @@ export const OrderStateDefault: OrderState = {
             value: null,
         },
     },
+    additionals: [
+        { id: '0', name: 'Полный бак', cost: 500, selected: false },
+        { id: '1', name: 'Детское кресло', cost: 200, selected: false },
+        { id: '2', name: 'Правый руль', cost: 1600, selected: false },
+    ],
 };

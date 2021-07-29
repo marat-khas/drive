@@ -18,7 +18,9 @@ export const OptionsRate: FC = () => {
     return (
         <div>
             {rates ? (
-                rates.map((rate) => <OptionsRateItem rate={rate} />)
+                rates.map((rate) => (
+                    <OptionsRateItem key={rate.id} rate={rate} />
+                ))
             ) : (
                 <p>Загрузка тарифов</p>
             )}

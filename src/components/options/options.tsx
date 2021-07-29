@@ -1,7 +1,6 @@
 import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Checkbox } from '@components/common/checkbox';
 import { OptionsColor } from '@components/options/options-color';
 import { OptionsDate } from '@components/options/options-date';
 import { getColor, getDate, getRate } from '@state/selectors';
@@ -9,24 +8,10 @@ import { TabAvailableAction, TabCompleteAction } from '@state/tabs/actions';
 
 import './options.scss';
 
+import { OptionsAdditional } from './options-additional';
 import { OptionsRate } from './options-rate/options-rate';
 
 export const Options: FC = () => {
-    const additional = [
-        {
-            id: 0,
-            name: 'Полный бак, 500р',
-        },
-        {
-            id: 1,
-            name: 'Детское кресло, 200р',
-        },
-        {
-            id: 2,
-            name: 'Правый руль, 1600р',
-        },
-    ];
-
     const dispatch = useDispatch();
 
     const selectedColor = useSelector(getColor);
@@ -73,16 +58,7 @@ export const Options: FC = () => {
             <div className='options__item'>
                 <div className='options__title'>Доп услуги</div>
                 <div className='options__part'>
-                    {additional.map(({ id, name }) => (
-                        <div className='options__input' key={id}>
-                            <Checkbox
-                                name='options-dop'
-                                id={`options-dop${id}`}
-                            >
-                                {name}
-                            </Checkbox>
-                        </div>
-                    ))}
+                    <OptionsAdditional />
                 </div>
             </div>
         </form>

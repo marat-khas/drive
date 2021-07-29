@@ -120,6 +120,20 @@ export const orderReducer = (
                 },
             };
         }
+        case OrderActionTypes.ADDITIONAL_CHANGE: {
+            return {
+                ...state,
+                additionals: state.additionals.map((additional) => {
+                    if (additional.id === action.payload.id) {
+                        return {
+                            ...additional,
+                            selected: action.payload.status,
+                        };
+                    }
+                    return additional;
+                }),
+            };
+        }
         default:
             return state;
     }

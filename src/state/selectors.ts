@@ -30,6 +30,8 @@ export const getDate = (state: RootState) => state.order.date;
 
 export const getRate = (state: RootState) => state.order.rate;
 
+export const getAdditionals = (state: RootState) => state.order.additionals;
+
 export const getCity = (state: RootState) => state.order.city;
 
 export const getPoint = (state: RootState) => state.order.point;

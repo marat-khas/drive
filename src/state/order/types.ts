@@ -9,6 +9,13 @@ export interface Cart {
     value: string | null;
 }
 
+export interface Additional {
+    id: string;
+    name: string;
+    cost: number;
+    selected: boolean;
+}
+
 export interface OrderState {
     city: {
         value: City | null;
@@ -37,6 +44,7 @@ export interface OrderState {
         value: Rate | null;
         cart: Cart;
     };
+    additionals: Additional[];
 }
 
 export enum OrderActionTypes {
@@ -48,6 +56,7 @@ export enum OrderActionTypes {
     DATE_FROM_SELECT = 'DATE_FROM_SELECT',
     DATE_TO_SELECT = 'DATE_TO_SELECT',
     RATE_SELECT = 'RATE_SELECT',
+    ADDITIONAL_CHANGE = 'ADDITIONAL_CHANGE',
 }
 
 export interface CitySelect {
@@ -90,6 +99,14 @@ export interface RateSelect {
     payload: Rate | null;
 }
 
+export interface AdditionalChange {
+    type: OrderActionTypes.ADDITIONAL_CHANGE;
+    payload: {
+        id: string;
+        status: boolean;
+    };
+}
+
 export type OrderAction =
     | CitySelect
     | PointSelect
@@ -98,4 +115,5 @@ export type OrderAction =
     | ColorSelect
     | DateFromSelect
     | DateToSelect
-    | RateSelect;
+    | RateSelect
+    | AdditionalChange;

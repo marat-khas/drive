@@ -22,7 +22,7 @@ export const OptionsRateItem: FC<OptionsRateItemProps> = ({ rate }) => {
                 checked={selectedRate.value?.id === rate.id}
                 onChange={changeHandle}
             >
-                {rate.rateTypeId.name}
+                {`${rate.rateTypeId.name}, ${rate.price} ₽ / ${rate.rateTypeId.unit}`}
             </Radio>
         </div>
     );

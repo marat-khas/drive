@@ -33,6 +33,11 @@ export const Spec: FC = () => {
                     .map(({ name, value }: Cart) => (
                         <SpecItem key={name} label={name} value={value!} />
                     ))}
+                {order.additionals.map(({ id, name, selected }) =>
+                    selected ? (
+                        <SpecItem key={id} label={name} value='Да' />
+                    ) : null
+                )}
             </div>
             {car.value ? (
                 <div className='spec__cost'>

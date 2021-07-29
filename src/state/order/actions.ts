@@ -5,6 +5,7 @@ import { Point } from '@state/points/types';
 import { Rate } from '@state/rates/types';
 
 import {
+    AdditionalChange,
     CarSelect,
     CategorySelect,
     CitySelect,
@@ -56,4 +57,16 @@ export const DateToSelectAction = (to: Date | null): DateToSelect => ({
 export const RateSelectAction = (rate: Rate | null): RateSelect => ({
     type: OrderActionTypes.RATE_SELECT,
     payload: rate,
+});
+
+export interface AdditionLChangePtops {
+    id: string;
+    status: boolean;
+}
+
+export const AdditionalChangeAction = (
+    additional: AdditionLChangePtops
+): AdditionalChange => ({
+    type: OrderActionTypes.ADDITIONAL_CHANGE,
+    payload: additional,
 });
