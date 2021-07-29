@@ -7,6 +7,7 @@ import { Location } from '@components/location';
 import { Map } from '@components/map';
 import { Models } from '@components/models';
 import { Options } from '@components/options';
+import { Result } from '@components/result';
 import { getActiveTabIndex, getCategory } from '@state/selectors';
 
 import 'swiper/swiper.scss';
@@ -46,7 +47,9 @@ export const OrderSlider: FC = () => {
             <SwiperSlide>
                 <Options />
             </SwiperSlide>
-            <SwiperSlide>Step 4</SwiperSlide>
+            <SwiperSlide>
+                <Result />
+            </SwiperSlide>
         </Swiper>
     );
 };

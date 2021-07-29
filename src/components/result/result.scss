@@ -1,0 +1,119 @@
+@import "@styles/_vars.scss";
+
+.result {
+    &__status {
+        line-height: 1.15;
+        font-weight: 400;
+        color: $color-black;
+        &:not(:last-child) {
+            margin-bottom: 16px;
+        }
+    }
+    &__model {
+        line-height: 1.15;
+        font-weight: 400;
+        color: $color-black;
+        &:not(:last-child) {
+            margin-bottom: 8px;
+        }
+    }
+    &__number {
+        display: inline-block;
+        vertical-align: top;
+        font-size: 14px;
+        line-height: 1.15;
+        font-weight: 400;
+        color: $color-black;
+        padding: 4px 8px;
+        border: 1px solid $color-gray-dark;
+        border-radius: 4px;
+        &:not(:last-child) {
+            margin-bottom: 8px;
+        }
+    }
+    &__item {
+        font-size: 14px;
+        line-height: 1.15;
+        font-weight: 300;
+        color: $color-black;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        &:not(:last-child) {
+            margin-bottom: 8px;
+        }
+    }
+    &__property {
+        font-weight: 700;
+        margin-right: 4px;
+    }
+    &__img {
+        img {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .result {
+        &__part {
+            width: 50%;
+        }
+    }
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .result {
+        &__part {
+            width: 100%;
+        }
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .result {
+        &__part {
+            width: 50%;
+        }
+    }
+}
+
+@media (min-width: 576px) {
+    .result {
+        &__wrapper {
+            display: flex;
+            align-items: stretch;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            margin: -15px;
+        }
+        &__part {
+            padding: 15px;
+        }
+        &__status {
+            font-size: 24px;
+        }
+        &__model {
+            font-size: 18px;
+        }
+    }
+}
+
+@media (max-width: 575px) {
+    .result {
+        &__part {
+            &:not(:last-child) {
+                margin-bottom: 30px;
+            }
+        }
+        &__status {
+            font-size: 20px;
+        }
+        &__model {
+            font-size: 16px;
+        }
+    }
+}
