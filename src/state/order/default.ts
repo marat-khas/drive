@@ -1,3 +1,5 @@
+import { PRICE } from '@constants/price';
+
 import { OrderState } from './types';
 
 export const OrderStateDefault: OrderState = {
@@ -44,8 +46,18 @@ export const OrderStateDefault: OrderState = {
         },
     },
     additionals: [
-        { id: '0', name: 'Полный бак', cost: 500, selected: false },
-        { id: '1', name: 'Детское кресло', cost: 200, selected: false },
-        { id: '2', name: 'Правый руль', cost: 1600, selected: false },
+        { id: '0', name: 'Полный бак', cost: PRICE.FULL_TANK, selected: false },
+        {
+            id: '1',
+            name: 'Детское кресло',
+            cost: PRICE.CHILD_CHAIR,
+            selected: false,
+        },
+        {
+            id: '2',
+            name: 'Правый руль',
+            cost: PRICE.RIGHT_WHEEL,
+            selected: false,
+        },
     ],
 };
