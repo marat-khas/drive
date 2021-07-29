@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Button } from '@components/common/button';
 import { SpecItem } from '@components/spec/spec-item';
+import { Cart } from '@state/order/types';
 import { getActiveTabIndex, getCar, getOrder, getTabs } from '@state/selectors';
 import { TabActiveAction } from '@state/tabs/actions';
 import { numSpace } from '@utils/num-space';
@@ -23,15 +24,14 @@ export const Spec: FC = () => {
             <div className='spec__head'>Ваш заказ:</div>
             <div className='spec__body'>
                 {Object.values(order)
-                    .filter(
-                        (item) => item.value && item.cart && item.cart.value
-                    )
-                    .map((item) => (
-                        <SpecItem
-                            key={item.value.name}
-                            label={item.cart.name}
-                            value={item.cart.value}
-                        />
+                    .reduce((acc, cur) => {
+                        if (cur.cart && cur.cart.value) {
+                            acc.push(cur.cart);
+                        }
+                        return acc;
+                    }, [])
+                    .map(({ name, value }: Cart) => (
+                        <SpecItem key={name} label={name} value={value!} />
                     ))}
             </div>
             {car.value ? (

@@ -27,6 +27,11 @@ export interface OrderState {
         value: string | null;
         cart: Cart;
     };
+    date: {
+        from: Date | null;
+        to: Date | null;
+        cart: Cart;
+    };
 }
 
 export enum OrderActionTypes {
@@ -35,6 +40,8 @@ export enum OrderActionTypes {
     CAR_SELECT = 'CAR_SELECT',
     CATEGORY_SELECT = 'CATEGORY_SELECT',
     COLOR_SELECT = 'COLOR_SELECT',
+    DATE_FROM_SELECT = 'DATE_FROM_SELECT',
+    DATE_TO_SELECT = 'DATE_TO_SELECT',
 }
 
 export interface CitySelect {
@@ -62,9 +69,21 @@ export interface ColorSelect {
     payload: string | null;
 }
 
+export interface DateFromSelect {
+    type: OrderActionTypes.DATE_FROM_SELECT;
+    payload: Date | null;
+}
+
+export interface DateToSelect {
+    type: OrderActionTypes.DATE_TO_SELECT;
+    payload: Date | null;
+}
+
 export type OrderAction =
     | CitySelect
     | PointSelect
     | CategorySelect
     | CarSelect
-    | ColorSelect;
+    | ColorSelect
+    | DateFromSelect
+    | DateToSelect;

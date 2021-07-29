@@ -28,4 +28,12 @@ export const OrderStateDefault: OrderState = {
             value: null,
         },
     },
+    date: {
+        from: null,
+        to: null,
+        cart: {
+            name: 'Длительность аренды',
+            value: null,
+        },
+    },
 };

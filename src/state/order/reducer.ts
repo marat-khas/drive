@@ -1,3 +1,5 @@
+import { timeFormat } from '@utils/time-format';
+
 import { OrderStateDefault } from './default';
 import { OrderAction, OrderActionTypes, OrderState } from './types';
 
@@ -63,6 +65,44 @@ export const orderReducer = (
                     cart: {
                         ...state.color.cart,
                         value: action.payload,
+                    },
+                },
+            };
+        }
+        case OrderActionTypes.DATE_FROM_SELECT: {
+            return {
+                ...state,
+                date: {
+                    ...state.date,
+                    from: action.payload,
+                    cart: {
+                        ...state.date.cart,
+                        value:
+                            action.payload && state.date.to
+                                ? timeFormat(
+                                      state.date.to.getTime() -
+                                          action.payload.getTime()
+                                  )
+                                : null,
+                    },
+                },
+            };
+        }
+        case OrderActionTypes.DATE_TO_SELECT: {
+            return {
+                ...state,
+                date: {
+                    ...state.date,
+                    to: action.payload,
+                    cart: {
+                        ...state.date.cart,
+                        value:
+                            action.payload && state.date.from
+                                ? timeFormat(
+                                      action.payload.getTime() -
+                                          state.date.from.getTime()
+                                  )
+                                : null,
                     },
                 },
             };

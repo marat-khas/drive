@@ -8,6 +8,8 @@ import {
     CategorySelect,
     CitySelect,
     ColorSelect,
+    DateFromSelect,
+    DateToSelect,
     OrderActionTypes,
     PointSelect,
 } from './types';
@@ -37,4 +39,14 @@ export const CarSelectAction = (car: Car | null): CarSelect => ({
 export const ColorSelectAction = (color: string | null): ColorSelect => ({
     type: OrderActionTypes.COLOR_SELECT,
     payload: color,
+});
+
+export const DateFromSelectAction = (from: Date | null): DateFromSelect => ({
+    type: OrderActionTypes.DATE_FROM_SELECT,
+    payload: from,
+});
+
+export const DateToSelectAction = (to: Date | null): DateToSelect => ({
+    type: OrderActionTypes.DATE_TO_SELECT,
+    payload: to,
 });
