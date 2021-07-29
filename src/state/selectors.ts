@@ -35,3 +35,5 @@ export const getAdditionals = (state: RootState) => state.order.additionals;
 export const getCity = (state: RootState) => state.order.city;
 
 export const getPoint = (state: RootState) => state.order.point;
+
+export const getConfirmStatus = (state: RootState) => state.order.confirm;

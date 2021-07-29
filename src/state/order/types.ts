@@ -45,6 +45,7 @@ export interface OrderState {
         cart: Cart;
     };
     additionals: Additional[];
+    confirm: boolean;
 }
 
 export enum OrderActionTypes {
@@ -57,6 +58,8 @@ export enum OrderActionTypes {
     DATE_TO_SELECT = 'DATE_TO_SELECT',
     RATE_SELECT = 'RATE_SELECT',
     ADDITIONAL_CHANGE = 'ADDITIONAL_CHANGE',
+    CONFIRM_SHOW = 'CONFIRM_SHOW',
+    CONFIRM_HIDE = 'CONFIRM_HIDE',
 }
 
 export interface CitySelect {
@@ -107,6 +110,14 @@ export interface AdditionalChange {
     };
 }
 
+export interface ConfirmShow {
+    type: OrderActionTypes.CONFIRM_SHOW;
+}
+
+export interface ConfirmHide {
+    type: OrderActionTypes.CONFIRM_HIDE;
+}
+
 export type OrderAction =
     | CitySelect
     | PointSelect
@@ -116,4 +127,6 @@ export type OrderAction =
     | DateFromSelect
     | DateToSelect
     | RateSelect
-    | AdditionalChange;
+    | AdditionalChange
+    | ConfirmShow
+    | ConfirmHide;

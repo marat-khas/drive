@@ -134,6 +134,18 @@ export const orderReducer = (
                 }),
             };
         }
+        case OrderActionTypes.CONFIRM_SHOW: {
+            return {
+                ...state,
+                confirm: true,
+            };
+        }
+        case OrderActionTypes.CONFIRM_HIDE: {
+            return {
+                ...state,
+                confirm: false,
+            };
+        }
         default:
             return state;
     }

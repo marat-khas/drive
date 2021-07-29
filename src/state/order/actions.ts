@@ -10,6 +10,8 @@ import {
     CategorySelect,
     CitySelect,
     ColorSelect,
+    ConfirmHide,
+    ConfirmShow,
     DateFromSelect,
     DateToSelect,
     OrderActionTypes,
@@ -69,4 +71,12 @@ export const AdditionalChangeAction = (
 ): AdditionalChange => ({
     type: OrderActionTypes.ADDITIONAL_CHANGE,
     payload: additional,
+});
+
+export const ConfirmShowAction = (): ConfirmShow => ({
+    type: OrderActionTypes.CONFIRM_SHOW,
+});
+
+export const ConfirmHideAction = (): ConfirmHide => ({
+    type: OrderActionTypes.CONFIRM_HIDE,
 });

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Button } from '@components/common/button';
 import { SpecItem } from '@components/spec/spec-item';
+import { ConfirmShowAction } from '@state/order/actions';
 import { Cart } from '@state/order/types';
 import {
     getActiveTabIndex,
@@ -26,7 +27,11 @@ export const Spec: FC = () => {
     const activeTabIndex = useSelector(getActiveTabIndex);
 
     const handleNext = () => {
-        dispatch(TabActiveAction(activeTabIndex + 1));
+        if (activeTabIndex === 3) {
+            dispatch(ConfirmShowAction());
+        } else {
+            dispatch(TabActiveAction(activeTabIndex + 1));
+        }
     };
 
     const selectedDates = useSelector(getDate);

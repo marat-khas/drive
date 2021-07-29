@@ -1,0 +1,52 @@
+@import "@styles/_vars.scss";
+
+.confirm {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.9);
+    z-index: 1100;
+    &__wrapper {
+        width: 100%;
+        max-width: 400px;
+    }
+    &__head {
+        font-size: 24px;
+        line-height: 1.2;
+        font-weight: 400;
+        color: $color-black;
+        text-align: center;
+        margin-bottom: 32px;
+    }
+    &__foot {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: -8px;
+    }
+    &__btn {
+        padding: 8px;
+    }
+}
+
+@media (min-width: 576px) {
+    .confirm {
+        &__head {
+            font-size: 24px;
+        }
+    }
+}
+
+@media (max-width: 575px) {
+    .confirm {
+        &__head {
+            font-size: 20px;
+        }
+    }
+}
