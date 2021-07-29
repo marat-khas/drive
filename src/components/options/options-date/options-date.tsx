@@ -6,9 +6,9 @@ import { DateFromSelectAction, DateToSelectAction } from '@state/order/actions';
 import { getDate } from '@state/selectors';
 
 import 'react-datepicker/dist/react-datepicker.css';
-import './options-form-date.scss';
+import './options-date.scss';
 
-export const OptionsFormDate: FC = () => {
+export const OptionsDate: FC = () => {
     const dispatch = useDispatch();
     const { from: selectedFrom, to: selectedTo } = useSelector(getDate);
 
@@ -27,11 +27,11 @@ export const OptionsFormDate: FC = () => {
     };
 
     return (
-        <div className='options-form__input options-form-date'>
-            <div className='options-form-date__wrapper'>
-                <div className='options-form-date__item'>
-                    <div className='options-form-date__label'>С</div>
-                    <div className='options-form-date__input'>
+        <div className='options__input options-date'>
+            <div className='options-date__wrapper'>
+                <div className='options-date__item'>
+                    <div className='options-date__label'>С</div>
+                    <div className='options-date__input'>
                         <DatePicker
                             selected={selectedFrom}
                             onChange={changeFromHandle}
@@ -44,9 +44,9 @@ export const OptionsFormDate: FC = () => {
                         />
                     </div>
                 </div>
-                <div className='options-form-date__item'>
-                    <div className='options-form-date__label'>По</div>
-                    <div className='options-form-date__input'>
+                <div className='options-date__item'>
+                    <div className='options-date__label'>По</div>
+                    <div className='options-date__input'>
                         <DatePicker
                             selected={selectedTo}
                             onChange={changeToHandle}

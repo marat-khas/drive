@@ -5,23 +5,19 @@ import { Radio } from '@components/common/radio';
 import { ColorSelectAction } from '@state/order/actions';
 import { getColor } from '@state/selectors';
 
-export interface OptionsFormColorItemProps {
-    color: string;
-}
+import { OptionsColorItemProps } from './types';
 
-export const OptionsFormColorItem: FC<OptionsFormColorItemProps> = ({
-    color,
-}) => {
+export const OptionsColorItem: FC<OptionsColorItemProps> = ({ color }) => {
     const dispatch = useDispatch();
     const selectedColor = useSelector(getColor);
     const changeHandle = () => {
         dispatch(ColorSelectAction(color));
     };
     return (
-        <div className='options-form__input' key={color}>
+        <div className='options__input' key={color}>
             <Radio
-                name='options-form-color'
-                id={`options-form-color-${color}`}
+                name='options-color'
+                id={`options-color-${color}`}
                 checked={selectedColor.value === color}
                 onChange={changeHandle}
             >

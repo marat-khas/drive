@@ -3,15 +3,15 @@ import { useSelector } from 'react-redux';
 
 import { getCar } from '@state/selectors';
 
-import { OptionsFormColorItem } from './options-form-color-item';
+import { OptionsColorItem } from './options-color-item';
 
-export const OptionsFormColor: FC = () => {
+export const OptionsColor: FC = () => {
     const car = useSelector(getCar);
     return (
         <div>
             {car ? (
                 car.value?.colors.map((color) => (
-                    <OptionsFormColorItem key={color} color={color} />
+                    <OptionsColorItem key={color} color={color} />
                 ))
             ) : (
                 <p>Не выбрана модель авто ...</p>

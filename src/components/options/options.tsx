@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Checkbox } from '@components/common/checkbox';
 import { Radio } from '@components/common/radio';
-import { OptionsFormColor } from '@components/options-form/options-form-color';
-import { OptionsFormDate } from '@components/options-form/options-form-date';
+import { OptionsColor } from '@components/options/options-color';
+import { OptionsDate } from '@components/options/options-date';
 import { getColor, getDate } from '@state/selectors';
 import { TabAvailableAction, TabCompleteAction } from '@state/tabs/actions';
 
-import './options-form.scss';
+import './options.scss';
 
-export const OptionsForm: FC = () => {
+export const Options: FC = () => {
     const tariff = [
         {
             id: 0,
@@ -50,27 +50,27 @@ export const OptionsForm: FC = () => {
     }, [selectedColor.value, selectedDates.from, selectedDates.to, dispatch]);
 
     return (
-        <form className='options-form'>
-            <div className='options-form__item'>
-                <div className='options-form__title'>Цвет</div>
-                <div className='options-form__part options-form__part--row'>
-                    <OptionsFormColor />
+        <form className='options'>
+            <div className='options__item'>
+                <div className='options__title'>Цвет</div>
+                <div className='options__part options__part--row'>
+                    <OptionsColor />
                 </div>
             </div>
-            <div className='options-form__item'>
-                <div className='options-form__title'>Дата аренды</div>
-                <div className='options-form__part'>
-                    <OptionsFormDate />
+            <div className='options__item'>
+                <div className='options__title'>Дата аренды</div>
+                <div className='options__part'>
+                    <OptionsDate />
                 </div>
             </div>
-            <div className='options-form__item'>
-                <div className='options-form__title'>Тариф</div>
-                <div className='options-form__part'>
+            <div className='options__item'>
+                <div className='options__title'>Тариф</div>
+                <div className='options__part'>
                     {tariff.map(({ id, name }) => (
-                        <div className='options-form__input' key={id}>
+                        <div className='options__input' key={id}>
                             <Radio
-                                name='options-form-tariff'
-                                id={`options-form-tariff${id}`}
+                                name='options-tariff'
+                                id={`options-tariff${id}`}
                             >
                                 {name}
                             </Radio>
@@ -78,14 +78,14 @@ export const OptionsForm: FC = () => {
                     ))}
                 </div>
             </div>
-            <div className='options-form__item'>
-                <div className='options-form__title'>Доп услуги</div>
-                <div className='options-form__part'>
+            <div className='options__item'>
+                <div className='options__title'>Доп услуги</div>
+                <div className='options__part'>
                     {additional.map(({ id, name }) => (
-                        <div className='options-form__input' key={id}>
+                        <div className='options__input' key={id}>
                             <Checkbox
-                                name='options-form-dop'
-                                id={`options-form-dop${id}`}
+                                name='options-dop'
+                                id={`options-dop${id}`}
                             >
                                 {name}
                             </Checkbox>
