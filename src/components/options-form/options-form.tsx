@@ -1,9 +1,12 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Checkbox } from '@components/common/checkbox';
 import { Radio } from '@components/common/radio';
 import { OptionsFormColor } from '@components/options-form/options-form-color';
 import { OptionsFormDate } from '@components/options-form/options-form-date';
+import { getColor, getDate } from '@state/selectors';
+import { TabAvailableAction, TabCompleteAction } from '@state/tabs/actions';
 
 import './options-form.scss';
 
@@ -32,6 +35,19 @@ export const OptionsForm: FC = () => {
             name: 'Правый руль, 1600р',
         },
     ];
+
+    const dispatch = useDispatch();
+
+    const selectedColor = useSelector(getColor);
+    const selectedDates = useSelector(getDate);
+
+    useEffect(() => {
+        const complete = Boolean(
+            selectedColor.value && selectedDates.from && selectedDates.to
+        );
+        dispatch(TabCompleteAction(2, complete));
+        dispatch(TabAvailableAction(3, complete));
+    }, [selectedColor.value, selectedDates.from, selectedDates.to, dispatch]);
 
     return (
         <form className='options-form'>

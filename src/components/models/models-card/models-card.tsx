@@ -6,7 +6,6 @@ import { SERVER_URL } from '@constants/urls';
 import { Car } from '@state/cars/types';
 import { CarSelectAction } from '@state/order/actions';
 import { getCar } from '@state/selectors';
-import { TabAvailableAction, TabCompleteAction } from '@state/tabs/actions';
 
 import './models-card.scss';
 
@@ -24,8 +23,6 @@ export const ModelsCard: FC<CarProps> = ({ car }) => {
 
     const clickHandle = () => {
         dispatch(CarSelectAction(car));
-        dispatch(TabCompleteAction(1, true));
-        dispatch(TabAvailableAction(2, true));
     };
 
     const classes = classNames('models-card', {
