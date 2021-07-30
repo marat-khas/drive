@@ -5,3 +5,4 @@ export const POINT_URL = `/db/point`;
 export const CATEGORY_URL = `/db/category`;
 export const CAR_URL = `/db/car`;
 export const RATE_URL = `/db/rate`;
+export const ORDER_URL = `/db/order`;

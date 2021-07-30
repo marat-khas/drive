@@ -1,15 +1,62 @@
 import { FC } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Button } from '@components/common/button';
+import { orderSend } from '@services/order';
+import {
+    LoadingEndAction,
+    LoadingStartAction,
+    ModalShowAction,
+} from '@state/global/actions';
 import { ConfirmHideAction } from '@state/order/actions';
+import { getOrder } from '@state/selectors';
 
 import './confirm.scss';
 
 export const Confirm: FC = () => {
     const dispatch = useDispatch();
+
+    const order = useSelector(getOrder);
+
     const submitHandle = () => {
         dispatch(ConfirmHideAction());
+        dispatch(LoadingStartAction('orderSend'));
+        orderSend({
+            orderStatusId: {
+                name: 'new!.',
+                id: '5e26a191099b810b946c5d89',
+            },
+            cityId: order.point.value!.cityId,
+            pointId: order.point.value!,
+            carId: order.car.value!,
+            color: order.color.value!,
+            dateFrom: order.date.from!,
+            dateTo: order.date.to!,
+            rateId: order.rate.value!,
+            price: order.price.value!,
+            isFullTank: order.additionals[0].selected,
+            isNeedChildChair: order.additionals[1].selected,
+            isRightWheel: order.additionals[2].selected,
+        })
+            .then(() => {
+                dispatch(
+                    ModalShowAction({
+                        head: 'Заказ успешно отправлен',
+                        body: 'Это сообщение временное',
+                    })
+                );
+            })
+            .catch((error) => {
+                dispatch(
+                    ModalShowAction({
+                        head: 'Ошибка!',
+                        body: error,
+                    })
+                );
+            })
+            .finally(() => {
+                dispatch(LoadingEndAction('orderSend'));
+            });
     };
     const cancelHandle = () => {
         dispatch(ConfirmHideAction());
