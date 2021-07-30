@@ -6,7 +6,7 @@ export interface Point {
         id: string;
         name: string;
     };
-    coords: {
+    coords?: {
         lat: number;
         lng: number;
     };

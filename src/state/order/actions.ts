@@ -1,6 +1,15 @@
+import { Dispatch } from 'redux';
+
+import { orderGet } from '@services/order';
+import { OrderData } from '@services/order/types';
 import { Car } from '@state/cars/types';
 import { Category } from '@state/categories/types';
 import { City } from '@state/cities/types';
+import {
+    LoadingEndAction,
+    LoadingStartAction,
+    ModalShowAction,
+} from '@state/global/actions';
 import { Point } from '@state/points/types';
 import { Rate } from '@state/rates/types';
 
@@ -16,6 +25,7 @@ import {
     DateToSelect,
     OrderActionTypes,
     OrderComplete,
+    OrderGet,
     PointSelect,
     PriceChange,
     RateSelect,
@@ -48,12 +58,12 @@ export const ColorSelectAction = (color: string | null): ColorSelect => ({
     payload: color,
 });
 
-export const DateFromSelectAction = (from: Date | null): DateFromSelect => ({
+export const DateFromSelectAction = (from: number | null): DateFromSelect => ({
     type: OrderActionTypes.DATE_FROM_SELECT,
     payload: from,
 });
 
-export const DateToSelectAction = (to: Date | null): DateToSelect => ({
+export const DateToSelectAction = (to: number | null): DateToSelect => ({
     type: OrderActionTypes.DATE_TO_SELECT,
     payload: to,
 });
@@ -90,3 +100,27 @@ export const ConfirmHideAction = (): ConfirmHide => ({
 export const OrderCompleteAction = (): OrderComplete => ({
     type: OrderActionTypes.ORDER_COMPLETE,
 });
+
+export const OrderGetSuccessAction = (order: OrderData): OrderGet => ({
+    type: OrderActionTypes.ORDER_GET,
+    payload: order,
+});
+
+export const OrderGetAction = (id: string) => (dispatch: Dispatch<any>) => {
+    dispatch(LoadingStartAction('Получение деталей заказа ...'));
+    orderGet(id)
+        .then((data) => {
+            dispatch(OrderGetSuccessAction(data));
+        })
+        .catch((error) => {
+            dispatch(
+                ModalShowAction({
+                    head: 'Ошибка!',
+                    body: error,
+                })
+            );
+        })
+        .finally(() => {
+            dispatch(LoadingEndAction('Получение деталей заказа ...'));
+        });
+};

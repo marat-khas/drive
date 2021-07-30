@@ -42,8 +42,8 @@ export const Map: FC = () => {
                                 key={id}
                                 id={id}
                                 addr={address}
-                                lat={coords.lat}
-                                lng={coords.lng}
+                                lat={coords!.lat}
+                                lng={coords!.lng}
                             />
                         ))}
                     </GoogleMapReact>

@@ -1,7 +1,7 @@
 export interface City {
     id: string;
     name: string;
-    coords: {
+    coords?: {
         lat: number;
         lng: number;
     };

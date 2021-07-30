@@ -20,7 +20,9 @@ import { numSpace } from '@utils/num-space';
 
 import './spec.scss';
 
-export const Spec: FC = () => {
+import { SpecProps } from './types';
+
+export const Spec: FC<SpecProps> = ({ details }) => {
     const dispatch = useDispatch();
     const car = useSelector(getCar);
     const tabs = useSelector(getTabs);
@@ -57,8 +59,7 @@ export const Spec: FC = () => {
 
         if (selectedDates.from && selectedDates.to && selectedRate.value) {
             const time = Math.floor(
-                (selectedDates.to.getTime() - selectedDates.from.getTime()) /
-                    (1000 * 60)
+                (selectedDates.to - selectedDates.from) / (1000 * 60)
             );
             switch (selectedRate.value.rateTypeId.unit) {
                 case 'мин':
@@ -125,11 +126,12 @@ export const Spec: FC = () => {
             ) : null}
             <div className='spec__next'>
                 <Button
-                    disabled={!tabs[activeTabIndex].complete}
+                    disabled={details ? false : !tabs[activeTabIndex].complete}
                     fullsize
                     onClick={handleNext}
+                    bg={details ? 3 : 0}
                 >
-                    {tabs[activeTabIndex].btnText}
+                    {details ? 'Отменить' : tabs[activeTabIndex].btnText}
                 </Button>
             </div>
         </div>

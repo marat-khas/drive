@@ -31,7 +31,7 @@ export const Result: FC = () => {
                             </div>
                         ) : null}
                         {info.map((item) => (
-                            <div className='result__item'>
+                            <div className='result__item' key={item[0]}>
                                 <div className='result__property'>
                                     {item[0]}
                                 </div>

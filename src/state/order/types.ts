@@ -1,3 +1,4 @@
+import { OrderData } from '@services/order/types';
 import { Car } from '@state/cars/types';
 import { Category } from '@state/categories/types';
 import { City } from '@state/cities/types';
@@ -10,7 +11,7 @@ export interface Cart {
 }
 
 export interface Additional {
-    id: string;
+    id: keyof OrderData;
     name: string;
     cost: number;
     selected: boolean;
@@ -36,8 +37,8 @@ export interface OrderState {
         cart: Cart;
     };
     date: {
-        from: Date | null;
-        to: Date | null;
+        from: number | null;
+        to: number | null;
         cart: Cart;
     };
     rate: {
@@ -66,6 +67,7 @@ export enum OrderActionTypes {
     CONFIRM_SHOW = 'CONFIRM_SHOW',
     CONFIRM_HIDE = 'CONFIRM_HIDE',
     ORDER_COMPLETE = 'ORDER_COMPLETE',
+    ORDER_GET = 'ORDER_GET',
 }
 
 export interface CitySelect {
@@ -95,12 +97,12 @@ export interface ColorSelect {
 
 export interface DateFromSelect {
     type: OrderActionTypes.DATE_FROM_SELECT;
-    payload: Date | null;
+    payload: number | null;
 }
 
 export interface DateToSelect {
     type: OrderActionTypes.DATE_TO_SELECT;
-    payload: Date | null;
+    payload: number | null;
 }
 
 export interface RateSelect {
@@ -132,6 +134,11 @@ export interface OrderComplete {
     type: OrderActionTypes.ORDER_COMPLETE;
 }
 
+export interface OrderGet {
+    type: OrderActionTypes.ORDER_GET;
+    payload: OrderData;
+}
+
 export type OrderAction =
     | CitySelect
     | PointSelect
@@ -145,4 +152,5 @@ export type OrderAction =
     | PriceChange
     | ConfirmShow
     | ConfirmHide
-    | OrderComplete;
+    | OrderComplete
+    | OrderGet;

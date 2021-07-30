@@ -46,15 +46,20 @@ export const OrderStateDefault: OrderState = {
         },
     },
     additionals: [
-        { id: '0', name: 'Полный бак', cost: PRICE.FULL_TANK, selected: false },
         {
-            id: '1',
+            id: 'isFullTank',
+            name: 'Полный бак',
+            cost: PRICE.FULL_TANK,
+            selected: false,
+        },
+        {
+            id: 'isNeedChildChair',
             name: 'Детское кресло',
             cost: PRICE.CHILD_CHAIR,
             selected: false,
         },
         {
-            id: '2',
+            id: 'isRightWheel',
             name: 'Правый руль',
             cost: PRICE.RIGHT_WHEEL,
             selected: false,

@@ -15,7 +15,9 @@ export const Loader: FC = () => {
         <div className={classes}>
             <div className='loader__list'>
                 {loading.map((process) => (
-                    <div className='loader__item'>{process}</div>
+                    <div className='loader__item' key={process}>
+                        {process}
+                    </div>
                 ))}
             </div>
         </div>
