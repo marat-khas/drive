@@ -61,4 +61,7 @@ export const OrderStateDefault: OrderState = {
         },
     ],
     confirm: false,
+    price: {
+        value: null,
+    },
 };

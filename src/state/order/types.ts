@@ -46,6 +46,9 @@ export interface OrderState {
     };
     additionals: Additional[];
     confirm: boolean;
+    price: {
+        value: number | null;
+    };
 }
 
 export enum OrderActionTypes {
@@ -58,6 +61,7 @@ export enum OrderActionTypes {
     DATE_TO_SELECT = 'DATE_TO_SELECT',
     RATE_SELECT = 'RATE_SELECT',
     ADDITIONAL_CHANGE = 'ADDITIONAL_CHANGE',
+    PRICE_CHANGE = 'PRICE_CHANGE',
     CONFIRM_SHOW = 'CONFIRM_SHOW',
     CONFIRM_HIDE = 'CONFIRM_HIDE',
 }
@@ -110,6 +114,10 @@ export interface AdditionalChange {
     };
 }
 
+export interface PriceChange {
+    type: OrderActionTypes.PRICE_CHANGE;
+    payload: number | null;
+}
 export interface ConfirmShow {
     type: OrderActionTypes.CONFIRM_SHOW;
 }
@@ -128,5 +136,6 @@ export type OrderAction =
     | DateToSelect
     | RateSelect
     | AdditionalChange
+    | PriceChange
     | ConfirmShow
     | ConfirmHide;

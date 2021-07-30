@@ -134,6 +134,12 @@ export const orderReducer = (
                 }),
             };
         }
+        case OrderActionTypes.PRICE_CHANGE: {
+            return {
+                ...state,
+                price: { ...state.price, value: action.payload },
+            };
+        }
         case OrderActionTypes.CONFIRM_SHOW: {
             return {
                 ...state,

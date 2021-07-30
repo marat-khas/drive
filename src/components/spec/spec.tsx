@@ -1,9 +1,9 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Button } from '@components/common/button';
 import { SpecItem } from '@components/spec/spec-item';
-import { ConfirmShowAction } from '@state/order/actions';
+import { ConfirmShowAction, PriceChangeAction } from '@state/order/actions';
 import { Cart } from '@state/order/types';
 import {
     getActiveTabIndex,
@@ -11,6 +11,7 @@ import {
     getCar,
     getDate,
     getOrder,
+    getPrice,
     getRate,
     getTabs,
 } from '@state/selectors';
@@ -38,7 +39,15 @@ export const Spec: FC = () => {
     const selectedRate = useSelector(getRate);
     const additionals = useSelector(getAdditionals);
 
-    const [cost, setCost] = useState<string | null>(null);
+    const price = useSelector(getPrice);
+    let cost = null;
+    if (price) {
+        cost = `${numSpace(price)} ₽`;
+    } else if (car.value && activeTabIndex < 2) {
+        cost = ` от ${numSpace(car.value.priceMin)} до ${numSpace(
+            car.value.priceMax
+        )} ₽`;
+    }
 
     useEffect(() => {
         const additionCost = additionals.reduce(
@@ -53,38 +62,32 @@ export const Spec: FC = () => {
             );
             switch (selectedRate.value.rateTypeId.unit) {
                 case 'мин':
-                    setCost(
-                        `${numSpace(
+                    dispatch(
+                        PriceChangeAction(
                             selectedRate.value.price * time + additionCost
-                        )} ₽`
+                        )
                     );
                     break;
                 case '7 дней':
-                    setCost(
-                        `${numSpace(
+                    dispatch(
+                        PriceChangeAction(
                             selectedRate.value.price *
                                 Math.ceil(time / (60 * 24 * 7)) +
                                 additionCost
-                        )} ₽`
+                        )
                     );
                     break;
                 default:
-                    setCost(
-                        `${numSpace(
+                    dispatch(
+                        PriceChangeAction(
                             selectedRate.value.price *
                                 Math.ceil(time / (60 * 24)) +
                                 additionCost
-                        )} ₽`
+                        )
                     );
             }
-        } else if (car.value) {
-            setCost(
-                ` от ${numSpace(car.value.priceMin)} до ${numSpace(
-                    car.value.priceMax
-                )} ₽`
-            );
         } else {
-            setCost(null);
+            dispatch(PriceChangeAction(null));
         }
     }, [
         selectedDates.from,
@@ -92,6 +95,7 @@ export const Spec: FC = () => {
         selectedRate.value,
         additionals,
         car.value,
+        dispatch,
     ]);
 
     return (

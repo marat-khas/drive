@@ -16,6 +16,7 @@ import {
     DateToSelect,
     OrderActionTypes,
     PointSelect,
+    PriceChange,
     RateSelect,
 } from './types';
 
@@ -73,6 +74,10 @@ export const AdditionalChangeAction = (
     payload: additional,
 });
 
+export const PriceChangeAction = (price: number | null): PriceChange => ({
+    type: OrderActionTypes.PRICE_CHANGE,
+    payload: price,
+});
 export const ConfirmShowAction = (): ConfirmShow => ({
     type: OrderActionTypes.CONFIRM_SHOW,
 });
