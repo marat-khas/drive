@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { CitySelectAction, PointSelectAction } from '@state/order/actions';
 import { getCities, getCity, getPoints } from '@state/selectors';
-import { TabAvailableAction, TabCompleteAction } from '@state/tabs/actions';
 
 import './map-marker.scss';
 
@@ -26,8 +25,6 @@ export const MapMarker: FC<MapMarkerProps> = ({ id }) => {
             dispatch(CitySelectAction(newCity!));
         }
         dispatch(PointSelectAction(newPoint!));
-        dispatch(TabCompleteAction(0, true));
-        dispatch(TabAvailableAction(1, true));
     };
 
     return <div className='map-marker' onClick={clickHandle} />;

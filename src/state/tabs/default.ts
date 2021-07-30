@@ -25,7 +25,7 @@ export const tabsStateDefault: TabsState = {
             label: 'Итого',
             btnText: 'Заказать',
             available: false,
-            complete: false,
+            complete: true,
         },
     ],
 };

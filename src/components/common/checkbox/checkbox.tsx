@@ -9,6 +9,7 @@ export const Checkbox: FC<CheckboxProps> = ({
     children,
     name,
     id,
+    checked,
     className,
     changeHandle,
 }) => {
@@ -28,6 +29,7 @@ export const Checkbox: FC<CheckboxProps> = ({
                 type='checkbox'
                 name={name}
                 id={id}
+                checked={checked}
                 onChange={changeHandle}
             />
             <label htmlFor={id}> {children} </label>

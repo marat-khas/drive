@@ -69,6 +69,12 @@ export const Location: FC = () => {
         }
     }, [points, dispatch]);
 
+    useEffect(() => {
+        const complete = !!selectedPoint.value;
+        dispatch(TabCompleteAction(0, complete));
+        dispatch(TabAvailableAction(1, complete));
+    }, [selectedPoint.value, dispatch]);
+
     const cityChange = (
         selectedOption: {
             value: string | undefined;
@@ -77,8 +83,6 @@ export const Location: FC = () => {
     ) => {
         if (selectedOption === null) {
             dispatch(CitySelectAction(null));
-            dispatch(TabCompleteAction(0, false));
-            dispatch(TabAvailableAction(1, false));
         } else if (selectedOption.value !== undefined) {
             const newCity = cities?.find(
                 (city) => city.id === selectedOption?.value
@@ -96,15 +100,11 @@ export const Location: FC = () => {
     ) => {
         if (selectedOption === null) {
             dispatch(PointSelectAction(null));
-            dispatch(TabCompleteAction(0, false));
-            dispatch(TabAvailableAction(1, false));
         } else if (selectedOption.value !== undefined) {
             const newPoint = points?.find(
                 (point) => point.id === selectedOption?.value
             );
             dispatch(PointSelectAction(newPoint!));
-            dispatch(TabCompleteAction(0, true));
-            dispatch(TabAvailableAction(1, true));
         }
     };
 

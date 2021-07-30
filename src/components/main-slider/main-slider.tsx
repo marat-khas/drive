@@ -21,13 +21,15 @@ SwiperCore.use([Autoplay, Navigation, Pagination]);
 export const MainSlider: FC = () => {
     const slides = [
         {
+            id: 0,
             img: slideImg1,
             title: 'Бесплатная парковка',
-            desc: 'Оставляйте машину на платных городских парковках и разрешенных местах, не нарушая ПДД, а также в аэропортах.',
+            desc: 'Оставляйте машину на платных городских парковках и разрешенных местах, не нарушая ПДД, а также в аэропортах',
             link: ROUTES.ORDER,
             btnType: 1,
         },
         {
+            id: 1,
             img: slideImg2,
             title: 'Страховка',
             desc: 'Полная страховка страховка автомобиля',
@@ -35,13 +37,15 @@ export const MainSlider: FC = () => {
             btnType: 2,
         },
         {
+            id: 2,
             img: slideImg3,
-            title: 'Бесплатная парковка',
-            desc: 'Оставляйте машину на платных городских парковках и разрешенных местах, не нарушая ПДД, а также в аэропортах.',
+            title: 'Бензин',
+            desc: 'Полный бак на любой заправке города за наш счёт',
             link: ROUTES.ORDER,
             btnType: 3,
         },
         {
+            id: 3,
             img: slideImg4,
             title: 'Обслуживание',
             desc: 'Автомобиль проходит еженедельное ТО',
@@ -68,7 +72,7 @@ export const MainSlider: FC = () => {
                 }}
             >
                 {slides.map((slide) => (
-                    <SwiperSlide key={slide.title}>
+                    <SwiperSlide key={slide.id}>
                         <MainSlide
                             img={slide.img}
                             title={slide.title}

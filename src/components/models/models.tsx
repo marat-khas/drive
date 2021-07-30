@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ModelsCard } from '@components/models/models-card';
 import { ModelsFilter } from '@components/models/models-filter';
 import { GetCarsAction } from '@state/cars/actions';
-import { getCars, getCategory } from '@state/selectors';
+import { getCar, getCars, getCategory } from '@state/selectors';
+import { TabAvailableAction, TabCompleteAction } from '@state/tabs/actions';
 
 import './models.scss';
 
@@ -12,14 +13,20 @@ export const Models: FC = () => {
     const dispatch = useDispatch();
 
     const category = useSelector(getCategory);
-
     const cars = useSelector(getCars);
+    const selectedCar = useSelector(getCar);
 
     useEffect(() => {
         if (!cars) {
             dispatch(GetCarsAction());
         }
     }, [cars, dispatch]);
+
+    useEffect(() => {
+        const complete = !!selectedCar.value;
+        dispatch(TabCompleteAction(1, complete));
+        dispatch(TabAvailableAction(2, complete));
+    }, [selectedCar.value, dispatch]);
 
     const modelsCards = cars ? (
         cars

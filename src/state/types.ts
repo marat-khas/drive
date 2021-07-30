@@ -4,6 +4,7 @@ import { CitiesState } from '@state/cities/types';
 import { GlobalState } from '@state/global/types';
 import { OrderState } from '@state/order/types';
 import { PointsState } from '@state/points/types';
+import { RatesState } from '@state/rates/types';
 import { store } from '@state/store';
 import { TabsState } from '@state/tabs/types';
 
@@ -16,5 +17,6 @@ export interface RootState {
     global: GlobalState;
     order: OrderState;
     points: PointsState;
+    rates: RatesState;
     tabs: TabsState;
 }

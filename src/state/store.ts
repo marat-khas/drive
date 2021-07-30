@@ -8,6 +8,7 @@ import { citiesReducer } from '@state/cities/reducer';
 import { globalReducer } from '@state/global/reducer';
 import { orderReducer } from '@state/order/reducer';
 import { pointsReducer } from '@state/points/reducer';
+import { ratesReducer } from '@state/rates/reducer';
 import { tabsReducer } from '@state/tabs/reducer';
 import { RootState } from '@state/types';
 
@@ -18,6 +19,7 @@ const rootReducer = combineReducers<RootState>({
     global: globalReducer,
     order: orderReducer,
     points: pointsReducer,
+    rates: ratesReducer,
     tabs: tabsReducer,
 });
 
