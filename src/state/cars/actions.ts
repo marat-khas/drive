@@ -15,7 +15,7 @@ export const GetCarsSuccessAction = (cars: Car[]): GetCars => ({
 });
 
 export const GetCarsAction = () => (dispatch: Dispatch<any>) => {
-    dispatch(LoadingStartAction('getCars'));
+    dispatch(LoadingStartAction('Загрузка автомобилей ...'));
     getCars()
         .then((data) => data.filter((car) => car.colors && car.colors.length))
         .then((data) => {
@@ -30,6 +30,6 @@ export const GetCarsAction = () => (dispatch: Dispatch<any>) => {
             );
         })
         .finally(() => {
-            dispatch(LoadingEndAction('getCars'));
+            dispatch(LoadingEndAction('Загрузка автомобилей ...'));
         });
 };

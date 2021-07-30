@@ -1,6 +1,6 @@
 import { RootState } from './types';
 
-export const getLoadingStatus = (state: RootState) => state.global.loading;
+export const getLoading = (state: RootState) => state.global.loading;
 
 export const getModal = (state: RootState) => state.global.modal;
 

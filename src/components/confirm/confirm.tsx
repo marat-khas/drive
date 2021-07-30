@@ -24,7 +24,7 @@ export const Confirm: FC = () => {
 
     const submitHandle = () => {
         dispatch(ConfirmHideAction());
-        dispatch(LoadingStartAction('orderSend'));
+        dispatch(LoadingStartAction('Отправка заказа ...'));
         orderSend({
             orderStatusId: {
                 name: 'new!.',
@@ -54,7 +54,7 @@ export const Confirm: FC = () => {
                 );
             })
             .finally(() => {
-                dispatch(LoadingEndAction('orderSend'));
+                dispatch(LoadingEndAction('Отправка заказа ...'));
             });
     };
     const cancelHandle = () => {
