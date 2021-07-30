@@ -15,6 +15,7 @@ import {
     DateFromSelect,
     DateToSelect,
     OrderActionTypes,
+    OrderComplete,
     PointSelect,
     PriceChange,
     RateSelect,
@@ -84,4 +85,8 @@ export const ConfirmShowAction = (): ConfirmShow => ({
 
 export const ConfirmHideAction = (): ConfirmHide => ({
     type: OrderActionTypes.CONFIRM_HIDE,
+});
+
+export const OrderCompleteAction = (): OrderComplete => ({
+    type: OrderActionTypes.ORDER_COMPLETE,
 });

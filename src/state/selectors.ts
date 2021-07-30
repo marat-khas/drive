@@ -39,3 +39,5 @@ export const getPoint = (state: RootState) => state.order.point;
 export const getPrice = (state: RootState) => state.order.price.value;
 
 export const getConfirmStatus = (state: RootState) => state.order.confirm;
+
+export const getCompleteStatus = (state: RootState) => state.order.complete;

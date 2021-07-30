@@ -152,6 +152,12 @@ export const orderReducer = (
                 confirm: false,
             };
         }
+        case OrderActionTypes.ORDER_COMPLETE: {
+            return {
+                ...state,
+                complete: true,
+            };
+        }
         default:
             return state;
     }

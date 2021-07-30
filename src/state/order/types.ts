@@ -49,6 +49,7 @@ export interface OrderState {
     price: {
         value: number | null;
     };
+    complete: boolean;
 }
 
 export enum OrderActionTypes {
@@ -64,6 +65,7 @@ export enum OrderActionTypes {
     PRICE_CHANGE = 'PRICE_CHANGE',
     CONFIRM_SHOW = 'CONFIRM_SHOW',
     CONFIRM_HIDE = 'CONFIRM_HIDE',
+    ORDER_COMPLETE = 'ORDER_COMPLETE',
 }
 
 export interface CitySelect {
@@ -126,6 +128,10 @@ export interface ConfirmHide {
     type: OrderActionTypes.CONFIRM_HIDE;
 }
 
+export interface OrderComplete {
+    type: OrderActionTypes.ORDER_COMPLETE;
+}
+
 export type OrderAction =
     | CitySelect
     | PointSelect
@@ -138,4 +144,5 @@ export type OrderAction =
     | AdditionalChange
     | PriceChange
     | ConfirmShow
-    | ConfirmHide;
+    | ConfirmHide
+    | OrderComplete;
