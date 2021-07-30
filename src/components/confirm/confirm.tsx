@@ -1,7 +1,9 @@
 import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import { Button } from '@components/common/button';
+import { ROUTES } from '@constants/routes';
 import { orderSend } from '@services/order';
 import {
     LoadingEndAction,
@@ -15,6 +17,8 @@ import './confirm.scss';
 
 export const Confirm: FC = () => {
     const dispatch = useDispatch();
+
+    const history = useHistory();
 
     const order = useSelector(getOrder);
 
@@ -38,13 +42,8 @@ export const Confirm: FC = () => {
             isNeedChildChair: order.additionals[1].selected,
             isRightWheel: order.additionals[2].selected,
         })
-            .then(() => {
-                dispatch(
-                    ModalShowAction({
-                        head: 'Заказ успешно отправлен',
-                        body: 'Это сообщение временное',
-                    })
-                );
+            .then((data) => {
+                history.push(`${ROUTES.DETAILS}/${data.id}`);
             })
             .catch((error) => {
                 dispatch(

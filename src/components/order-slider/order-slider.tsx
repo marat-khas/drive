@@ -38,17 +38,25 @@ export const OrderSlider: FC = () => {
             }}
         >
             <SwiperSlide>
-                <Location />
-                <Map />
+                <div className='order__slide'>
+                    <Location />
+                    <Map />
+                </div>
             </SwiperSlide>
             <SwiperSlide>
-                <Models />
+                <div className='order__slide'>
+                    <Models />
+                </div>
             </SwiperSlide>
             <SwiperSlide>
-                <Options />
+                <div className='order__slide'>
+                    <Options />
+                </div>
             </SwiperSlide>
             <SwiperSlide>
-                <Result />
+                <div className='order__slide'>
+                    <Result />
+                </div>
             </SwiperSlide>
         </Swiper>
     );

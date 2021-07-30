@@ -1,4 +1,4 @@
-export interface OrderSendRequest {
+export interface OrderData {
     orderStatusId: {};
     cityId: {};
     pointId: {};
@@ -11,10 +11,13 @@ export interface OrderSendRequest {
     isFullTank: boolean;
     isNeedChildChair: boolean;
     isRightWheel: boolean;
+    id: string;
 }
 
-export interface OrderSendResponse {
+export type OrderSendRequest = Omit<OrderData, 'id'>;
+
+export type OrderSendResponse = {
     data: {
-        data: string;
+        data: OrderData;
     };
-}
+};

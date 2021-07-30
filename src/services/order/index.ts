@@ -3,7 +3,7 @@ import { baseApi } from '@services/base';
 
 import { OrderSendRequest, OrderSendResponse } from './types';
 
-export const orderSend = (data: OrderSendRequest): Promise<string> =>
+export const orderSend = (data: OrderSendRequest): Promise<{ id: string }> =>
     baseApi
         .post(ORDER_URL, data)
         .then((response: OrderSendResponse) => response.data.data);
