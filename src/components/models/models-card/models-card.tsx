@@ -2,7 +2,6 @@ import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
 
-import { SERVER_URL } from '@constants/urls';
 import { CarSelectAction } from '@state/order/actions';
 import { getCar } from '@state/selectors';
 
@@ -12,7 +11,6 @@ import { CarProps } from './types';
 
 export const ModelsCard: FC<CarProps> = ({ car }) => {
     const { path } = car.thumbnail;
-    const imgSrc = path.search(/^data/) === -1 ? `${SERVER_URL}/${path}` : path;
 
     const dispatch = useDispatch();
 
@@ -33,7 +31,7 @@ export const ModelsCard: FC<CarProps> = ({ car }) => {
                 <div className='models-card__cost'>{`${car.priceMin} - ${car.priceMax} ₽`}</div>
             </div>
             <div className='models-card__img'>
-                <img src={imgSrc} alt={car.name} />
+                <img src={path} alt={car.name} />
             </div>
         </div>
     );
