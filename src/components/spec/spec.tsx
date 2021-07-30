@@ -56,7 +56,7 @@ export const Spec: FC = () => {
         );
 
         if (selectedDates.from && selectedDates.to && selectedRate.value) {
-            const time = Math.ceil(
+            const time = Math.floor(
                 (selectedDates.to.getTime() - selectedDates.from.getTime()) /
                     (1000 * 60)
             );
