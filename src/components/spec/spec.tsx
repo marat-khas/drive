@@ -105,7 +105,7 @@ export const Spec: FC<SpecProps> = ({ details }) => {
             <div className='spec__body'>
                 {Object.values(order)
                     .reduce((acc, cur) => {
-                        if (cur.cart && cur.cart.value) {
+                        if (cur && cur.cart && cur.cart.value) {
                             acc.push(cur.cart);
                         }
                         return acc;

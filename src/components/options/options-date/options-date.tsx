@@ -59,19 +59,19 @@ export const OptionsDate: FC = () => {
     };
 
     const changeToHandle = (date: Date | null) => {
-        const minDate = addHours(selectedFrom || new Date(), 1);
+        const minDate = addHours(
+            selectedFrom ||
+                roundToNearestMinutes(
+                    addMinutes(new Date(), TIME_INTERVAL / 2),
+                    {
+                        nearestTo: TIME_INTERVAL,
+                    }
+                ),
+            1
+        );
 
         if (date && date.getTime() < minDate.getTime()) {
-            dispatch(
-                DateToSelectAction(
-                    roundToNearestMinutes(
-                        addMinutes(minDate, TIME_INTERVAL / 2),
-                        {
-                            nearestTo: TIME_INTERVAL,
-                        }
-                    ).getTime()
-                )
-            );
+            dispatch(DateToSelectAction(minDate.getTime()));
         } else {
             dispatch(DateToSelectAction(date ? date.getTime() : null));
         }

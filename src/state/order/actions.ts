@@ -24,8 +24,8 @@ import {
     DateFromSelect,
     DateToSelect,
     OrderActionTypes,
-    OrderComplete,
     OrderGet,
+    OrderStatusChange,
     PointSelect,
     PriceChange,
     RateSelect,
@@ -97,8 +97,11 @@ export const ConfirmHideAction = (): ConfirmHide => ({
     type: OrderActionTypes.CONFIRM_HIDE,
 });
 
-export const OrderCompleteAction = (): OrderComplete => ({
-    type: OrderActionTypes.ORDER_COMPLETE,
+export const OrderStatusChangeAction = (
+    status: string | null
+): OrderStatusChange => ({
+    type: OrderActionTypes.ORDER_STATUS_CHANGE,
+    payload: status,
 });
 
 export const OrderGetSuccessAction = (order: OrderData): OrderGet => ({

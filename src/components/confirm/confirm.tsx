@@ -10,7 +10,10 @@ import {
     LoadingStartAction,
     ModalShowAction,
 } from '@state/global/actions';
-import { ConfirmHideAction, OrderCompleteAction } from '@state/order/actions';
+import {
+    ConfirmHideAction,
+    OrderStatusChangeAction,
+} from '@state/order/actions';
 import { getOrder } from '@state/selectors';
 
 import './confirm.scss';
@@ -43,7 +46,7 @@ export const Confirm: FC = () => {
             isRightWheel: order.additionals[2].selected,
         })
             .then((data) => {
-                dispatch(OrderCompleteAction());
+                dispatch(OrderStatusChangeAction('new!.'));
                 history.push(`${ROUTES.DETAILS}/${data.id}`);
             })
             .catch((error) => {

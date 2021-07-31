@@ -6,15 +6,31 @@ import { Header } from '@components/header';
 import { Result } from '@components/result';
 import { Spec } from '@components/spec';
 import { OrderGetAction } from '@state/order/actions';
-import { getCompleteStatus } from '@state/selectors';
+import { getOrderStatus } from '@state/selectors';
 
 export const Details: FC = () => {
     const dispatch = useDispatch();
     const { orderId } = useParams<{ orderId: string }>();
-    const orderComplete = useSelector(getCompleteStatus);
+    const orderStatus = useSelector(getOrderStatus);
+
+    let statusText = '';
+    switch (orderStatus) {
+        case 'new!.':
+            statusText = 'создан';
+            break;
+        case 'confirmed':
+            statusText = 'подтвержден';
+            break;
+        case 'cancelled':
+            statusText = 'отменен';
+            break;
+        default:
+            statusText = 'не найден';
+            break;
+    }
 
     useEffect(() => {
-        if (!orderComplete) {
+        if (!orderStatus) {
             dispatch(OrderGetAction(orderId));
         }
     });
@@ -42,7 +58,11 @@ export const Details: FC = () => {
                             <div className='order__slider'>
                                 <div className='order__slide'>
                                     <div className='order__status'>
-                                        Ваш заказ подтверждён
+                                        {orderStatus ? (
+                                            <>Ваш заказ {statusText}</>
+                                        ) : (
+                                            <>Загрузка данных ...</>
+                                        )}
                                     </div>
                                     <Result />
                                 </div>

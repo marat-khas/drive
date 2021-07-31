@@ -1,3 +1,4 @@
+import { imgSrc } from '@utils/img-src';
 import { timeFormat } from '@utils/time-format';
 
 import { OrderStateDefault } from './default';
@@ -146,10 +147,10 @@ export const orderReducer = (
                 confirm: false,
             };
         }
-        case OrderActionTypes.ORDER_COMPLETE: {
+        case OrderActionTypes.ORDER_STATUS_CHANGE: {
             return {
                 ...state,
-                complete: true,
+                status: action.payload,
             };
         }
         case OrderActionTypes.ORDER_GET: {
@@ -169,7 +170,14 @@ export const orderReducer = (
                 },
                 car: {
                     ...state.car,
-                    value: { ...state.car.value, ...action.payload.carId },
+                    value: {
+                        ...state.car.value,
+                        ...action.payload.carId,
+                        thumbnail: {
+                            ...action.payload.carId.thumbnail,
+                            path: imgSrc(action.payload.carId.thumbnail.path),
+                        },
+                    },
                     cart: {
                         ...state.car.cart,
                         value: action.payload.carId.name,
@@ -207,7 +215,7 @@ export const orderReducer = (
                     ...additional,
                     selected: action.payload[additional.id] as boolean,
                 })),
-                complete: true,
+                status: action.payload.orderStatusId.name,
             };
         }
         default:

@@ -45,9 +45,7 @@ export const Result: FC = () => {
                         </div>
                     </div>
                 </div>
-            ) : (
-                <p>Загрузка параметров заказа</p>
-            )}
+            ) : null}
         </div>
     );
 };

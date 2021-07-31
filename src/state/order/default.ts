@@ -69,5 +69,5 @@ export const OrderStateDefault: OrderState = {
     price: {
         value: null,
     },
-    complete: false,
+    status: null,
 };
