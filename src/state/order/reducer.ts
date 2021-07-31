@@ -187,7 +187,7 @@ export const orderReducer = (
                     cart: {
                         ...state.date.cart,
                         value: timeFormat(
-                            action.payload.dateFrom - action.payload.dateTo
+                            action.payload.dateTo - action.payload.dateFrom
                         ),
                     },
                 },
