@@ -135,16 +135,28 @@ export const orderReducer = (
                 price: { ...state.price, value: action.payload },
             };
         }
-        case OrderActionTypes.CONFIRM_SHOW: {
+        case OrderActionTypes.CONFIRM_SEND_SHOW: {
             return {
                 ...state,
-                confirm: true,
+                confirmSend: true,
             };
         }
-        case OrderActionTypes.CONFIRM_HIDE: {
+        case OrderActionTypes.CONFIRM_SEND_HIDE: {
             return {
                 ...state,
-                confirm: false,
+                confirmSend: false,
+            };
+        }
+        case OrderActionTypes.CONFIRM_CANCEL_SHOW: {
+            return {
+                ...state,
+                confirmCancel: true,
+            };
+        }
+        case OrderActionTypes.CONFIRM_CANCEL_HIDE: {
+            return {
+                ...state,
+                confirmCancel: false,
             };
         }
         case OrderActionTypes.ORDER_STATUS_CHANGE: {

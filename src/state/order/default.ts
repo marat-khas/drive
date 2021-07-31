@@ -65,9 +65,10 @@ export const OrderStateDefault: OrderState = {
             selected: false,
         },
     ],
-    confirm: false,
     price: {
         value: null,
     },
     status: null,
+    confirmSend: false,
+    confirmCancel: false,
 };

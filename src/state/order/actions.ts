@@ -1,7 +1,10 @@
+import { History } from 'history';
 import { Dispatch } from 'redux';
 
-import { orderGet } from '@services/order';
-import { OrderData } from '@services/order/types';
+import { ORDER_STATUS } from '@constants/order-status';
+import { ROUTES } from '@constants/routes';
+import { orderCancel, orderGet, orderSend } from '@services/order';
+import { OrderData, OrderSendRequest } from '@services/order/types';
 import { Car } from '@state/cars/types';
 import { Category } from '@state/categories/types';
 import { City } from '@state/cities/types';
@@ -19,8 +22,10 @@ import {
     CategorySelect,
     CitySelect,
     ColorSelect,
-    ConfirmHide,
-    ConfirmShow,
+    ConfirmCancelHide,
+    ConfirmCancelShow,
+    ConfirmSendHide,
+    ConfirmSendShow,
     DateFromSelect,
     DateToSelect,
     OrderActionTypes,
@@ -89,12 +94,21 @@ export const PriceChangeAction = (price: number | null): PriceChange => ({
     type: OrderActionTypes.PRICE_CHANGE,
     payload: price,
 });
-export const ConfirmShowAction = (): ConfirmShow => ({
-    type: OrderActionTypes.CONFIRM_SHOW,
+
+export const ConfirmSendShowAction = (): ConfirmSendShow => ({
+    type: OrderActionTypes.CONFIRM_SEND_SHOW,
 });
 
-export const ConfirmHideAction = (): ConfirmHide => ({
-    type: OrderActionTypes.CONFIRM_HIDE,
+export const ConfirmSendHideAction = (): ConfirmSendHide => ({
+    type: OrderActionTypes.CONFIRM_SEND_HIDE,
+});
+
+export const ConfirmCancelShowAction = (): ConfirmCancelShow => ({
+    type: OrderActionTypes.CONFIRM_CANCEL_SHOW,
+});
+
+export const ConfirmCancelHideAction = (): ConfirmCancelHide => ({
+    type: OrderActionTypes.CONFIRM_CANCEL_HIDE,
 });
 
 export const OrderStatusChangeAction = (
@@ -125,5 +139,46 @@ export const OrderGetAction = (id: string) => (dispatch: Dispatch<any>) => {
         })
         .finally(() => {
             dispatch(LoadingEndAction('Получение деталей заказа ...'));
+        });
+};
+
+export const OrderSendAction =
+    (data: OrderSendRequest, history: History<unknown>) =>
+    (dispatch: Dispatch<any>) => {
+        dispatch(LoadingStartAction('Отправка заказа ...'));
+        orderSend(data)
+            .then((response) => {
+                dispatch(OrderStatusChangeAction(ORDER_STATUS.NEW.name));
+                history.push(`${ROUTES.DETAILS}/${response.id}`);
+            })
+            .catch((error) => {
+                dispatch(
+                    ModalShowAction({
+                        head: 'Ошибка!',
+                        body: error,
+                    })
+                );
+            })
+            .finally(() => {
+                dispatch(LoadingEndAction('Отправка заказа ...'));
+            });
+    };
+
+export const OrderCancelAction = (id: string) => (dispatch: Dispatch<any>) => {
+    dispatch(LoadingStartAction('Отмена заказа ...'));
+    orderCancel(id)
+        .then(() => {
+            dispatch(OrderStatusChangeAction(ORDER_STATUS.CANCEL.name));
+        })
+        .catch((error) => {
+            dispatch(
+                ModalShowAction({
+                    head: 'Ошибка!',
+                    body: error,
+                })
+            );
+        })
+        .finally(() => {
+            dispatch(LoadingEndAction('Отмена заказа ...'));
         });
 };
