@@ -40,6 +40,15 @@
       &:not(:last-child) {
           margin-bottom: 16px;
       }
+      span {
+        font-weight: 700;
+      }
+      &--confirm span {
+        color: $color-accent;
+      }
+      &--cancel span {
+        color: #f00;
+      }
   }
 }
 

@@ -1,6 +1,7 @@
 import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import classNames from 'classnames';
 
 import { Confirm } from '@components/confirm';
 import { Header } from '@components/header';
@@ -43,6 +44,12 @@ export const Details: FC = () => {
             break;
     }
 
+    const statusClasses = classNames('order__status', {
+        'order__status--new': orderStatus === ORDER_STATUS.NEW.name,
+        'order__status--confirm': orderStatus === ORDER_STATUS.CONFIRM.name,
+        'order__status--cancel': orderStatus === ORDER_STATUS.CANCEL.name,
+    });
+
     useEffect(() => {
         if (!orderStatus) {
             dispatch(OrderGetAction(orderId));
@@ -71,9 +78,12 @@ export const Details: FC = () => {
                         <div className='order__steps'>
                             <div className='order__slider'>
                                 <div className='order__slide'>
-                                    <div className='order__status'>
+                                    <div className={statusClasses}>
                                         {orderStatus ? (
-                                            <>Ваш заказ {statusText}</>
+                                            <>
+                                                Ваш заказ{' '}
+                                                <span>{statusText}</span>
+                                            </>
                                         ) : (
                                             <>Загрузка данных ...</>
                                         )}
