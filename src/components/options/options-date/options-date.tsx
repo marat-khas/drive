@@ -46,7 +46,15 @@ export const OptionsDate: FC = () => {
                 )
             );
         } else {
-            dispatch(DateFromSelectAction(date ? date.getTime() : null));
+            dispatch(
+                DateFromSelectAction(
+                    date
+                        ? roundToNearestMinutes(date, {
+                              nearestTo: TIME_INTERVAL,
+                          }).getTime()
+                        : null
+                )
+            );
         }
 
         if (
@@ -60,13 +68,12 @@ export const OptionsDate: FC = () => {
 
     const changeToHandle = (date: Date | null) => {
         const minDate = addHours(
-            selectedFrom ||
-                roundToNearestMinutes(
-                    addMinutes(new Date(), TIME_INTERVAL / 2),
-                    {
-                        nearestTo: TIME_INTERVAL,
-                    }
-                ),
+            roundToNearestMinutes(
+                selectedFrom || addMinutes(new Date(), TIME_INTERVAL / 2),
+                {
+                    nearestTo: TIME_INTERVAL,
+                }
+            ),
             1
         );
 
