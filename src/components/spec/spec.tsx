@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Button } from '@components/common/button';
 import { SpecItem } from '@components/spec/spec-item';
+import { ORDER_STATUS } from '@constants/order-status';
 import {
     ConfirmCancelShowAction,
     ConfirmSendShowAction,
@@ -15,6 +16,7 @@ import {
     getCar,
     getDate,
     getOrder,
+    getOrderStatus,
     getPrice,
     getRate,
     getTabs,
@@ -32,6 +34,7 @@ export const Spec: FC<SpecProps> = ({ details }) => {
     const tabs = useSelector(getTabs);
     const order = useSelector(getOrder);
     const activeTabIndex = useSelector(getActiveTabIndex);
+    const orderStatus = useSelector(getOrderStatus);
 
     const handleNext = () => {
         if (details) {
@@ -131,14 +134,18 @@ export const Spec: FC<SpecProps> = ({ details }) => {
                 </div>
             ) : null}
             <div className='spec__next'>
-                <Button
-                    disabled={details ? false : !tabs[activeTabIndex].complete}
-                    fullsize
-                    onClick={handleNext}
-                    bg={details ? 3 : 0}
-                >
-                    {details ? 'Отменить' : tabs[activeTabIndex].btnText}
-                </Button>
+                {details && orderStatus === ORDER_STATUS.CANCEL.name ? null : (
+                    <Button
+                        disabled={
+                            details ? false : !tabs[activeTabIndex].complete
+                        }
+                        fullsize
+                        onClick={handleNext}
+                        bg={details ? 3 : 0}
+                    >
+                        {details ? 'Отменить' : tabs[activeTabIndex].btnText}
+                    </Button>
+                )}
             </div>
         </div>
     );
