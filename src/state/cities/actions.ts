@@ -33,7 +33,7 @@ export const GetCitiesCoordsAction =
                 dispatch(
                     ModalShowAction({
                         head: 'Ошибка!',
-                        body: error,
+                        body: error.response.data,
                     })
                 );
             })
@@ -52,7 +52,7 @@ export const GetCitiesAction = () => (dispatch: Dispatch<any>) => {
             dispatch(
                 ModalShowAction({
                     head: 'Ошибка!',
-                    body: error,
+                    body: error.response.data,
                 })
             );
         })
