@@ -7,7 +7,7 @@ import { Confirm } from '@components/confirm';
 import { Header } from '@components/header';
 import { OrderSlider } from '@components/order-slider';
 import { Spec } from '@components/spec';
-import { ORDER_STATUS } from '@constants/order-status';
+import { ORDER_STATUS_ID } from '@constants/order-status-id';
 import { ConfirmSendHideAction, OrderSendAction } from '@state/order/actions';
 import { getConfirmSendStatus, getOrder } from '@state/selectors';
 
@@ -22,7 +22,9 @@ export const Order: FC = () => {
         dispatch(
             OrderSendAction(
                 {
-                    orderStatusId: ORDER_STATUS.NEW,
+                    orderStatusId: {
+                        id: ORDER_STATUS_ID.NEW,
+                    },
                     cityId: order.point.value!.cityId,
                     pointId: order.point.value!,
                     carId: order.car.value!,

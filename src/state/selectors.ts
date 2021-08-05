@@ -44,4 +44,4 @@ export const getConfirmSendStatus = (state: RootState) =>
 export const getConfirmCancelStatus = (state: RootState) =>
     state.order.confirmCancel;
 
-export const getOrderStatus = (state: RootState) => state.order.status;
+export const getOrderStatusId = (state: RootState) => state.order.statusId;

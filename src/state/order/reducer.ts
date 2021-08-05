@@ -162,7 +162,7 @@ export const orderReducer = (
         case OrderActionTypes.ORDER_STATUS_CHANGE: {
             return {
                 ...state,
-                status: action.payload,
+                statusId: action.payload,
             };
         }
         case OrderActionTypes.ORDER_GET: {
@@ -227,7 +227,7 @@ export const orderReducer = (
                     ...additional,
                     selected: action.payload[additional.id] as boolean,
                 })),
-                status: action.payload.orderStatusId.name,
+                statusId: action.payload.orderStatusId.id,
             };
         }
         default:

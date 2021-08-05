@@ -41,7 +41,10 @@ export const Result: FC = () => {
                     </div>
                     <div className='result__part'>
                         <div className='result__img'>
-                            <img src={selectedCar?.thumbnail.path} alt='' />
+                            <img
+                                src={selectedCar?.thumbnail.path}
+                                alt={selectedCar?.name}
+                            />
                         </div>
                     </div>
                 </div>

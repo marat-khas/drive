@@ -7,18 +7,18 @@ import { Confirm } from '@components/confirm';
 import { Header } from '@components/header';
 import { Result } from '@components/result';
 import { Spec } from '@components/spec';
-import { ORDER_STATUS } from '@constants/order-status';
+import { ORDER_STATUS_ID } from '@constants/order-status-id';
 import {
     ConfirmCancelHideAction,
     OrderCancelAction,
     OrderGetAction,
 } from '@state/order/actions';
-import { getConfirmCancelStatus, getOrderStatus } from '@state/selectors';
+import { getConfirmCancelStatus, getOrderStatusId } from '@state/selectors';
 
 export const Details: FC = () => {
     const dispatch = useDispatch();
     const { orderId } = useParams<{ orderId: string }>();
-    const orderStatus = useSelector(getOrderStatus);
+    const orderStatusId = useSelector(getOrderStatusId);
     const confirmCancelStatus = useSelector(getConfirmCancelStatus);
     const confirmCancelSubmit = () => {
         dispatch(OrderCancelAction(orderId));
@@ -29,14 +29,14 @@ export const Details: FC = () => {
     };
 
     let statusText = '';
-    switch (orderStatus) {
-        case ORDER_STATUS.NEW.name:
+    switch (orderStatusId) {
+        case ORDER_STATUS_ID.NEW:
             statusText = 'создан';
             break;
-        case ORDER_STATUS.CONFIRM.name:
+        case ORDER_STATUS_ID.CONFIRM:
             statusText = 'подтвержден';
             break;
-        case ORDER_STATUS.CANCEL.name:
+        case ORDER_STATUS_ID.CANCEL:
             statusText = 'отменен';
             break;
         default:
@@ -45,13 +45,13 @@ export const Details: FC = () => {
     }
 
     const statusClasses = classNames('order__status', {
-        'order__status--new': orderStatus === ORDER_STATUS.NEW.name,
-        'order__status--confirm': orderStatus === ORDER_STATUS.CONFIRM.name,
-        'order__status--cancel': orderStatus === ORDER_STATUS.CANCEL.name,
+        'order__status--new': orderStatusId === ORDER_STATUS_ID.NEW,
+        'order__status--confirm': orderStatusId === ORDER_STATUS_ID.CONFIRM,
+        'order__status--cancel': orderStatusId === ORDER_STATUS_ID.CANCEL,
     });
 
     useEffect(() => {
-        if (!orderStatus) {
+        if (!orderStatusId) {
             dispatch(OrderGetAction(orderId));
         }
     });
@@ -79,7 +79,7 @@ export const Details: FC = () => {
                             <div className='order__slider'>
                                 <div className='order__slide'>
                                     <div className={statusClasses}>
-                                        {orderStatus ? (
+                                        {orderStatusId ? (
                                             <>
                                                 Ваш заказ{' '}
                                                 <span>{statusText}</span>

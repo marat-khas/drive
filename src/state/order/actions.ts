@@ -1,7 +1,7 @@
 import { History } from 'history';
 import { Dispatch } from 'redux';
 
-import { ORDER_STATUS } from '@constants/order-status';
+import { ORDER_STATUS_ID } from '@constants/order-status-id';
 import { ROUTES } from '@constants/routes';
 import { orderCancel, orderGet, orderSend } from '@services/order';
 import { OrderData, OrderSendRequest } from '@services/order/types';
@@ -148,7 +148,7 @@ export const OrderSendAction =
         dispatch(LoadingStartAction('Отправка заказа ...'));
         orderSend(data)
             .then((response) => {
-                dispatch(OrderStatusChangeAction(ORDER_STATUS.NEW.name));
+                dispatch(OrderStatusChangeAction(ORDER_STATUS_ID.NEW));
                 history.push(`${ROUTES.DETAILS}/${response.id}`);
             })
             .catch((error) => {
@@ -168,7 +168,7 @@ export const OrderCancelAction = (id: string) => (dispatch: Dispatch<any>) => {
     dispatch(LoadingStartAction('Отмена заказа ...'));
     orderCancel(id)
         .then(() => {
-            dispatch(OrderStatusChangeAction(ORDER_STATUS.CANCEL.name));
+            dispatch(OrderStatusChangeAction(ORDER_STATUS_ID.CANCEL));
         })
         .catch((error) => {
             dispatch(

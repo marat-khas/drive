@@ -1,4 +1,4 @@
-import { ORDER_STATUS } from '@constants/order-status';
+import { ORDER_STATUS_ID } from '@constants/order-status-id';
 import { ORDER_URL } from '@constants/urls';
 import { baseApi } from '@services/base';
 
@@ -18,5 +18,7 @@ export const orderGet = (id: string): Promise<OrderData> =>
 
 export const orderCancel = (id: string): Promise<string> =>
     baseApi.put(`${ORDER_URL}/${id}`, {
-        orderStatusId: ORDER_STATUS.CANCEL,
+        orderStatusId: {
+            id: ORDER_STATUS_ID.CANCEL,
+        },
     });

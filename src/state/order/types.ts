@@ -49,7 +49,7 @@ export interface OrderState {
     price: {
         value: number | null;
     };
-    status: string | null;
+    statusId: string | null;
     confirmSend: boolean;
     confirmCancel: boolean;
 }

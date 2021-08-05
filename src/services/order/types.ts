@@ -5,7 +5,6 @@ import { Rate } from '@state/rates/types';
 
 export interface OrderData {
     orderStatusId: {
-        name: string;
         id: string;
     };
     cityId: Omit<City, 'coords'>;
