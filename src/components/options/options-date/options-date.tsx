@@ -31,7 +31,7 @@ export const OptionsDate: FC = () => {
 
     const filterToTime = (time: Date) =>
         addHours(selectedFrom || new Date(), MIN_RENT_TIME).getTime() <=
-        new Date(time).getTime();
+        time.getTime();
 
     const changeFromHandle = (date: Date | null) => {
         if (date && date.getTime() < new Date().getTime()) {
@@ -42,38 +42,45 @@ export const OptionsDate: FC = () => {
                         {
                             nearestTo: TIME_INTERVAL,
                         }
-                    )
+                    ).getTime()
                 )
             );
         } else {
-            dispatch(DateFromSelectAction(date));
+            dispatch(
+                DateFromSelectAction(
+                    date
+                        ? roundToNearestMinutes(date, {
+                              nearestTo: TIME_INTERVAL,
+                          }).getTime()
+                        : null
+                )
+            );
         }
 
         if (
             date &&
             selectedTo &&
-            addHours(date, MIN_RENT_TIME).getTime() > selectedTo.getTime()
+            addHours(date, MIN_RENT_TIME).getTime() > selectedTo
         ) {
             dispatch(DateToSelectAction(null));
         }
     };
 
     const changeToHandle = (date: Date | null) => {
-        const minDate = addHours(selectedFrom || new Date(), 1);
+        const minDate = addHours(
+            roundToNearestMinutes(
+                selectedFrom || addMinutes(new Date(), TIME_INTERVAL / 2),
+                {
+                    nearestTo: TIME_INTERVAL,
+                }
+            ),
+            1
+        );
 
         if (date && date.getTime() < minDate.getTime()) {
-            dispatch(
-                DateToSelectAction(
-                    roundToNearestMinutes(
-                        addMinutes(minDate, TIME_INTERVAL / 2),
-                        {
-                            nearestTo: TIME_INTERVAL,
-                        }
-                    )
-                )
-            );
+            dispatch(DateToSelectAction(minDate.getTime()));
         } else {
-            dispatch(DateToSelectAction(date));
+            dispatch(DateToSelectAction(date ? date.getTime() : null));
         }
     };
 
@@ -85,10 +92,12 @@ export const OptionsDate: FC = () => {
                     <div className='options-date__input'>
                         <DatePicker
                             {...datapickedProps}
-                            selected={selectedFrom}
+                            selected={
+                                selectedFrom ? new Date(selectedFrom) : null
+                            }
                             onChange={changeFromHandle}
                             minDate={new Date()}
-                            maxDate={selectedTo}
+                            maxDate={selectedTo ? new Date(selectedTo) : null}
                             filterTime={filterFromTime}
                             selectsStart
                         />
@@ -99,9 +108,13 @@ export const OptionsDate: FC = () => {
                     <div className='options-date__input'>
                         <DatePicker
                             {...datapickedProps}
-                            selected={selectedTo}
+                            selected={selectedTo ? new Date(selectedTo) : null}
                             onChange={changeToHandle}
-                            minDate={selectedFrom || new Date()}
+                            minDate={
+                                selectedFrom
+                                    ? new Date(selectedFrom)
+                                    : new Date()
+                            }
                             filterTime={filterToTime}
                             selectsEnd
                         />

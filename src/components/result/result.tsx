@@ -1,44 +1,54 @@
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 
-import { getCar } from '@state/selectors';
+import { getAdditionals, getCar } from '@state/selectors';
 
 import './result.scss';
 
 export const Result: FC = () => {
-    const selectedCar = useSelector(getCar);
+    const selectedCar = useSelector(getCar).value;
+    const selectedAdditionals = useSelector(getAdditionals);
+    const info = [];
+    if (selectedCar?.tank) {
+        info.push([
+            'Топливо',
+            selectedAdditionals[0].selected ? '100%' : `${selectedCar?.tank}%`,
+        ]);
+    }
+    if (selectedCar?.description) {
+        info.push(['Особенности', selectedCar?.description]);
+    }
+
     return (
         <div className='result'>
             {selectedCar ? (
                 <div className='result__wrapper'>
                     <div className='result__part'>
-                        <div className='result__model'>
-                            {selectedCar.value?.name}
-                        </div>
-                        <div className='result__number'>K 761 HA 73</div>
-                        <div className='result__item'>
-                            <div className='result__property'>Топливо</div>
-                            <div className='result__value'>100%</div>
-                        </div>
-                        <div className='result__item'>
-                            <div className='result__property'>Доступна с</div>
-                            <div className='result__value'>
-                                12.06.2019 12:00
+                        <div className='result__model'>{selectedCar?.name}</div>
+                        {selectedCar?.number ? (
+                            <div className='result__number'>
+                                {selectedCar?.number}
                             </div>
-                        </div>
+                        ) : null}
+                        {info.map((item) => (
+                            <div className='result__item' key={item[0]}>
+                                <div className='result__property'>
+                                    {item[0]}
+                                </div>
+                                <div className='result__value'>{item[1]}</div>
+                            </div>
+                        ))}
                     </div>
                     <div className='result__part'>
                         <div className='result__img'>
                             <img
-                                src={selectedCar.value?.thumbnail.path}
-                                alt=''
+                                src={selectedCar?.thumbnail.path}
+                                alt={selectedCar?.name}
                             />
                         </div>
                     </div>
                 </div>
-            ) : (
-                <p>Загрузка параметров заказа</p>
-            )}
+            ) : null}
         </div>
     );
 };

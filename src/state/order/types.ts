@@ -1,3 +1,4 @@
+import { OrderData, OrderSendRequest } from '@services/order/types';
 import { Car } from '@state/cars/types';
 import { Category } from '@state/categories/types';
 import { City } from '@state/cities/types';
@@ -10,7 +11,7 @@ export interface Cart {
 }
 
 export interface Additional {
-    id: string;
+    id: keyof OrderData;
     name: string;
     cost: number;
     selected: boolean;
@@ -36,8 +37,8 @@ export interface OrderState {
         cart: Cart;
     };
     date: {
-        from: Date | null;
-        to: Date | null;
+        from: number | null;
+        to: number | null;
         cart: Cart;
     };
     rate: {
@@ -45,10 +46,12 @@ export interface OrderState {
         cart: Cart;
     };
     additionals: Additional[];
-    confirm: boolean;
     price: {
         value: number | null;
     };
+    statusId: string | null;
+    confirmSend: boolean;
+    confirmCancel: boolean;
 }
 
 export enum OrderActionTypes {
@@ -62,8 +65,14 @@ export enum OrderActionTypes {
     RATE_SELECT = 'RATE_SELECT',
     ADDITIONAL_CHANGE = 'ADDITIONAL_CHANGE',
     PRICE_CHANGE = 'PRICE_CHANGE',
-    CONFIRM_SHOW = 'CONFIRM_SHOW',
-    CONFIRM_HIDE = 'CONFIRM_HIDE',
+    CONFIRM_SEND_SHOW = 'CONFIRM_SEND_SHOW',
+    CONFIRM_SEND_HIDE = 'CONFIRM_SEND_HIDE',
+    CONFIRM_CANCEL_SHOW = 'CONFIRM_CANCEL_SHOW',
+    CONFIRM_CANCEL_HIDE = 'CONFIRM_CANCEL_HIDE',
+    ORDER_STATUS_CHANGE = 'ORDER_STATUS_CHANGE',
+    ORDER_SEND = 'ORDER_SEND',
+    ORDER_GET = 'ORDER_GET',
+    ORDER_CANCEL = 'ORDER_CANCEL',
 }
 
 export interface CitySelect {
@@ -93,12 +102,12 @@ export interface ColorSelect {
 
 export interface DateFromSelect {
     type: OrderActionTypes.DATE_FROM_SELECT;
-    payload: Date | null;
+    payload: number | null;
 }
 
 export interface DateToSelect {
     type: OrderActionTypes.DATE_TO_SELECT;
-    payload: Date | null;
+    payload: number | null;
 }
 
 export interface RateSelect {
@@ -118,12 +127,39 @@ export interface PriceChange {
     type: OrderActionTypes.PRICE_CHANGE;
     payload: number | null;
 }
-export interface ConfirmShow {
-    type: OrderActionTypes.CONFIRM_SHOW;
+export interface ConfirmSendShow {
+    type: OrderActionTypes.CONFIRM_SEND_SHOW;
 }
 
-export interface ConfirmHide {
-    type: OrderActionTypes.CONFIRM_HIDE;
+export interface ConfirmSendHide {
+    type: OrderActionTypes.CONFIRM_SEND_HIDE;
+}
+
+export interface ConfirmCancelShow {
+    type: OrderActionTypes.CONFIRM_CANCEL_SHOW;
+}
+
+export interface ConfirmCancelHide {
+    type: OrderActionTypes.CONFIRM_CANCEL_HIDE;
+}
+
+export interface OrderStatusChange {
+    type: OrderActionTypes.ORDER_STATUS_CHANGE;
+    payload: string | null;
+}
+
+export interface OrderSend {
+    type: OrderActionTypes.ORDER_SEND;
+    payload: OrderSendRequest;
+}
+
+export interface OrderGet {
+    type: OrderActionTypes.ORDER_GET;
+    payload: OrderData;
+}
+
+export interface OrderCanel {
+    type: OrderActionTypes.ORDER_CANCEL;
 }
 
 export type OrderAction =
@@ -137,5 +173,11 @@ export type OrderAction =
     | RateSelect
     | AdditionalChange
     | PriceChange
-    | ConfirmShow
-    | ConfirmHide;
+    | ConfirmSendShow
+    | ConfirmSendHide
+    | ConfirmCancelShow
+    | ConfirmCancelHide
+    | OrderStatusChange
+    | OrderSend
+    | OrderGet
+    | OrderCanel;

@@ -1,3 +1,4 @@
+import { imgSrc } from '@utils/img-src';
 import { timeFormat } from '@utils/time-format';
 
 import { OrderStateDefault } from './default';
@@ -79,10 +80,7 @@ export const orderReducer = (
                         ...state.date.cart,
                         value:
                             action.payload && state.date.to
-                                ? timeFormat(
-                                      state.date.to.getTime() -
-                                          action.payload.getTime()
-                                  )
+                                ? timeFormat(state.date.to - action.payload)
                                 : null,
                     },
                 },
@@ -98,10 +96,7 @@ export const orderReducer = (
                         ...state.date.cart,
                         value:
                             action.payload && state.date.from
-                                ? timeFormat(
-                                      action.payload.getTime() -
-                                          state.date.from.getTime()
-                                  )
+                                ? timeFormat(action.payload - state.date.from)
                                 : null,
                     },
                 },
@@ -140,16 +135,99 @@ export const orderReducer = (
                 price: { ...state.price, value: action.payload },
             };
         }
-        case OrderActionTypes.CONFIRM_SHOW: {
+        case OrderActionTypes.CONFIRM_SEND_SHOW: {
             return {
                 ...state,
-                confirm: true,
+                confirmSend: true,
             };
         }
-        case OrderActionTypes.CONFIRM_HIDE: {
+        case OrderActionTypes.CONFIRM_SEND_HIDE: {
             return {
                 ...state,
-                confirm: false,
+                confirmSend: false,
+            };
+        }
+        case OrderActionTypes.CONFIRM_CANCEL_SHOW: {
+            return {
+                ...state,
+                confirmCancel: true,
+            };
+        }
+        case OrderActionTypes.CONFIRM_CANCEL_HIDE: {
+            return {
+                ...state,
+                confirmCancel: false,
+            };
+        }
+        case OrderActionTypes.ORDER_STATUS_CHANGE: {
+            return {
+                ...state,
+                statusId: action.payload,
+            };
+        }
+        case OrderActionTypes.ORDER_GET: {
+            return {
+                ...state,
+                city: {
+                    ...state.city,
+                    value: { ...state.city.value, ...action.payload.cityId },
+                },
+                point: {
+                    ...state.point,
+                    value: { ...state.point.value, ...action.payload.pointId },
+                    cart: {
+                        ...state.point.cart,
+                        value: `${action.payload.cityId.name}, ${action.payload.pointId.address}`,
+                    },
+                },
+                car: {
+                    ...state.car,
+                    value: {
+                        ...state.car.value,
+                        ...action.payload.carId,
+                        thumbnail: {
+                            ...action.payload.carId.thumbnail,
+                            path: imgSrc(action.payload.carId.thumbnail.path),
+                        },
+                    },
+                    cart: {
+                        ...state.car.cart,
+                        value: action.payload.carId.name,
+                    },
+                },
+                color: {
+                    ...state.color,
+                    value: action.payload.color,
+                    cart: { ...state.color.cart, value: action.payload.color },
+                },
+                date: {
+                    ...state.date,
+                    from: action.payload.dateFrom,
+                    to: action.payload.dateTo,
+                    cart: {
+                        ...state.date.cart,
+                        value: timeFormat(
+                            action.payload.dateTo - action.payload.dateFrom
+                        ),
+                    },
+                },
+                rate: {
+                    ...state.rate,
+                    value: { ...state.rate.value, ...action.payload.rateId },
+                    cart: {
+                        ...state.rate.cart,
+                        value: action.payload.rateId.rateTypeId.name,
+                    },
+                },
+                price: {
+                    ...state.price,
+                    value: action.payload.price,
+                },
+                additionals: state.additionals.map((additional) => ({
+                    ...additional,
+                    selected: action.payload[additional.id] as boolean,
+                })),
+                statusId: action.payload.orderStatusId.id,
             };
         }
         default:

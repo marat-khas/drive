@@ -15,7 +15,7 @@ export const GetRatesSuccessAction = (rates: Rate[]): GetRates => ({
 });
 
 export const GetRatesAction = () => (dispatch: Dispatch<any>) => {
-    dispatch(LoadingStartAction('getRates'));
+    dispatch(LoadingStartAction('Загрузка тарифов ...'));
     getRates()
         .then((data) => {
             dispatch(GetRatesSuccessAction(data));
@@ -24,11 +24,11 @@ export const GetRatesAction = () => (dispatch: Dispatch<any>) => {
             dispatch(
                 ModalShowAction({
                     head: 'Ошибка!',
-                    body: error,
+                    body: error.response.data,
                 })
             );
         })
         .finally(() => {
-            dispatch(LoadingEndAction('getRates'));
+            dispatch(LoadingEndAction('Загрузка тарифов ...'));
         });
 };

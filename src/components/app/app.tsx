@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { AppNav } from '@components/app-nav';
 import { AppRouter } from '@components/app-router';
-import { AppWrapper } from '@components/app-wrapper';
+import { Loader } from '@components/loader';
 import { Modal } from '@components/modal';
 import { store } from '@state/store';
 import { VHSet } from '@utils/vh';
@@ -28,12 +28,11 @@ export const App: FC = () => {
             <Provider store={store}>
                 <BrowserRouter basename={PUBLIC_PATH}>
                     <div className='app'>
-                        <AppWrapper>
-                            <AppNav />
-                            <AppRouter />
-                            <Modal />
-                        </AppWrapper>
+                        <AppNav />
+                        <AppRouter />
+                        <Modal />
                     </div>
+                    <Loader />
                 </BrowserRouter>
             </Provider>
         </StrictMode>

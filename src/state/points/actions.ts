@@ -17,7 +17,7 @@ export const GetPointsSuccessAction = (points: Point[]): GetPoints => ({
 
 export const GetPointsCoordsAction =
     (points: Omit<Point, 'coords'>[]) => (dispatch: Dispatch<any>) => {
-        dispatch(LoadingStartAction('getPointsCoords'));
+        dispatch(LoadingStartAction('Загрузка координат пунктов выдачи ...'));
         Promise.all(
             points.map((point) =>
                 getCoords(`${point.cityId.name} ${point.address}`)
@@ -37,17 +37,19 @@ export const GetPointsCoordsAction =
                 dispatch(
                     ModalShowAction({
                         head: 'Ошибка!',
-                        body: error,
+                        body: error.response.data,
                     })
                 );
             })
             .finally(() => {
-                dispatch(LoadingEndAction('getPointsCoords'));
+                dispatch(
+                    LoadingEndAction('Загрузка координат пунктов выдачи ...')
+                );
             });
     };
 
 export const GetPointsAction = () => (dispatch: Dispatch<any>) => {
-    dispatch(LoadingStartAction('getPoints'));
+    dispatch(LoadingStartAction('Загрузка пунктов выдачи ...'));
     getPoints()
         .then((data) => data.filter((point) => point.cityId))
         .then((data) => {
@@ -57,11 +59,11 @@ export const GetPointsAction = () => (dispatch: Dispatch<any>) => {
             dispatch(
                 ModalShowAction({
                     head: 'Ошибка!',
-                    body: error,
+                    body: error.response.data,
                 })
             );
         })
         .finally(() => {
-            dispatch(LoadingEndAction('getPoints'));
+            dispatch(LoadingEndAction('Загрузка пунктов выдачи ...'));
         });
 };

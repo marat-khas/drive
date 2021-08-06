@@ -33,6 +33,23 @@
   &__slider {
     width: 100%;
   }
+  &__status {
+      line-height: 1.15;
+      font-weight: 400;
+      color: $color-black;
+      &:not(:last-child) {
+          margin-bottom: 16px;
+      }
+      span {
+        font-weight: 700;
+      }
+      &--confirm span {
+        color: $color-accent;
+      }
+      &--cancel span {
+        color: $color-red;
+      }
+  }
 }
 
 @media (min-width: 992px) {
@@ -40,10 +57,8 @@
     &__result {
       padding: 32px 15px 32px 32px;
     }
-    &__slider {
-        .swiper-slide {
-            padding: 32px 32px 32px 15px;
-        }
+    &__slide {
+        padding: 32px 32px 32px 15px;
     }
   }
   .form {
@@ -76,10 +91,8 @@
     &__result {
       padding: 30px 15px;
     }
-    &__slider {
-        .swiper-slide {
-            padding: 30px 15px;
-        }
+    &__slide {
+        padding: 30px 15px;
     }
   }
 }
@@ -132,9 +145,7 @@
       margin-bottom: 30px;
     }
     &__slider {
-        .swiper-slide {
-            padding: 24px 15px;
-        }
+        padding: 24px 15px;
     }
   }
 }
@@ -144,6 +155,9 @@
     padding: 32px 0 0;
     &__head {
       padding-bottom: 38px;
+    }
+    &__status {
+        font-size: 24px;
     }
   }
 }
@@ -164,6 +178,9 @@
         padding-bottom: 10px;
         text-align: right;
       }
+    }
+    &__status {
+        font-size: 20px;
     }
   }
 }

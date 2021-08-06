@@ -1,6 +1,18 @@
+import { History } from 'history';
+import { Dispatch } from 'redux';
+
+import { ORDER_STATUS_ID } from '@constants/order-status-id';
+import { ROUTES } from '@constants/routes';
+import { orderCancel, orderGet, orderSend } from '@services/order';
+import { OrderData, OrderSendRequest } from '@services/order/types';
 import { Car } from '@state/cars/types';
 import { Category } from '@state/categories/types';
 import { City } from '@state/cities/types';
+import {
+    LoadingEndAction,
+    LoadingStartAction,
+    ModalShowAction,
+} from '@state/global/actions';
 import { Point } from '@state/points/types';
 import { Rate } from '@state/rates/types';
 
@@ -10,11 +22,15 @@ import {
     CategorySelect,
     CitySelect,
     ColorSelect,
-    ConfirmHide,
-    ConfirmShow,
+    ConfirmCancelHide,
+    ConfirmCancelShow,
+    ConfirmSendHide,
+    ConfirmSendShow,
     DateFromSelect,
     DateToSelect,
     OrderActionTypes,
+    OrderGet,
+    OrderStatusChange,
     PointSelect,
     PriceChange,
     RateSelect,
@@ -47,12 +63,12 @@ export const ColorSelectAction = (color: string | null): ColorSelect => ({
     payload: color,
 });
 
-export const DateFromSelectAction = (from: Date | null): DateFromSelect => ({
+export const DateFromSelectAction = (from: number | null): DateFromSelect => ({
     type: OrderActionTypes.DATE_FROM_SELECT,
     payload: from,
 });
 
-export const DateToSelectAction = (to: Date | null): DateToSelect => ({
+export const DateToSelectAction = (to: number | null): DateToSelect => ({
     type: OrderActionTypes.DATE_TO_SELECT,
     payload: to,
 });
@@ -78,10 +94,91 @@ export const PriceChangeAction = (price: number | null): PriceChange => ({
     type: OrderActionTypes.PRICE_CHANGE,
     payload: price,
 });
-export const ConfirmShowAction = (): ConfirmShow => ({
-    type: OrderActionTypes.CONFIRM_SHOW,
+
+export const ConfirmSendShowAction = (): ConfirmSendShow => ({
+    type: OrderActionTypes.CONFIRM_SEND_SHOW,
 });
 
-export const ConfirmHideAction = (): ConfirmHide => ({
-    type: OrderActionTypes.CONFIRM_HIDE,
+export const ConfirmSendHideAction = (): ConfirmSendHide => ({
+    type: OrderActionTypes.CONFIRM_SEND_HIDE,
 });
+
+export const ConfirmCancelShowAction = (): ConfirmCancelShow => ({
+    type: OrderActionTypes.CONFIRM_CANCEL_SHOW,
+});
+
+export const ConfirmCancelHideAction = (): ConfirmCancelHide => ({
+    type: OrderActionTypes.CONFIRM_CANCEL_HIDE,
+});
+
+export const OrderStatusChangeAction = (
+    status: string | null
+): OrderStatusChange => ({
+    type: OrderActionTypes.ORDER_STATUS_CHANGE,
+    payload: status,
+});
+
+export const OrderGetSuccessAction = (order: OrderData): OrderGet => ({
+    type: OrderActionTypes.ORDER_GET,
+    payload: order,
+});
+
+export const OrderGetAction = (id: string) => (dispatch: Dispatch<any>) => {
+    dispatch(LoadingStartAction('Получение деталей заказа ...'));
+    orderGet(id)
+        .then((data) => {
+            dispatch(OrderGetSuccessAction(data));
+        })
+        .catch((error) => {
+            dispatch(
+                ModalShowAction({
+                    head: 'Ошибка!',
+                    body: error.response.data,
+                })
+            );
+        })
+        .finally(() => {
+            dispatch(LoadingEndAction('Получение деталей заказа ...'));
+        });
+};
+
+export const OrderSendAction =
+    (data: OrderSendRequest, history: History<unknown>) =>
+    (dispatch: Dispatch<any>) => {
+        dispatch(LoadingStartAction('Отправка заказа ...'));
+        orderSend(data)
+            .then((response) => {
+                dispatch(OrderStatusChangeAction(ORDER_STATUS_ID.NEW));
+                history.push(`${ROUTES.DETAILS}/${response.id}`);
+            })
+            .catch((error) => {
+                dispatch(
+                    ModalShowAction({
+                        head: 'Ошибка!',
+                        body: error.response.data,
+                    })
+                );
+            })
+            .finally(() => {
+                dispatch(LoadingEndAction('Отправка заказа ...'));
+            });
+    };
+
+export const OrderCancelAction = (id: string) => (dispatch: Dispatch<any>) => {
+    dispatch(LoadingStartAction('Отмена заказа ...'));
+    orderCancel(id)
+        .then(() => {
+            dispatch(OrderStatusChangeAction(ORDER_STATUS_ID.CANCEL));
+        })
+        .catch((error) => {
+            dispatch(
+                ModalShowAction({
+                    head: 'Ошибка!',
+                    body: error.response.data,
+                })
+            );
+        })
+        .finally(() => {
+            dispatch(LoadingEndAction('Отмена заказа ...'));
+        });
+};

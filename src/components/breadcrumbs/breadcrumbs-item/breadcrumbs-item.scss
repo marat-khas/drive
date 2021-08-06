@@ -4,8 +4,11 @@
   position: relative;
   display: inline-block;
   vertical-align: top;
-  color: $color-gray-dark;
   padding: 4px 0;
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 700;
+  color: $color-black;
   &:not(:last-child) {
     &:after {
       content: "";
@@ -23,11 +26,8 @@
     border: 0 none;
     border-radius: 0;
     background-color: transparent;
-    font-size: 14px;
-    line-height: 1.2;
-    font-weight: 700;
     color: $color-gray-dark;
-    text-align: left;
+    font-weight: 700;
     padding: 0;
     cursor: default;
     transition: color $time-trs;

@@ -3,7 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Button } from '@components/common/button';
 import { SpecItem } from '@components/spec/spec-item';
-import { ConfirmShowAction, PriceChangeAction } from '@state/order/actions';
+import { ORDER_STATUS_ID } from '@constants/order-status-id';
+import {
+    ConfirmCancelShowAction,
+    ConfirmSendShowAction,
+    PriceChangeAction,
+} from '@state/order/actions';
 import { Cart } from '@state/order/types';
 import {
     getActiveTabIndex,
@@ -11,6 +16,7 @@ import {
     getCar,
     getDate,
     getOrder,
+    getOrderStatusId,
     getPrice,
     getRate,
     getTabs,
@@ -20,16 +26,21 @@ import { numSpace } from '@utils/num-space';
 
 import './spec.scss';
 
-export const Spec: FC = () => {
+import { SpecProps } from './types';
+
+export const Spec: FC<SpecProps> = ({ details }) => {
     const dispatch = useDispatch();
     const car = useSelector(getCar);
     const tabs = useSelector(getTabs);
     const order = useSelector(getOrder);
     const activeTabIndex = useSelector(getActiveTabIndex);
+    const orderStatusId = useSelector(getOrderStatusId);
 
     const handleNext = () => {
-        if (activeTabIndex === 3) {
-            dispatch(ConfirmShowAction());
+        if (details) {
+            dispatch(ConfirmCancelShowAction());
+        } else if (activeTabIndex === 3) {
+            dispatch(ConfirmSendShowAction());
         } else {
             dispatch(TabActiveAction(activeTabIndex + 1));
         }
@@ -57,8 +68,7 @@ export const Spec: FC = () => {
 
         if (selectedDates.from && selectedDates.to && selectedRate.value) {
             const time = Math.floor(
-                (selectedDates.to.getTime() - selectedDates.from.getTime()) /
-                    (1000 * 60)
+                (selectedDates.to - selectedDates.from) / (1000 * 60)
             );
             switch (selectedRate.value.rateTypeId.unit) {
                 case 'мин':
@@ -104,7 +114,7 @@ export const Spec: FC = () => {
             <div className='spec__body'>
                 {Object.values(order)
                     .reduce((acc, cur) => {
-                        if (cur.cart && cur.cart.value) {
+                        if (cur && cur.cart && cur.cart.value) {
                             acc.push(cur.cart);
                         }
                         return acc;
@@ -124,13 +134,18 @@ export const Spec: FC = () => {
                 </div>
             ) : null}
             <div className='spec__next'>
-                <Button
-                    disabled={!tabs[activeTabIndex].complete}
-                    fullsize
-                    onClick={handleNext}
-                >
-                    {tabs[activeTabIndex].btnText}
-                </Button>
+                {details && orderStatusId === ORDER_STATUS_ID.CANCEL ? null : (
+                    <Button
+                        disabled={
+                            details ? false : !tabs[activeTabIndex].complete
+                        }
+                        fullsize
+                        onClick={handleNext}
+                        bg={details ? 3 : 0}
+                    >
+                        {details ? 'Отменить' : tabs[activeTabIndex].btnText}
+                    </Button>
+                )}
             </div>
         </div>
     );

@@ -17,7 +17,7 @@ export const GetCitiesSuccessAction = (cities: City[]): GetCities => ({
 
 export const GetCitiesCoordsAction =
     (cities: Omit<City, 'coords'>[]) => (dispatch: Dispatch<any>) => {
-        dispatch(LoadingStartAction('getCitiesCoords'));
+        dispatch(LoadingStartAction('Загрузка координат городов ...'));
         Promise.all(cities.map((city) => getCoords(city.name)))
             .then((coords) => {
                 dispatch(
@@ -33,17 +33,17 @@ export const GetCitiesCoordsAction =
                 dispatch(
                     ModalShowAction({
                         head: 'Ошибка!',
-                        body: error,
+                        body: error.response.data,
                     })
                 );
             })
             .finally(() => {
-                dispatch(LoadingEndAction('getCitiesCoords'));
+                dispatch(LoadingEndAction('Загрузка координат городов ...'));
             });
     };
 
 export const GetCitiesAction = () => (dispatch: Dispatch<any>) => {
-    dispatch(LoadingStartAction('getCities'));
+    dispatch(LoadingStartAction('Загрузка городов ...'));
     getCities()
         .then((data) => {
             dispatch(GetCitiesCoordsAction(data));
@@ -52,11 +52,11 @@ export const GetCitiesAction = () => (dispatch: Dispatch<any>) => {
             dispatch(
                 ModalShowAction({
                     head: 'Ошибка!',
-                    body: error,
+                    body: error.response.data,
                 })
             );
         })
         .finally(() => {
-            dispatch(LoadingEndAction('getCities'));
+            dispatch(LoadingEndAction('Загрузка городов ...'));
         });
 };

@@ -12,6 +12,9 @@ export interface Car {
         path: string;
     };
     colors: string[];
+    number?: string;
+    description?: string;
+    tank?: number;
 }
 
 export interface CarsState {

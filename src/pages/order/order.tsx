@@ -1,17 +1,51 @@
 import { FC } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import { Breadcrumbs } from '@components/breadcrumbs';
 import { Confirm } from '@components/confirm';
 import { Header } from '@components/header';
 import { OrderSlider } from '@components/order-slider';
 import { Spec } from '@components/spec';
-import { getConfirmStatus } from '@state/selectors';
+import { ORDER_STATUS_ID } from '@constants/order-status-id';
+import { ConfirmSendHideAction, OrderSendAction } from '@state/order/actions';
+import { getConfirmSendStatus, getOrder } from '@state/selectors';
 
 import './order.scss';
 
 export const Order: FC = () => {
-    const confirmStatus = useSelector(getConfirmStatus);
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const order = useSelector(getOrder);
+    const confirmSendStatus = useSelector(getConfirmSendStatus);
+    const confirmSendSubmit = () => {
+        dispatch(
+            OrderSendAction(
+                {
+                    orderStatusId: {
+                        id: ORDER_STATUS_ID.NEW,
+                    },
+                    cityId: order.point.value!.cityId,
+                    pointId: order.point.value!,
+                    carId: order.car.value!,
+                    color: order.color.value!,
+                    dateFrom: order.date.from!,
+                    dateTo: order.date.to!,
+                    rateId: order.rate.value!,
+                    price: order.price.value!,
+                    isFullTank: order.additionals[0].selected,
+                    isNeedChildChair: order.additionals[1].selected,
+                    isRightWheel: order.additionals[2].selected,
+                },
+                history
+            )
+        );
+        dispatch(ConfirmSendHideAction());
+    };
+    const confirmSendCancel = () => {
+        dispatch(ConfirmSendHideAction());
+    };
+
     return (
         <div className='order'>
             <div className='order__head'>
@@ -37,7 +71,13 @@ export const Order: FC = () => {
                         </div>
                     </div>
                 </div>
-                {confirmStatus ? <Confirm /> : null}
+                {confirmSendStatus ? (
+                    <Confirm
+                        title='Подтвердить заказ'
+                        submitHandle={confirmSendSubmit}
+                        cancelHandle={confirmSendCancel}
+                    />
+                ) : null}
             </div>
         </div>
     );

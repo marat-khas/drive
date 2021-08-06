@@ -17,7 +17,7 @@ export const GetCategoriesSuccessAction = (
 });
 
 export const GetCategoriesAction = () => (dispatch: Dispatch<any>) => {
-    dispatch(LoadingStartAction('getCategories'));
+    dispatch(LoadingStartAction('Загрузка категорий ...'));
     getCategories()
         .then((categories) => {
             dispatch(GetCategoriesSuccessAction(categories));
@@ -26,11 +26,11 @@ export const GetCategoriesAction = () => (dispatch: Dispatch<any>) => {
             dispatch(
                 ModalShowAction({
                     head: 'Ошибка!',
-                    body: error,
+                    body: error.response.data,
                 })
             );
         })
         .finally(() => {
-            dispatch(LoadingEndAction('getCategories'));
+            dispatch(LoadingEndAction('Загрузка категорий ...'));
         });
 };

@@ -1,6 +1,6 @@
 import { RootState } from './types';
 
-export const getLoadingStatus = (state: RootState) => state.global.loading;
+export const getLoading = (state: RootState) => state.global.loading;
 
 export const getModal = (state: RootState) => state.global.modal;
 
@@ -38,4 +38,10 @@ export const getPoint = (state: RootState) => state.order.point;
 
 export const getPrice = (state: RootState) => state.order.price.value;
 
-export const getConfirmStatus = (state: RootState) => state.order.confirm;
+export const getConfirmSendStatus = (state: RootState) =>
+    state.order.confirmSend;
+
+export const getConfirmCancelStatus = (state: RootState) =>
+    state.order.confirmCancel;
+
+export const getOrderStatusId = (state: RootState) => state.order.statusId;
